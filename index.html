@@ -1234,7 +1234,17 @@ document.querySelectorAll('.ni[data-p]').forEach(function(el) {
   el.addEventListener('click', function() {
     var p = this.dataset.p;
     if (p === 'drone') {
-      window.location.href = 'https://stage-gpmd-dashboardui.theproindia.com/view/5ab239a4-ebf6-4649-9f77-e4f627cafafa?preview=true&dbConnectionType=NaN';
+      var droneUrl = 'https://stage-gpmd-dashboardui.theproindia.com/view/5ab239a4-ebf6-4649-9f77-e4f627cafafa?preview=true&dbConnectionType=NaN';
+      try {
+        if (window.top && window.top !== window.self) {
+          window.top.location.href = droneUrl;
+        } else {
+          window.location.href = droneUrl;
+        }
+      } catch (e) {
+        var popup = window.open(droneUrl, '_blank', 'noopener,noreferrer');
+        if (!popup) window.location.href = droneUrl;
+      }
       return;
     }
     document.querySelectorAll('.ni').forEach(function(n) { n.classList.remove('on'); });
