@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ePMS — Assam Disaster Resilient Hill Roads · P510002</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e1621;--sb:#0a1220;--card:#141f30;--card2:#111926;--bdr:rgba(255,255,255,0.07);--bdra:rgba(58,143,214,0.3);--t1:#e8edf5;--t2:#7a9bbf;--t3:#3a5a7a;--blue:#3a8fd6;--bluel:#5aaee8;--green:#2ecc85;--amber:#f0a528;--red:#e05252;--purple:#8b72d4;--gbg:rgba(46,204,133,0.1);--abg:rgba(240,165,40,0.1);--rbg:rgba(224,82,82,0.1);--bbg:rgba(58,143,214,0.1);--font:'Poppins',sans-serif;--mono:'Poppins',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--font);color:var(--t1);font-size:13px;}
+.app{display:grid;grid-template-columns:220px 1fr;height:100vh;}
+.sb{background:var(--sb);border-right:1px solid var(--bdr);display:flex;flex-direction:column;overflow-y:auto;}
+.sb::-webkit-scrollbar{width:0;}
+.sb-brand{padding:18px 16px 14px;border-bottom:1px solid var(--bdr);}
+.sb-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.sb-logo{width:30px;height:30px;border-radius:8px;background:#3B6D11;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:500;flex-shrink:0;}
+.sb-proj{font-size:9px;color:var(--t3);letter-spacing:.09em;text-transform:uppercase;}
+.sb-name{font-size:12px;font-weight:500;color:var(--t1);line-height:1.35;}
+.sb-code{font-size:10px;color:var(--blue);margin-top:4px;font-family:var(--mono);}
+.sb-pills{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap;}
+.pill{font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(58,143,214,0.12);color:var(--blue);border:1px solid rgba(58,143,214,0.2);}
+.sb-lbl{font-size:9px;color:var(--t3);letter-spacing:.09em;text-transform:uppercase;padding:10px 16px 3px;font-weight:600;}
+.ni{display:flex;align-items:center;gap:9px;padding:8px 16px;font-size:12px;color:var(--t2);cursor:pointer;border-left:2px solid transparent;transition:all .12s;}
+.ni:hover{color:var(--t1);background:rgba(255,255,255,0.03);}
+.ni.on{color:var(--t1);background:rgba(58,143,214,0.1);border-left-color:var(--blue);}
+.nb{margin-left:auto;font-size:9px;padding:1px 5px;border-radius:7px;font-weight:600;}
+.nb-r{background:rgba(224,82,82,0.2);color:#ff8080;}
+.nb-a{background:rgba(240,165,40,0.2);color:#ffc860;}
+.sb-foot{margin-top:auto;padding:12px 16px;border-top:1px solid var(--bdr);font-size:10px;color:var(--t3);line-height:1.7;}
+.main{display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:52px;background:var(--card);border-bottom:1px solid var(--bdr);padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.tb-title{font-size:14px;font-weight:500;color:var(--t1);}
+.tb-sub{font-size:11px;color:var(--t3);font-family:var(--mono);}
+.tb-r{display:flex;align-items:center;gap:8px;}
+.tb-icon{display:none;width:22px;height:22px;align-items:center;justify-content:center;color:#202938;font-size:14px;cursor:pointer;}
+.chip{display:flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid;font-weight:500;white-space:nowrap;}
+.chr{background:var(--rbg);color:#ff8080;border-color:rgba(224,82,82,0.25);}
+.cha{background:var(--abg);color:#ffc860;border-color:rgba(240,165,40,0.25);}
+.chb{background:var(--bbg);color:var(--bluel);border-color:rgba(58,143,214,0.25);}
+.ava{width:28px;height:28px;border-radius:50%;background:#3B6D11;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff;}
+.page{flex:1;overflow-y:auto;padding:18px 20px;display:none;}
+.page.on{display:block;}
+.page::-webkit-scrollbar{width:4px;}
+.page::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:2px;}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.pt{font-size:15px;font-weight:600;color:var(--t1);}
+.ps{font-size:11px;color:var(--t2);margin-top:2px;}
+.pm{font-size:11px;color:var(--t3);text-align:right;}
+.ab{border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:flex-start;gap:10px;border-left:3px solid;}
+.ab-r{background:var(--rbg);border-color:var(--red);}
+.ab-a{background:var(--abg);border-color:var(--amber);}
+.ab-b{background:var(--bbg);border-color:var(--blue);}
+.ab-txt{font-size:12px;line-height:1.6;color:var(--t2);}
+.ab-txt strong{color:var(--t1);font-weight:600;}
+.kg5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+.kg4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+.kg3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+.kc{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:14px 14px 12px;position:relative;overflow:hidden;}
+.kc::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;}
+.kb::before{background:var(--blue);}
+.kg::before{background:var(--green);}
+.ka::before{background:var(--amber);}
+.kr::before{background:var(--red);}
+.kp::before{background:var(--purple);}
+.kc-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.kc-v{font-size:22px;font-weight:600;color:var(--t1);line-height:1;font-family:var(--mono);}
+.kc-s{font-size:10px;color:var(--t3);margin-top:5px;}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:12px;}
+.g3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:12px;}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:14px 16px;margin-bottom:12px;}
+.card:last-child{margin-bottom:0;}
+.ch{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;padding-bottom:9px;border-bottom:1px solid var(--bdr);}
+.ch-m{font-size:10px;color:var(--t3);font-weight:400;}
+.tbl{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed;}
+.tbl th{text-align:left;font-size:10px;color:var(--t3);font-weight:600;padding:0 6px 8px 0;border-bottom:1px solid var(--bdr);text-transform:uppercase;letter-spacing:.05em;}
+.tbl td{padding:9px 6px 9px 0;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--t2);vertical-align:middle;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl td:first-child{color:var(--t1);font-weight:500;}
+.tbl-row-clickable{cursor:pointer;transition:background .1s;}
+.tbl-row-clickable:hover td{background:rgba(58,143,214,0.05);}
+.tbl-row-clickable td:first-child::before{content:'▸ ';font-size:9px;color:var(--blue);margin-right:2px;}
+.tbl-row-clickable.open td:first-child::before{content:'▾ ';}
+.acc-row{display:none;}
+.acc-row.open{display:table-row;}
+.acc-cell{padding:0 !important;border-bottom:1px solid rgba(58,143,214,0.12) !important;}
+.acc-inner{padding:14px 16px;background:rgba(58,143,214,0.04);border-top:1px solid rgba(58,143,214,0.08);}
+.b{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;border:1px solid;white-space:nowrap;font-weight:600;}
+.bg{background:rgba(46,204,133,0.1);color:var(--green);border-color:rgba(46,204,133,0.2);}
+.ba{background:var(--abg);color:var(--amber);border-color:rgba(240,165,40,0.2);}
+.br{background:var(--rbg);color:var(--red);border-color:rgba(224,82,82,0.2);}
+.bb{background:var(--bbg);color:var(--bluel);border-color:rgba(58,143,214,0.2);}
+.bgr{background:rgba(255,255,255,0.05);color:var(--t2);border-color:var(--bdr);}
+.row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:11px;}
+.row:last-child{border-bottom:none;}
+.rl{color:var(--t2);}
+.rv{color:var(--t1);font-weight:500;}
+.pr{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.pr:last-child{border-bottom:none;}
+.pn{font-size:11px;color:var(--t1);font-weight:500;flex-shrink:0;}
+.ps2{font-size:9px;color:var(--t3);}
+.pbw{flex:1;background:rgba(255,255,255,0.06);border-radius:3px;height:6px;overflow:hidden;}
+.pb{height:6px;border-radius:3px;}
+.ppc{font-size:11px;font-weight:600;width:36px;text-align:right;flex-shrink:0;font-family:var(--mono);}
+.step{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.step:last-child{border-bottom:none;}
+.snum{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;border:1px solid;}
+.sd{background:rgba(46,204,133,0.1);color:var(--green);border-color:rgba(46,204,133,0.3);}
+.sa{background:var(--bbg);color:var(--bluel);border-color:rgba(58,143,214,0.3);}
+.sp{background:rgba(255,255,255,0.05);color:var(--t3);border-color:var(--bdr);}
+.st{font-size:11px;font-weight:500;color:var(--t1);}
+.sn{font-size:10px;color:var(--t3);margin-top:2px;}
+.isr-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.isr-i{padding:9px 11px;border-radius:8px;border:1px solid var(--bdr);background:var(--card2);}
+.isr-l{font-size:10px;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em;}
+.isr-r{font-size:11px;font-weight:600;}
+.rs{color:var(--green);}.rms{color:var(--bluel);}.rmu{color:var(--amber);}.ru{color:var(--red);}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;}
+.fb{border-radius:8px;padding:10px 12px;text-align:center;border:1px solid;}
+.fb-n{font-size:20px;font-weight:700;font-family:var(--mono);line-height:1;}
+.fb-l{font-size:10px;margin-top:4px;}
+.fbt{background:rgba(255,255,255,0.04);border-color:var(--bdr);}.fbt .fb-n,.fbt .fb-l{color:var(--t2);}
+.fbg{background:var(--gbg);border-color:rgba(46,204,133,0.2);}.fbg .fb-n,.fbg .fb-l{color:var(--green);}
+.fba{background:var(--abg);border-color:rgba(240,165,40,0.2);}.fba .fb-n,.fba .fb-l{color:var(--amber);}
+.fbr{background:var(--rbg);border-color:rgba(224,82,82,0.2);}.fbr .fb-n,.fbr .fb-l{color:var(--red);}
+.map-b{background:#F7FBF2;border-radius:8px;height:180px;position:relative;overflow:hidden;margin-bottom:12px;border:1px solid var(--bdra);}
+.map-grid{position:absolute;inset:0;background:#F7FBF2;}
+.map-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(58,143,214,0.25);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;}
+.pin{position:absolute;display:flex;align-items:center;gap:4px;font-size:10px;color:rgba(255,255,255,0.65);}
+.pin-d{width:9px;height:9px;border-radius:50%;}
+.sep{height:1px;background:var(--bdr);margin:10px 0;}
+/* PROCUREMENT SPECIFIC */
+.bc{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--t3);margin-bottom:14px;flex-wrap:wrap;}
+.bca{color:var(--blue);cursor:pointer;}
+.bca:hover{text-decoration:underline;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--blue);cursor:pointer;margin-bottom:14px;padding:5px 12px;border-radius:6px;border:1px solid rgba(58,143,214,0.2);background:var(--bbg);transition:all .12s;}
+.back-btn:hover{background:rgba(58,143,214,0.15);}
+.tabs{display:flex;gap:2px;background:var(--card2);border-radius:8px;padding:3px;margin-bottom:14px;}
+.tab{flex:1;text-align:center;padding:7px 8px;font-size:11px;color:var(--t2);cursor:pointer;border-radius:6px;transition:all .12s;}
+.tab.on{background:var(--card);color:var(--t1);font-weight:500;}
+.tab-content{display:none;}
+.tab-content.on{display:block;}
+.dp{background:var(--card);border:1px solid var(--bdr);border-radius:10px;padding:16px 18px;margin-bottom:12px;animation:fadeIn .18s ease;}
+.dp.l2{border-left:3px solid var(--blue);}
+.dp.l3{border-left:3px solid var(--amber);}
+.dp.l4{border-left:3px solid var(--purple);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+.dp-title{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:4px;}
+.dp-sub{font-size:11px;color:var(--t2);margin-bottom:12px;}
+.dp-close{float:right;cursor:pointer;color:var(--t3);font-size:16px;}
+.dp-close:hover{color:var(--t1);}
+.dp-g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+.dp-stat{background:var(--card2);border-radius:8px;padding:10px 12px;border:1px solid var(--bdr);}
+.dp-stat-l{font-size:10px;color:var(--t3);margin-bottom:3px;}
+.dp-stat-v{font-size:15px;font-weight:600;font-family:var(--mono);color:var(--t1);}
+.click-row{cursor:pointer;transition:background .1s;}
+.click-row:hover td{background:rgba(139,114,212,0.06)!important;}
+.click-row td:first-child::before{content:'▸ ';font-size:9px;color:var(--purple);margin-right:2px;}
+.audit-row{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:11px;}
+.audit-row:last-child{border-bottom:none;}
+.audit-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.audit-time{color:var(--t3);font-family:var(--mono);font-size:10px;width:130px;flex-shrink:0;}
+.audit-user{color:var(--blue);width:130px;flex-shrink:0;}
+.audit-act{color:var(--t2);flex:1;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:2px;}
+
+/* Nature-green infrastructure theme override (flat surfaces only) */
+:root{
+  --bg:#F7FBF2;
+  --sb:#FFFFFF;
+  --card:#FFFFFF;
+  --card2:#FFFFFF;
+  --bdr:#D9E2EF;
+  --bdra:#C0DD97;
+  --t1:#2E3A2E;
+  --t2:#556B55;
+  --t3:#7D927C;
+  --blue:#185FA5;
+  --bluel:#185FA5;
+  --green:#639922;
+  --amber:#EF9F27;
+  --red:#E24B4A;
+  --purple:#3B6D11;
+  --gbg:#EAF3DE;
+  --abg:#FAEEDA;
+  --rbg:#FCEBEB;
+  --bbg:#EAF3DE;
+  --color-page-bg:#F7FBF2;
+  --color-white:#FFFFFF;
+  --color-primary:#3B6D11;
+  --color-primary-fill:#EAF3DE;
+  --color-primary-border:#C0DD97;
+  --color-link:#185FA5;
+  --color-warning-text:#854F0B;
+  --color-warning-border:#FAC775;
+  --color-danger-text:#A32D2D;
+  --color-danger-border:#F7C1C1;
+  --color-kpi-blue:#185FA5;
+  --color-kpi-green:#3B6D11;
+  --color-kpi-amber:#BA7517;
+  --color-kpi-red:#A32D2D;
+  --color-border-tertiary:#D9E2EF;
+}
+
+html,body{background:var(--color-page-bg);color:var(--t1);font-weight:400;}
+.page{background:var(--color-page-bg);}
+
+/* Flat surfaces and border system */
+.sb,.sb-brand,.sb-foot,.topbar,.card,.kc,.dp,.isr-i,.dp-stat,.tabs,.tab.on,.ab,.fb,.map-b,
+.tbl th,.tbl td,.row,.pr,.step,.audit-row,.acc-cell,.acc-inner,.back-btn,.pill,.chip,.b,.ni.on{
+  border-color:var(--bdr)!important;
+}
+
+.sb,.sb-brand,.sb-foot,.topbar,.card,.kc,.dp,.isr-i,.dp-stat,.tabs,.map-b,.back-btn,.pill,.chip,.b{
+  border-width:.5px!important;
+}
+
+.sb,.sb-brand,.sb-foot,.topbar,.card,.kc,.dp,.isr-i,.dp-stat,.tabs,.tab.on,.map-b,.back-btn,.pill,.chip,.fb,.ab,.acc-inner{
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+.sb{background:var(--color-white);}
+.topbar,.card,.kc,.dp,.isr-i,.dp-stat,.tabs,.tab.on,.back-btn,.pill,.chip,.fb,.ab,.acc-inner{background:var(--color-white);}
+
+.sb-logo,.ava{
+  background:var(--color-primary)!important;
+  color:#FFFFFF;
+}
+
+/* Typography discipline: max weight 500 */
+body,strong,.sb-name,.tb-title,.pt,.ch,.kc-v,.rv,.pn,.st,.tab.on,.ni.on,.dp-title,.fb-n,.snum,.isr-r,.b,.tbl td:first-child{
+  font-weight:500!important;
+}
+.sb-lbl,.kc-l,.tbl th,.ch-m,.ps,.pm,.ps2,.sn,.dp-sub,.dp-stat-l,.fb-l,.rl,.tbl td,.audit-time,.audit-act,.audit-user{font-weight:400!important;}
+
+/* Sidebar active state */
+.ni.on{
+  background:var(--color-primary-fill)!important;
+  color:var(--color-primary)!important;
+  border-left-color:var(--color-primary)!important;
+}
+.ni:hover{background:var(--color-primary-fill)!important;color:var(--color-primary)!important;}
+
+/* Links/info: package IDs, district names, contractor names */
+.tbl td:nth-child(1),.tbl td:nth-child(2),.tbl td:nth-child(3),.bca,.back-btn,.audit-user,.sb-code{
+  color:var(--color-link)!important;
+}
+
+/* KPI colors */
+.kc-v{color:var(--color-kpi-blue);}
+.kg .kc-v{color:var(--color-kpi-green)!important;}
+.ka .kc-v{color:var(--color-kpi-amber)!important;}
+.kr .kc-v{color:var(--color-kpi-red)!important;}
+
+/* Status bars and badges */
+.pbw{background:var(--color-primary-fill);border:.5px solid var(--color-primary-border);}
+.pb{box-shadow:none!important;}
+
+.bg{background:#EAF3DE!important;color:#3B6D11!important;border-color:#C0DD97!important;}
+.ba{background:#FAEEDA!important;color:#854F0B!important;border-color:#FAC775!important;}
+.br{background:#FCEBEB!important;color:#A32D2D!important;border-color:#F7C1C1!important;}
+
+.chr{background:#FCEBEB!important;color:#A32D2D!important;border-color:#F7C1C1!important;}
+.cha{background:#FAEEDA!important;color:#854F0B!important;border-color:#FAC775!important;}
+.chb{background:#EAF3DE!important;color:#3B6D11!important;border-color:#C0DD97!important;}
+
+/* KPI/number emphasis colors */
+.fb-n{color:var(--color-kpi-blue)!important;}
+.fbg .fb-n,.fbg .fb-l{color:#3B6D11!important;}
+.fba .fb-n,.fba .fb-l{color:#BA7517!important;}
+.fbr .fb-n,.fbr .fb-l{color:#A32D2D!important;}
+
+/* Table header requirements */
+.tbl thead tr{background:#F7FBF2;}
+.tbl th{
+  background:#F7FBF2;
+  color:#639922!important;
+  font-size:10px!important;
+  letter-spacing:.5px!important;
+  text-transform:uppercase;
+  border-bottom:.5px solid var(--bdr)!important;
+}
+.tbl td{border-bottom:.5px solid var(--bdr)!important;}
+.tbl-row-clickable:hover td{background:#F7FBF2!important;}
+
+/* Flat map + no glow effects */
+.map-b{background:#F7FBF2!important;border:.5px solid var(--bdr)!important;}
+.map-grid{background:#F7FBF2!important;}
+.map-lbl{color:rgba(59,109,17,0.45)!important;}
+.pin{color:var(--t1)!important;}
+.pin-d{box-shadow:none!important;}
+
+/* Remove decorative gradients from KPI strips */
+.kc::before,.kb::before,.kg::before,.ka::before,.kr::before,.kp::before{
+  background:var(--color-primary-border)!important;
+}
+
+/* Table row expanders in primary theme */
+.tbl-row-clickable td:first-child::before{color:var(--color-primary)!important;}
+.acc-cell{border-bottom:.5px solid var(--color-primary-border)!important;}
+.acc-inner{border-top:.5px solid var(--color-primary-border)!important;background:#F7FBF2!important;}
+
+/* Generic thin border consistency */
+.row,.pr,.step,.audit-row,.ch,.sep{border-color:var(--bdr)!important;}
+.isr-l,.kc-l,.sb-lbl{letter-spacing:.5px;}
+
+/* Product UI alignment: unified card component system */
+:root{
+  --ui-page:#ECEFF4;
+  --ui-surface:#FFFFFF;
+  --ui-surface-soft:#F7F9FC;
+  --ui-border:#D7DEE8;
+  --ui-text:#1E2733;
+  --ui-muted:#6B7C93;
+  --ui-primary:#2F6EA5;
+  --ui-primary-soft:#E9F2FB;
+  --sb-primary:#3B6D11;
+  --sb-primary-soft:#EAF3DE;
+  --ui-shadow:0 1px 2px rgba(16,24,40,0.08);
+  --product-card-value-size:1.75rem;
+  --product-card-suffix-size:1rem;
+  --product-card-value-color:#628BCE;
+}
+
+html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
+.app{background:var(--ui-page)!important;gap:0;padding:0;}
+.main{background:var(--ui-page)!important;}
+
+/* Sidebar like product */
+.sb{
+  background:var(--ui-surface)!important;
+  border:.5px solid var(--ui-border)!important;
+  border-radius:12px;
+}
+.sb-brand,.sb-foot{border-color:var(--ui-border)!important;}
+.sb-lbl{display:none;}
+.ni{
+  margin:2px 10px;
+  border-radius:6px;
+  border-left:none!important;
+  color:#2C3E50!important;
+  font-size:13px;
+  padding:10px 12px;
+}
+.ni:hover{background:var(--sb-primary-soft)!important;color:var(--sb-primary)!important;}
+.ni.on{
+  background:var(--sb-primary)!important;
+  color:#FFFFFF!important;
+  font-weight:500!important;
+}
+
+/* Universal card component */
+.topbar,.card,.kc,.dp,.isr-i,.dp-stat,.fb,.ab,.tabs,.tab.on,.acc-inner,.back-btn{
+  background:var(--ui-surface)!important;
+  border:1px solid var(--ui-border)!important;
+  border-radius:10px!important;
+  box-shadow:var(--ui-shadow)!important;
+}
+
+.topbar{
+  height:52px;
+  margin:0;
+  padding:0 20px;
+  border-radius:0!important;
+}
+.page{padding:18px 20px!important;background:var(--ui-page)!important;}
+
+.pt,.tb-title,.ch,.kc-l,.dp-title{color:var(--ui-text)!important;}
+.ps,.pm,.tb-sub,.rl,.ch-m,.dp-sub,.kc-s,.isr-l{color:var(--ui-muted)!important;}
+
+.card,.kc,.dp{padding:14px 16px!important;}
+.ch{padding-bottom:10px!important;border-bottom:1px solid var(--ui-border)!important;}
+
+.tbl th{
+  background:var(--ui-surface-soft)!important;
+  color:#6A7D93!important;
+  border-bottom:1px solid var(--ui-border)!important;
+}
+.tbl td{border-bottom:1px solid #E7ECF3!important;color:#2E3F54!important;}
+
+.row,.pr,.step,.audit-row,.sep{border-color:#E7ECF3!important;}
+
+.kc::before{height:0!important;}
+.kc-v{font-size:38px;line-height:1.05;letter-spacing:.02em;}
+
+.chip{
+  background:var(--ui-surface-soft)!important;
+  color:#425466!important;
+  border:1px solid var(--ui-border)!important;
+}
+.ava{background:var(--ui-primary)!important;color:#FFFFFF!important;}
+.sb .sb-logo{background:var(--sb-primary)!important;color:#FFFFFF!important;}
+
+/* Status colors kept from product screenshot style */
+.bg{background:#EAF6EC!important;color:#0F7A3B!important;border-color:#BEE3CA!important;}
+.ba{background:#FFF3DD!important;color:#A86300!important;border-color:#F6D59A!important;}
+.br{background:#FDEBEC!important;color:#C53030!important;border-color:#F5BFC3!important;}
+
+.pbw{background:#EEF2F7!important;border:1px solid #DFE5EE!important;}
+
+/* Works drill-down consistency */
+.bc{background:var(--ui-surface);border:1px solid var(--ui-border);border-radius:8px;padding:8px 10px;}
+.drill-crumb-sep{color:var(--ui-muted);padding:0 3px;}
+.drill-crumb-current{color:var(--ui-text);font-weight:500;}
+.drill-link{font-size:10px;color:var(--ui-primary)!important;cursor:pointer;font-weight:500;}
+.drill-link.success{color:#0F7A3B!important;}
+.drill-link.warn{color:#A86300!important;}
+.drill-mini-title{font-size:10px;color:var(--ui-muted);margin-bottom:6px;font-weight:500;}
+.drill-timeline-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid #E7ECF3;}
+.drill-timeline-dot{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:500;flex-shrink:0;margin-top:1px;}
+.drill-timeline-step{flex:1;font-size:11px;color:#425466;}
+.drill-timeline-date{font-size:10px;color:var(--ui-muted);font-family:var(--mono);white-space:nowrap;}
+.drill-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.drill-pill-btn{font-size:11px;cursor:pointer;white-space:nowrap;padding:6px 12px;border:1px solid var(--ui-border);border-radius:6px;background:var(--ui-surface-soft);color:var(--ui-primary);font-weight:500;}
+.drill-pill-btn.success{color:#0F7A3B;border-color:#BEE3CA;background:#EAF6EC;}
+
+/* Reusable overview chart components */
+.chart-wrap{display:grid;grid-template-columns:1fr 160px;gap:14px;align-items:center;}
+.bar-chart{height:130px;padding:10px 10px 8px;border:1px solid #E7ECF3;border-radius:8px;background:#FBFCFE;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;}
+.bar-fill{width:100%;max-width:32px;border-radius:8px 8px 4px 4px;min-height:6px;position:relative;}
+.bar-fill.red{background:linear-gradient(180deg,#F58A90 0%,#E24B4A 100%);}
+.bar-fill.amber{background:linear-gradient(180deg,#FFD186 0%,#EF9F27 100%);}
+.bar-fill.green{background:linear-gradient(180deg,#9FD36A 0%,#3B6D11 100%);}
+.bar-pct{font-size:11px;font-weight:500;color:#334155;font-family:var(--mono);}
+.bar-lbl{font-size:10px;color:var(--ui-muted);text-align:center;line-height:1.2;}
+.chart-legend{display:flex;flex-direction:column;gap:8px;}
+.legend-item{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:#475569;border-bottom:1px solid #EEF2F7;padding-bottom:6px;}
+.legend-item:last-child{border-bottom:none;padding-bottom:0;}
+.legend-left{display:flex;align-items:center;gap:7px;}
+.dot{width:9px;height:9px;border-radius:50%;}
+.dot.red{background:#E24B4A;}
+.dot.amber{background:#EF9F27;}
+.dot.green{background:#3B6D11;}
+.donut-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.donut-card{border:1px solid #E7ECF3;border-radius:8px;background:#FBFCFE;padding:10px;display:flex;align-items:center;gap:10px;}
+.donut{width:54px;height:54px;flex-shrink:0;}
+.donut text{font-size:9px;fill:#334155;font-family:var(--mono);font-weight:500;}
+.donut-meta{display:flex;flex-direction:column;gap:2px;}
+.donut-label{font-size:10px;color:var(--ui-muted);}
+.donut-value{font-size:13px;color:#1F2937;font-weight:500;font-family:var(--mono);}
+
+/* Product card behavior from JSON config */
+.product-kpi-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;}
+.product-kpi-card .kc-l{font-size:12px;letter-spacing:0;text-transform:none;}
+.product-kpi-card .kc-v{font-size:var(--product-card-value-size)!important;font-weight:700!important;line-height:1.1;}
+.product-kpi-card .kc-s{font-size:var(--product-card-suffix-size)!important;}
+.card-view-details{margin-top:6px;font-size:11px;color:#3B6D11;font-weight:500;cursor:pointer;user-select:none;}
+.product-kpi-card .card-view-details{margin-top:6px;font-size:11px;color:#3B6D11;font-weight:500;cursor:pointer;}
+
+/* Product-like popup for onclickAction=openPopup */
+.popup-mask{position:fixed;inset:0;background:rgba(15,23,42,0.35);display:none;align-items:center;justify-content:center;z-index:9999;padding:16px;}
+.popup-mask.open{display:flex;}
+.popup-box{width:min(560px,100%);background:#FFFFFF;border:1px solid #D7DEE8;border-radius:12px;box-shadow:0 14px 30px rgba(15,23,42,0.2);}
+.popup-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #E7ECF3;}
+.popup-title{font-size:14px;font-weight:600;color:#1E2733;}
+.popup-close{font-size:18px;line-height:1;color:#64748B;cursor:pointer;}
+.popup-body{padding:14px;display:grid;gap:8px;}
+.popup-label{font-size:11px;color:#6B7C93;}
+.popup-value{font-size:18px;font-weight:700;color:#1E2733;}
+.popup-sub{font-size:12px;color:#475569;}
+
+/* Dashboard-only topbar behavior (keeps card components unchanged) */
+body.overview-mode .tb-sub,
+body.overview-mode .chip,
+body.overview-mode .ava{display:none!important;}
+body.overview-mode .tb-icon{display:inline-flex;}
+body.overview-mode .topbar{
+  height:42px;
+  padding:0 12px;
+  margin:8px 10px 0;
+  border-radius:8px!important;
+}
+body.overview-mode #p-overview{padding:10px!important;}
+body.overview-mode .tb-title{font-size:13px;font-weight:400!important;color:#2B3441!important;}
+body.overview-mode .kc-v{font-size:40px;}
+body.overview-mode .ch{font-size:12px;}
+body.overview-mode .sb{border-radius:10px;}
+body.overview-mode .ni{font-size:13px;padding:11px 12px;}
+body.overview-mode .ni:hover{background:var(--ui-primary-soft)!important;color:var(--ui-primary)!important;}
+body.overview-mode .ni.on{background:var(--ui-primary)!important;color:#FFFFFF!important;}
+body.overview-mode .sb .sb-logo{background:var(--ui-primary)!important;color:#FFFFFF!important;}
+
+@media (max-width:1200px){
+  .chart-wrap{grid-template-columns:1fr;}
+  .donut-grid{grid-template-columns:1fr;}
+}
+
+/* Works drill: simple breadcrumb style */
+#w-l2 .back-btn,#w-l3 .back-btn,#w-l4 .back-btn,#w-l5 .back-btn,#w-l6 .back-btn{display:inline-flex!important;}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sb">
+  <div class="sb-brand">
+    <div class="sb-top"><div class="sb-logo">A</div><div><div class="sb-proj">World Bank · P510002</div><div class="sb-name">Assam Hill Roads ePMS</div></div></div>
+    <div class="sb-code">Project Control Centre</div>
+    <div class="sb-pills"><span class="pill">USD 443M</span><span class="pill">765 km</span><span class="pill">3 Districts</span></div>
+  </div>
+  <nav>
+    <div class="sb-lbl">Overview</div>
+    <div class="ni on" data-p="overview">&#9632; Project dashboard</div>
+    <div class="sb-lbl">Construction</div>
+    <div class="ni" data-p="works">&#128296; Works progress</div>
+    <div class="sb-lbl">Safeguards</div>
+    <div class="ni" data-p="env">&#127807; Environment <span class="nb nb-r">2</span></div>
+    <div class="ni" data-p="social">&#128101; Social &amp; GRM <span class="nb nb-r">7</span></div>
+    <div class="sb-lbl">Governance</div>
+    <div class="ni" data-p="proc">&#128203; Procurement <span class="nb nb-r">4</span></div>
+    <div class="ni" data-p="finance">&#128176; Financial mgmt</div>
+    <div class="ni" data-p="disaster">&#9888; Disaster response <span class="nb nb-r">1</span></div>
+    <div class="sb-lbl">Reporting</div>
+    <div class="ni" data-p="isr">&#128202; ISR reports</div>
+    <div class="ni" data-p="admin">&#9881; Administration</div>
+  </nav>
+  <div class="sb-foot">Implementing: APWRD · EAP<br>Peninsular Research Operation<br>Version 1.0 · March 2026</div>
+</aside>
+<div class="main">
+  <div class="topbar">
+    <div><div class="tb-title" id="tbt">Project Overview</div><div class="tb-sub">Last updated: 28 May 2026 · 09:14 IST</div></div>
+    <div class="tb-r">
+      <div class="chip chr">&#9888; 1 Disaster Alert</div>
+      <div class="chip cha">&#8987; ISR Due 18 days</div>
+      <div class="chip chb">&#9873; 9 Red Flags</div>
+      <div class="ava">PD</div>
+      <span class="tb-icon" title="Theme">&#9681;</span>
+      <span class="tb-icon" title="Close">&#10005;</span>
+    </div>
+  </div>
+
+<!-- OVERVIEW -->
+<div class="page on" id="p-overview">
+  <div class="ph"><div><div class="pt">Project overview</div><div class="ps">P510002 · Assam Disaster Resilient Hill Roads Development Project</div></div><div class="pm">IBRD USD 355M · GoA USD 88M</div></div>
+  <div class="kg5">
+    <div class="kc kb"><div class="kc-l">Total road works</div><div class="kc-v">765 km</div><div class="kc-s">3 districts · 24 packages</div></div>
+    <div class="kc kg"><div class="kc-l">Physically complete</div><div class="kc-v" style="color:var(--green);">38%</div><div class="kc-s">292 km certified</div></div>
+    <div class="kc kb"><div class="kc-l">IBRD disbursed</div><div class="kc-v" style="color:var(--bluel);">$98M</div><div class="kc-s">27.6% of USD 355M</div></div>
+    <div class="kc ka"><div class="kc-l">Open red flags</div><div class="kc-v" style="color:var(--amber);">9</div><div class="kc-s">2 ESF · 3 works · 4 proc</div></div>
+    <div class="kc kr"><div class="kc-l">Grievances pending</div><div class="kc-v" style="color:var(--red);">7</div><div class="kc-s">3 escalated · 4 active</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch">District progress <span class="ch-m">765 km total</span></div>
+      <div class="chart-wrap">
+        <div class="bar-chart">
+          <div class="bar-col">
+            <div class="bar-fill red" style="height:34%;"></div>
+            <div class="bar-pct">34%</div>
+            <div class="bar-lbl">Dima Hasao</div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-fill amber" style="height:44%;"></div>
+            <div class="bar-pct">44%</div>
+            <div class="bar-lbl">Karbi Anglong</div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-fill green" style="height:61%;"></div>
+            <div class="bar-pct">61%</div>
+            <div class="bar-lbl">West Karbi</div>
+          </div>
+        </div>
+        <div class="chart-legend">
+          <div class="legend-item"><span class="legend-left"><span class="dot red"></span>Dima Hasao</span><span>348 km · 14 pkg</span></div>
+          <div class="legend-item"><span class="legend-left"><span class="dot amber"></span>Karbi Anglong</span><span>348 km · 8 pkg</span></div>
+          <div class="legend-item"><span class="legend-left"><span class="dot green"></span>West Karbi</span><span>69 km · 2 pkg</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch">Financial position <span class="ch-m">May 2026</span></div>
+      <div class="row"><span class="rl">IBRD disbursed</span><span class="rv" style="color:var(--bluel);">USD 98M / 355M</span></div>
+      <div class="row"><span class="rl">GoA counterpart</span><span class="rv">USD 18.5M / 88M</span></div>
+      <div class="row"><span class="rl">Certified expenditure</span><span class="rv" style="color:var(--green);">USD 150M</span></div>
+      <div class="row"><span class="rl">Pending contractor bills</span><span class="rv" style="color:var(--amber);">USD 31M</span></div>
+      <div class="row"><span class="rl">IUFR Q1 2026</span><span class="rv" style="color:var(--amber);">Due in 18 days</span></div>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="card">
+      <div class="ch">ESF compliance <span class="b br">High risk</span></div>
+      <div class="donut-grid">
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="EMP completion">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#3B6D11" stroke-width="6" stroke-dasharray="75 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">75%</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">EMP complete</div><div class="donut-value">18 / 24</div></div>
+        </div>
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="Open ESS violations">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E24B4A" stroke-width="6" stroke-dasharray="8.3 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">2</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">ESS violations</div><div class="donut-value" style="color:#C53030;">2 open</div></div>
+        </div>
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="Land parcels disputed">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#EF9F27" stroke-width="6" stroke-dasharray="4.7 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">9</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">Land disputes</div><div class="donut-value" style="color:#A86300;">9 parcels</div></div>
+        </div>
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="No-go incidents">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#2F6EA5" stroke-width="6" stroke-dasharray="4.2 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">1</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">No-go incidents</div><div class="donut-value">1 case</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch">GRM summary</div>
+      <div class="donut-grid">
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="Resolved grievances">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#3B6D11" stroke-width="6" stroke-dasharray="67.4 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">67%</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">Resolved</div><div class="donut-value" style="color:#0F7A3B;">29 / 43</div></div>
+        </div>
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="Pending grievances">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#EF9F27" stroke-width="6" stroke-dasharray="16.3 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">7</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">Pending</div><div class="donut-value" style="color:#A86300;">7 active</div></div>
+        </div>
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="Escalated grievances">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E24B4A" stroke-width="6" stroke-dasharray="7 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">3</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">Escalated</div><div class="donut-value" style="color:#C53030;">3 critical</div></div>
+        </div>
+        <div class="donut-card">
+          <svg class="donut" viewBox="0 0 44 44" aria-label="Total grievances">
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#E7ECF3" stroke-width="6"></circle>
+            <circle cx="22" cy="22" r="15.915" fill="none" stroke="#2F6EA5" stroke-width="6" stroke-dasharray="100 100" stroke-linecap="round" transform="rotate(-90 22 22)"></circle>
+            <text x="22" y="24" text-anchor="middle">43</text>
+          </svg>
+          <div class="donut-meta"><div class="donut-label">Total cases</div><div class="donut-value">43 logged</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch">ISR readiness <span class="ch-m">Due 15 Jun</span></div>
+      <div class="row"><span class="rl">PDO progress</span><span class="isr-r rms">Mod. Satisfactory</span></div>
+      <div class="row"><span class="rl">Implementation</span><span class="isr-r rmu">Mod. Unsatisfactory</span></div>
+      <div class="row"><span class="rl">Financial mgmt</span><span class="isr-r rs">Satisfactory</span></div>
+      <div class="row"><span class="rl">ESF safeguards</span><span class="isr-r rmu">Mod. Unsatisfactory</span></div>
+      <div class="row"><span class="rl">Overall risk</span><span class="isr-r ru">High</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WORKS PROGRESS — 6-LEVEL DRILL-DOWN -->
+<div class="page" id="p-works">
+
+  <!-- W-L1: Package list -->
+  <div id="w-l1">
+    <div class="ph">
+      <div>
+        <div class="pt">Works progress</div>
+        <div class="ps">24 packages · 765 km · Click any package to open full 6-level drill-down</div>
+      </div>
+      <div class="pm">Tender › Contract › Sub-package › Work item › Payment › Invoice</div>
+    </div>
+    <div class="kg4">
+      <div class="kc kb"><div class="kc-l">Total packages</div><div class="kc-v">24</div><div class="kc-s">All 3 districts</div></div>
+      <div class="kc kg"><div class="kc-l">Avg. completion</div><div class="kc-v" style="color:var(--green);">38%</div><div class="kc-s">292 km certified</div></div>
+      <div class="kc ka"><div class="kc-l">Work stoppages</div><div class="kc-v" style="color:var(--amber);">3</div><div class="kc-s">Active stop orders</div></div>
+      <div class="kc kr"><div class="kc-l">Packages delayed</div><div class="kc-v" style="color:var(--red);">7</div><div class="kc-s">Behind schedule</div></div>
+    </div>
+    <div class="card">
+      <div class="ch">Package tracker — click any row for full lifecycle drill-down</div>
+      <table class="tbl">
+        <thead><tr>
+          <th style="width:10%;">Package</th>
+          <th style="width:13%;">District</th>
+          <th style="width:14%;">Contractor</th>
+          <th style="width:10%;">Value</th>
+          <th style="width:7%;">Plan</th>
+          <th style="width:7%;">Actual</th>
+          <th style="width:14%;">Progress</th>
+          <th style="width:12%;">Bills pending</th>
+          <th>Status</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tbl-row-clickable" data-wpkg="DH-P01"><td>DH-P01</td><td>Dima Hasao</td><td>GVK Infra</td><td>USD 18.4M</td><td style="color:var(--t2);">48%</td><td style="color:var(--red);">34%</td><td><div class="pbw"><div class="pb" style="width:34%;background:var(--red);"></div></div></td><td style="color:var(--amber);">USD 0 (stopped)</td><td><span class="b br">Stopped</span></td></tr>
+          <tr class="tbl-row-clickable" data-wpkg="DH-P02"><td>DH-P02</td><td>Dima Hasao</td><td>GVK Infra</td><td>USD 21.2M</td><td style="color:var(--t2);">50%</td><td style="color:var(--amber);">39%</td><td><div class="pbw"><div class="pb" style="width:39%;background:var(--amber);"></div></div></td><td style="color:var(--amber);">USD 1.8M</td><td><span class="b ba">Delayed</span></td></tr>
+          <tr class="tbl-row-clickable" data-wpkg="KA-P01"><td>KA-P01</td><td>Karbi Anglong</td><td>PNC Infratech</td><td>USD 32.1M</td><td style="color:var(--t2);">50%</td><td style="color:var(--green);">52%</td><td><div class="pbw"><div class="pb" style="width:52%;background:var(--green);"></div></div></td><td style="color:var(--green);">Nil</td><td><span class="b bg">On track</span></td></tr>
+          <tr class="tbl-row-clickable" data-wpkg="WK-P01"><td>WK-P01</td><td>West Karbi</td><td>Dilip Buildcon</td><td>USD 14.8M</td><td style="color:var(--t2);">58%</td><td style="color:var(--green);">61%</td><td><div class="pbw"><div class="pb" style="width:61%;background:var(--green);"></div></div></td><td style="color:var(--green);">Nil</td><td><span class="b bg">On track</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- W-L2: Contract detail + lifecycle timeline -->
+  <div id="w-l2" style="display:none;">
+    <div class="back-btn" id="w-back2">&#8592; Back to package list</div>
+    <div class="bc" id="w-bc2"></div>
+    <div id="w-l2-content"></div>
+  </div>
+
+  <!-- W-L3: Sub-package list -->
+  <div id="w-l3" style="display:none;">
+    <div class="back-btn" id="w-back3">&#8592; Back to contract detail</div>
+    <div class="bc" id="w-bc3"></div>
+    <div id="w-l3-content"></div>
+  </div>
+
+  <!-- W-L4: Work item detail -->
+  <div id="w-l4" style="display:none;">
+    <div class="back-btn" id="w-back4">&#8592; Back to sub-package</div>
+    <div class="bc" id="w-bc4"></div>
+    <div id="w-l4-content"></div>
+  </div>
+
+  <!-- W-L5: Payment register -->
+  <div id="w-l5" style="display:none;">
+    <div class="back-btn" id="w-back5">&#8592; Back to work item</div>
+    <div class="bc" id="w-bc5"></div>
+    <div id="w-l5-content"></div>
+  </div>
+
+  <!-- W-L6: Invoice + QC + Drone + ESF -->
+  <div id="w-l6" style="display:none;">
+    <div class="back-btn" id="w-back6">&#8592; Back to payment register</div>
+    <div class="bc" id="w-bc6"></div>
+    <div id="w-l6-content"></div>
+  </div>
+
+</div>
+
+<!-- ENV -->
+<div class="page" id="p-env">
+  <div class="ph"><div><div class="pt">Environmental safeguards</div><div class="ps">ESS1 · ESS4 · ESS6 · High risk classification</div></div></div>
+  <div class="ab ab-r"><span style="font-size:15px;flex-shrink:0;color:var(--red);">&#128680;</span><div class="ab-txt"><strong>2 unresolved ESS violations — corrective action overdue.</strong> DH-P01: ESS6 breach (12 days). KA-P04: Tree felling without clearance (7 days).</div></div>
+  <div class="kg4">
+    <div class="kc kr"><div class="kc-l">Open violations</div><div class="kc-v" style="color:var(--red);">2</div><div class="kc-s">Overdue</div></div>
+    <div class="kc ka"><div class="kc-l">EMP overdue</div><div class="kc-v" style="color:var(--amber);">6</div><div class="kc-s">Of 24 sections</div></div>
+    <div class="kc kg"><div class="kc-l">Forest clearances</div><div class="kc-v">12/14</div><div class="kc-s">2 pending</div></div>
+    <div class="kc ka"><div class="kc-l">No-go incidents</div><div class="kc-v" style="color:var(--amber);">1</div><div class="kc-s">Under investigation</div></div>
+  </div>
+  <div class="card">
+    <div class="ch">ESS violation register — click a row to expand</div>
+    <table class="tbl"><thead><tr><th style="width:12%;">Package</th><th style="width:10%;">ESS ref</th><th style="width:30%;">Description</th><th style="width:16%;">Date raised</th><th style="width:12%;">Overdue</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="tbl-row-clickable" data-acc="e-1"><td>DH-P01</td><td>ESS6</td><td>No-go zone encroachment km 22</td><td>16 May 2026</td><td style="color:var(--red);">12 days</td><td><span class="b br">Stop order</span></td></tr>
+      <tr class="acc-row" id="e-1"><td colspan="6" class="acc-cell"><div class="acc-inner"><div class="g3"><div><div class="row"><span class="rl">Location</span><span class="rv">km 22.4, DH-04</span></div><div class="row"><span class="rl">Reported by</span><span class="rv">Drone survey · 16 May</span></div><div class="row"><span class="rl">Forest dept.</span><span class="rv">Notified 17 May</span></div></div><div><div class="row"><span class="rl">Stop order issued</span><span class="rv">16 May 2026</span></div><div class="row"><span class="rl">Corrective due</span><span class="rv" style="color:var(--red);">28 May — overdue</span></div><div class="row"><span class="rl">Contractor response</span><span class="rv">Pending</span></div></div><div><div class="row"><span class="rl">Works affected</span><span class="rv">km 21–24 (3 km)</span></div><div class="row"><span class="rl">Escalation</span><span class="rv" style="color:var(--red);">PMU + TTL notified</span></div><div class="row"><span class="rl">ISR impact</span><span class="rv" style="color:var(--red);">ESF rating at risk</span></div></div></div></div></td></tr>
+      <tr class="tbl-row-clickable" data-acc="e-2"><td>KA-P04</td><td>ESS1</td><td>Tree felling without forest clearance</td><td>21 May 2026</td><td style="color:var(--red);">7 days</td><td><span class="b br">Notice issued</span></td></tr>
+      <tr class="acc-row" id="e-2"><td colspan="6" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Trees felled</span><span class="rv">14 (bamboo + teak)</span></div><div class="row"><span class="rl">Clearance ref</span><span class="rv" style="color:var(--red);">None uploaded</span></div><div class="row"><span class="rl">Contractor</span><span class="rv">PNC Infratech</span></div></div><div><div class="row"><span class="rl">Notice served</span><span class="rv">21 May 2026</span></div><div class="row"><span class="rl">Response due</span><span class="rv" style="color:var(--amber);">5 Jun 2026</span></div><div class="row"><span class="rl">Compensatory plantation</span><span class="rv">Required — 140 trees</span></div></div></div></div></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="page" id="p-social">
+  <div class="ph"><div><div class="pt">Social safeguards and GRM</div><div class="ps">ESS5 · ESS7 · ESS10</div></div></div>
+  <div class="kg4">
+    <div class="kc ka"><div class="kc-l">Disputed parcels</div><div class="kc-v" style="color:var(--amber);">9</div><div class="kc-s">Of 191 total</div></div>
+    <div class="kc ka"><div class="kc-l">Compensation pending</div><div class="kc-v" style="color:var(--amber);">34</div><div class="kc-s">Households awaiting</div></div>
+    <div class="kc kr"><div class="kc-l">Escalated</div><div class="kc-v" style="color:var(--red);">3</div><div class="kc-s">Beyond deadline</div></div>
+    <div class="kc kb"><div class="kc-l">TDP milestones</div><div class="kc-v">7/12</div><div class="kc-s">FPIC obtained</div></div>
+  </div>
+  <div class="card">
+    <div class="ch">Grievance case register — click to expand</div>
+    <table class="tbl"><thead><tr><th style="width:10%;">Case ID</th><th style="width:16%;">Category</th><th style="width:22%;">Summary</th><th style="width:14%;">District</th><th style="width:14%;">Received</th><th style="width:10%;">Ageing</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="tbl-row-clickable" data-acc="s-1"><td>GRM-041</td><td>Land / compensation</td><td>Disputed valuation — parcel 88</td><td>Dima Hasao</td><td>3 May 2026</td><td style="color:var(--red);">25 days</td><td><span class="b br">Escalated</span></td></tr>
+      <tr class="acc-row" id="s-1"><td colspan="7" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Complainant</span><span class="rv">Mr. Hemen Sonowal</span></div><div class="row"><span class="rl">Parcel no.</span><span class="rv">DH-P-088</span></div><div class="row"><span class="rl">Land type</span><span class="rv">Agricultural — 0.4 ha</span></div><div class="row"><span class="rl">Offered value</span><span class="rv">INR 4.2L</span></div></div><div><div class="row"><span class="rl">Claimed value</span><span class="rv" style="color:var(--amber);">INR 8.8L</span></div><div class="row"><span class="rl">Escalated to</span><span class="rv">District Collector</span></div><div class="row"><span class="rl">Hearing date</span><span class="rv">5 Jun 2026</span></div><div class="row"><span class="rl">Social officer</span><span class="rv">Ms. Rekha Bora</span></div></div></div></div></td></tr>
+      <tr class="tbl-row-clickable" data-acc="s-2"><td>GRM-038</td><td>Works disruption</td><td>Dust and vibration — dwellings</td><td>Karbi Anglong</td><td>8 May 2026</td><td style="color:var(--amber);">20 days</td><td><span class="b ba">In progress</span></td></tr>
+      <tr class="acc-row" id="s-2"><td colspan="7" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Complainant</span><span class="rv">Village panchayat — Langsodisa</span></div><div class="row"><span class="rl">Issue</span><span class="rv">Dust + blasting vibration</span></div><div class="row"><span class="rl">Households affected</span><span class="rv">12</span></div></div><div><div class="row"><span class="rl">Contractor response</span><span class="rv">Water spraying — ongoing</span></div><div class="row"><span class="rl">Engineer visit</span><span class="rv">15 May 2026</span></div><div class="row"><span class="rl">Expected closure</span><span class="rv">10 Jun 2026</span></div></div></div></div></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- PROCUREMENT — 4-LEVEL FULL DEPTH -->
+<div class="page" id="p-proc">
+
+  <!-- L1: Package list -->
+  <div id="proc-l1">
+    <div class="ph">
+      <div><div class="pt">Procurement</div><div class="ps">World Bank Regulations 2016 · Click any package to open full 4-level drill-down</div></div>
+      <div class="pm">Works · Consulting · NOL tracking<br>Audit trail · Risk flags</div>
+    </div>
+    <div class="kg4">
+      <div class="kc kb"><div class="kc-l">Contracts signed</div><div class="kc-v">18</div><div class="kc-s">Works + consulting</div></div>
+      <div class="kc kr"><div class="kc-l">NOL pending</div><div class="kc-v" style="color:var(--red);">4</div><div class="kc-s">Awaiting Bank review</div></div>
+      <div class="kc ka"><div class="kc-l">Plan delays</div><div class="kc-v" style="color:var(--amber);">6</div><div class="kc-s">Packages behind plan</div></div>
+      <div class="kc kg"><div class="kc-l">Plan compliance</div><div class="kc-v" style="color:var(--green);">75%</div><div class="kc-s">18 of 24 on schedule</div></div>
+    </div>
+    <div class="card">
+      <div class="ch">Works packages — click any row to open full contract drill-down</div>
+      <table class="tbl">
+        <thead><tr>
+          <th style="width:10%;">Package</th>
+          <th style="width:9%;">Method</th>
+          <th style="width:20%;">Contractor</th>
+          <th style="width:12%;">Value</th>
+          <th style="width:15%;">Current stage</th>
+          <th style="width:10%;">NOL</th>
+          <th style="width:9%;">Risk</th>
+          <th>Status</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tbl-row-clickable" data-proc="DH-P03"><td>DH-P03</td><td><span class="b bb">ICB</span></td><td>GVK Infra Ltd</td><td>USD 24.6M</td><td>Bid evaluation</td><td><span class="b ba">Requested</span></td><td><span class="b ba">Medium</span></td><td><span class="b ba">Delayed 43d</span></td></tr>
+          <tr class="tbl-row-clickable" data-proc="DH-P05"><td>DH-P05</td><td><span class="b bb">ICB</span></td><td>Under evaluation</td><td>USD 31.2M</td><td>Contract award</td><td><span class="b br">Pending</span></td><td><span class="b br">High</span></td><td><span class="b br">Awaiting NOL</span></td></tr>
+          <tr class="tbl-row-clickable" data-proc="KA-P07"><td>KA-P07</td><td><span class="b bgr">NCB</span></td><td>PNC Infratech</td><td>USD 18.4M</td><td>Signed</td><td><span class="b bg">Obtained</span></td><td><span class="b bg">Low</span></td><td><span class="b bg">On track</span></td></tr>
+          <tr class="tbl-row-clickable" data-proc="KA-P08"><td>KA-P08</td><td><span class="b bgr">NCB</span></td><td>Advertisement open</td><td>USD 22.1M</td><td>Advertisement</td><td><span class="b bgr">N/A</span></td><td><span class="b bg">Low</span></td><td><span class="b bg">On schedule</span></td></tr>
+          <tr class="tbl-row-clickable" data-proc="WK-P03"><td>WK-P03</td><td><span class="b bgr">RFB</span></td><td>Dilip Buildcon</td><td>USD 11.3M</td><td>Signed</td><td><span class="b bg">Obtained</span></td><td><span class="b bg">Low</span></td><td><span class="b bg">On track</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="ch">Consulting services — click any row to open drill-down</div>
+      <table class="tbl">
+        <thead><tr>
+          <th style="width:30%;">Assignment</th>
+          <th style="width:10%;">Method</th>
+          <th style="width:26%;">Firm</th>
+          <th style="width:12%;">Value</th>
+          <th style="width:10%;">Status</th>
+          <th>NOL</th>
+        </tr></thead>
+        <tbody>
+          <tr class="tbl-row-clickable" data-proc="CS-SUP"><td>Supervision Consultant</td><td><span class="b bb">QCBS</span></td><td>AECOM India</td><td>USD 8.2M</td><td><span class="b bg">Active</span></td><td><span class="b bg">Obtained</span></td></tr>
+          <tr class="tbl-row-clickable" data-proc="CS-PMC"><td>PMC — PMU Support</td><td><span class="b bb">QCBS</span></td><td>STUP Consultants</td><td>USD 3.1M</td><td><span class="b bg">Active</span></td><td><span class="b bg">Obtained</span></td></tr>
+          <tr class="tbl-row-clickable" data-proc="CS-SSS"><td>Social Safeguards Specialist</td><td><span class="b bgr">SSS</span></td><td>TBD</td><td>USD 0.4M</td><td><span class="b br">Pending NOL</span></td><td><span class="b br">Pending</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- L2: Contract detail -->
+  <div id="proc-l2" style="display:none;">
+    <div class="back-btn" id="proc-back2">&#8592; Back to package list</div>
+    <div class="bc">
+      <span class="bca" id="bc-l1a">Procurement</span>
+      <span style="color:var(--t3);">›</span>
+      <span id="bc-l2-label" style="color:var(--t1);">Package</span>
+    </div>
+    <div id="proc-l2-content"></div>
+  </div>
+
+  <!-- L3: Vendor profile -->
+  <div id="proc-l3" style="display:none;">
+    <div class="back-btn" id="proc-back3">&#8592; Back to contract detail</div>
+    <div class="bc">
+      <span class="bca" id="bc-l1b">Procurement</span>
+      <span style="color:var(--t3);">›</span>
+      <span class="bca" id="bc-l2b">Contract</span>
+      <span style="color:var(--t3);">›</span>
+      <span id="bc-l3-label" style="color:var(--t1);">Vendor profile</span>
+    </div>
+    <div id="proc-l3-content"></div>
+  </div>
+
+  <!-- L4: Transaction / audit detail -->
+  <div id="proc-l4" style="display:none;">
+    <div class="back-btn" id="proc-back4">&#8592; Back to vendor profile</div>
+    <div class="bc">
+      <span class="bca" id="bc-l1c">Procurement</span>
+      <span style="color:var(--t3);">›</span>
+      <span class="bca" id="bc-l2c">Contract</span>
+      <span style="color:var(--t3);">›</span>
+      <span class="bca" id="bc-l3c">Vendor</span>
+      <span style="color:var(--t3);">›</span>
+      <span id="bc-l4-label" style="color:var(--t1);">Transaction</span>
+    </div>
+    <div id="proc-l4-content"></div>
+  </div>
+
+</div>
+
+<!-- FINANCE -->
+<div class="page" id="p-finance">
+  <div class="ph"><div><div class="pt">Financial management</div><div class="ps">IBRD disbursement · Contractor billing · IUFR · Withdrawal applications</div></div></div>
+  <div class="kg4">
+    <div class="kc kb"><div class="kc-l">IBRD disbursed</div><div class="kc-v" style="color:var(--bluel);">$98M</div><div class="kc-s">27.6% of USD 355M</div></div>
+    <div class="kc kp"><div class="kc-l">GoA counterpart</div><div class="kc-v">$18.5M</div><div class="kc-s">21% of USD 88M</div></div>
+    <div class="kc ka"><div class="kc-l">Pending bills</div><div class="kc-v" style="color:var(--amber);">$31M</div><div class="kc-s">14 bills awaiting cert.</div></div>
+    <div class="kc kg"><div class="kc-l">Certified expenditure</div><div class="kc-v" style="color:var(--green);">$150M</div><div class="kc-s">34% of project cost</div></div>
+  </div>
+  <div class="card">
+    <div class="ch">Contractor bills — click a row to expand</div>
+    <table class="tbl">
+      <thead><tr><th style="width:12%;">Package</th><th style="width:7%;">Bill</th><th style="width:13%;">Amount</th><th style="width:14%;">Submitted</th><th style="width:10%;">Ageing</th><th style="width:22%;">Certifying officer</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr class="tbl-row-clickable" data-acc="f-1"><td>DH-P02</td><td>#5</td><td>USD 1.8M</td><td>10 May 2026</td><td style="color:var(--amber);">18 days</td><td>Eng. D. Nath</td><td><span class="b ba">Pending</span></td></tr>
+        <tr class="acc-row" id="f-1"><td colspan="7" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Bill period</span><span class="rv">1 Apr to 30 Apr 2026</span></div><div class="row"><span class="rl">Work claimed</span><span class="rv">Earthworks km 8 to 14</span></div><div class="row"><span class="rl">Measurement recorded</span><span class="rv">28 Apr 2026</span></div></div><div><div class="row"><span class="rl">Supporting docs</span><span class="rv">3 files submitted</span></div><div class="row"><span class="rl">Query raised</span><span class="rv">Measurement discrepancy km 11</span></div><div class="row"><span class="rl">Expected certification</span><span class="rv" style="color:var(--amber);">5 Jun 2026</span></div></div></div></div></td></tr>
+        <tr class="tbl-row-clickable" data-acc="f-2"><td>KA-P02</td><td>#6</td><td>USD 2.3M</td><td>5 May 2026</td><td style="color:var(--red);">23 days</td><td>Eng. P. Deka</td><td><span class="b br">Rejected</span></td></tr>
+        <tr class="acc-row" id="f-2"><td colspan="7" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Rejection reason</span><span class="rv" style="color:var(--red);">QC test failure — sub-base km 22</span></div><div class="row"><span class="rl">Failed tests</span><span class="rv">CBR 42% vs 60% spec</span></div><div class="row"><span class="rl">Rework ordered</span><span class="rv">8 May 2026</span></div></div><div><div class="row"><span class="rl">Contractor response</span><span class="rv">Rework in progress</span></div><div class="row"><span class="rl">Re-submission expected</span><span class="rv">15 Jun 2026</span></div><div class="row"><span class="rl">Dispute lodged</span><span class="rv">No</span></div></div></div></div></td></tr>
+        <tr class="tbl-row-clickable" data-acc="f-3"><td>WK-P01</td><td>#2</td><td>USD 1.4M</td><td>2 May 2026</td><td style="color:var(--green);">10 days</td><td>Eng. B. Sonowal</td><td><span class="b bg">Certified</span></td></tr>
+        <tr class="acc-row" id="f-3"><td colspan="7" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Bill period</span><span class="rv">1 Apr to 30 Apr 2026</span></div><div class="row"><span class="rl">Work certified</span><span class="rv">Retaining wall km 8 to 16</span></div></div><div><div class="row"><span class="rl">Certified on</span><span class="rv" style="color:var(--green);">12 May 2026</span></div><div class="row"><span class="rl">Payment released</span><span class="rv" style="color:var(--green);">15 May 2026</span></div></div></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="ch">Withdrawal applications — World Bank</div>
+    <table class="tbl">
+      <thead><tr><th style="width:10%;">WA no.</th><th style="width:13%;">Submitted</th><th style="width:13%;">Amount</th><th style="width:28%;">Components</th><th style="width:16%;">Bank status</th><th>DA credit</th></tr></thead>
+      <tbody>
+        <tr class="tbl-row-clickable" data-acc="fa-1"><td>WA-001</td><td>Oct 2025</td><td>USD 20M</td><td>Component 1 — Phase 1</td><td><span class="b bg">Disbursed</span></td><td>15 Nov 2025</td></tr>
+        <tr class="acc-row" id="fa-1"><td colspan="6" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Processing time</span><span class="rv">22 days</span></div><div class="row"><span class="rl">Designated account</span><span class="rv">SBI — APWRD Project A/c</span></div></div><div><div class="row"><span class="rl">SOE packages</span><span class="rv">DH-P01, DH-P02, KA-P01</span></div><div class="row"><span class="rl">Audit status</span><span class="rv" style="color:var(--green);">Cleared — FY 2025-26</span></div></div></div></div></td></tr>
+        <tr class="tbl-row-clickable" data-acc="fa-2"><td>WA-002</td><td>Jan 2026</td><td>USD 38M</td><td>Components 1, 2, 3</td><td><span class="b bg">Disbursed</span></td><td>18 Feb 2026</td></tr>
+        <tr class="acc-row" id="fa-2"><td colspan="6" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Processing time</span><span class="rv">29 days</span></div><div class="row"><span class="rl">Designated account</span><span class="rv">SBI — APWRD Project A/c</span></div></div><div><div class="row"><span class="rl">SOE packages</span><span class="rv">DH-P01 to DH-P06, KA-P01 to KA-P04</span></div><div class="row"><span class="rl">Audit status</span><span class="rv" style="color:var(--green);">Cleared</span></div></div></div></div></td></tr>
+        <tr class="tbl-row-clickable" data-acc="fa-3"><td>WA-003</td><td>Apr 2026</td><td>USD 40M</td><td>Components 1 and 2</td><td><span class="b ba">Processing</span></td><td>—</td></tr>
+        <tr class="acc-row" id="fa-3"><td colspan="6" class="acc-cell"><div class="acc-inner"><div class="g2"><div><div class="row"><span class="rl">Submitted</span><span class="rv">15 Apr 2026</span></div><div class="row"><span class="rl">Bank review</span><span class="rv">Under no-objection review</span></div></div><div><div class="row"><span class="rl">Expected disbursement</span><span class="rv" style="color:var(--amber);">15 Jun 2026</span></div><div class="row"><span class="rl">Supporting docs</span><span class="rv">SOE + IFR submitted</span></div></div></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DISASTER -->
+<div class="page" id="p-disaster">
+  <div class="ph"><div><div class="pt">Disaster response and early warning</div><div class="ps">Component 3 — Transport Emergency Management Plan</div></div></div>
+  <div class="ab ab-r"><span style="font-size:16px;flex-shrink:0;color:var(--red);">&#127783;</span><div class="ab-txt"><strong>Active alert — Dima Hasao (Level 3):</strong> DH-04 to DH-07 closed. Response team deployed 27 May 22:40 IST. Estimated clearance 32 hours.</div></div>
+  <div class="kg4">
+    <div class="kc kr"><div class="kc-l">Active alerts</div><div class="kc-v" style="color:var(--red);">1</div><div class="kc-s">Dima Hasao — Level 3</div></div>
+    <div class="kc ka"><div class="kc-l">Sections closed</div><div class="kc-v" style="color:var(--amber);">4</div><div class="kc-s">DH-04 to DH-07</div></div>
+    <div class="kc kb"><div class="kc-l">Response team</div><div class="kc-v" style="color:var(--bluel);">Deployed</div><div class="kc-s">14 crew · 2 equipment</div></div>
+    <div class="kc kg"><div class="kc-l">Season incidents</div><div class="kc-v">3</div><div class="kc-s">2 resolved · 1 active</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch">Response workflow — current incident</div>
+      <div class="step"><div class="snum sd">1</div><div><div class="st">Incident reported — DH-04 landslide and flash flood</div><div class="sn">27 May · 20:15 IST · NH-27 corridor affected</div></div></div>
+      <div class="step"><div class="snum sd">2</div><div><div class="st">Road closures confirmed · SH-5 alternative activated</div><div class="sn">27 May · 21:00 IST</div></div></div>
+      <div class="step"><div class="snum sd">3</div><div><div class="st">Response team deployed — 14 crew, 2 equipment</div><div class="sn">27 May · 22:40 IST</div></div></div>
+      <div class="step"><div class="snum sa">4</div><div><div class="st">Debris clearance in progress — 40% cleared</div><div class="sn">28 May · 09:00 IST</div></div></div>
+      <div class="step"><div class="snum sp">5</div><div><div class="st">Road reopening — DH-04 to DH-07</div><div class="sn">Estimated 29 May · 08:00 IST</div></div></div>
+      <div class="step"><div class="snum sp">6</div><div><div class="st">Post-disaster assessment and CERC review</div><div class="sn">Pending · Component 4 trigger under review</div></div></div>
+    </div>
+    <div class="card">
+      <div class="ch">District alert levels</div>
+      <div class="row"><span class="rl">Dima Hasao</span><span class="b br">Level 3 — Active</span></div>
+      <div class="row"><span class="rl">Karbi Anglong</span><span class="b ba">Level 1 — Watch</span></div>
+      <div class="row"><span class="rl">West Karbi Anglong</span><span class="b bg">Normal</span></div>
+      <div class="sep"></div>
+      <div style="font-size:11px;font-weight:600;color:var(--t1);margin-bottom:8px;">Incident log — 2026 season</div>
+      <div class="row"><span class="rl">May 2026 · DH-04 landslide</span><span class="b br">Active</span></div>
+      <div class="row"><span class="rl">Apr 2026 · KA-09 flash flood</span><span class="b bg">Resolved</span></div>
+      <div class="row"><span class="rl">Mar 2026 · DH-11 rock fall</span><span class="b bg">Resolved</span></div>
+      <div class="sep"></div>
+      <div style="font-size:11px;font-weight:600;color:var(--t1);margin-bottom:8px;">CEMP readiness</div>
+      <div class="row"><span class="rl">CEMP approved</span><span class="b bg">Yes — Nov 2025</span></div>
+      <div class="row"><span class="rl">Equipment prepositioned</span><span class="rv">3 depots — 1 per district</span></div>
+      <div class="row"><span class="rl">Response time (this incident)</span><span class="rv" style="color:var(--amber);">2h 25min (target 2h)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ISR -->
+<div class="page" id="p-isr">
+  <div class="ph"><div><div class="pt">ISR reporting</div><div class="ps">ISR #4 · Due 15 June 2026 · World Bank OPCS</div></div></div>
+  <div class="ab ab-a"><span style="font-size:15px;flex-shrink:0;color:var(--amber);">&#128197;</span><div class="ab-txt"><strong>ISR #4 preparation underway — due in 18 days.</strong> 6 action plan items overdue. ESF and procurement ratings at risk of downgrade.</div></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch">ISR #4 — ratings snapshot</div>
+      <div class="isr-g">
+        <div class="isr-i"><div class="isr-l">PDO progress</div><div class="isr-r rms">Mod. Satisfactory</div></div>
+        <div class="isr-i"><div class="isr-l">Implementation</div><div class="isr-r rmu">Mod. Unsatisfactory</div></div>
+        <div class="isr-i"><div class="isr-l">Procurement</div><div class="isr-r rmu">Mod. Unsatisfactory</div></div>
+        <div class="isr-i"><div class="isr-l">Financial mgmt</div><div class="isr-r rs">Satisfactory</div></div>
+        <div class="isr-i"><div class="isr-l">Env. safeguards</div><div class="isr-r rmu">Mod. Unsatisfactory</div></div>
+        <div class="isr-i"><div class="isr-l">Social safeguards</div><div class="isr-r rms">Mod. Satisfactory</div></div>
+        <div class="isr-i"><div class="isr-l">Disbursement</div><div class="isr-r rmu">Mod. Unsatisfactory</div></div>
+        <div class="isr-i"><div class="isr-l">Overall risk</div><div class="isr-r ru">High</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch">PDO indicator progress</div>
+      <div class="pr"><div class="pn" style="width:160px;">All-weather roads<div class="ps2">Target: 765 km</div></div><div class="pbw"><div class="pb" style="width:38%;background:var(--blue);"></div></div><div class="ppc" style="color:var(--bluel);">292</div></div>
+      <div class="pr"><div class="pn" style="width:160px;">Beneficiaries<div class="ps2">Target: 2.4M</div></div><div class="pbw"><div class="pb" style="width:30%;background:var(--blue);"></div></div><div class="ppc" style="color:var(--bluel);">720K</div></div>
+      <div class="pr"><div class="pn" style="width:160px;">Women beneficiaries<div class="ps2">Target: 50%</div></div><div class="pbw"><div class="pb" style="width:48%;background:var(--purple);"></div></div><div class="ppc" style="color:var(--purple);">48%</div></div>
+      <div class="pr"><div class="pn" style="width:160px;">Disaster response time<div class="ps2">Target: 24 hrs</div></div><div class="pbw"><div class="pb" style="width:66%;background:var(--amber);"></div></div><div class="ppc" style="color:var(--amber);">32h</div></div>
+      <div class="pr"><div class="pn" style="width:160px;">GRM resolution rate<div class="ps2">Target: 85%</div></div><div class="pbw"><div class="pb" style="width:79%;background:var(--green);"></div></div><div class="ppc" style="color:var(--green);">79%</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch">Action plan — ISR #3 items · click to expand</div>
+    <table class="tbl">
+      <thead><tr><th style="width:40%;">Action item</th><th style="width:20%;">Responsible</th><th style="width:16%;">Due date</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr class="tbl-row-clickable" data-acc="i-1"><td>Resolve ESS6 violation — DH-P01 km 22</td><td>APWRD PMU</td><td style="color:var(--red);">15 May 2026</td><td><span class="b br">Overdue</span></td></tr>
+        <tr class="acc-row" id="i-1"><td colspan="4" class="acc-cell"><div class="acc-inner"><div class="row"><span class="rl">Root cause</span><span class="rv">Contractor commenced beyond approved limit</span></div><div class="row"><span class="rl">Action required</span><span class="rv">Stop order + habitat restoration plan</span></div><div class="row"><span class="rl">Escalation</span><span class="rv">TTL notified 20 May 2026</span></div><div class="row"><span class="rl">ISR rating risk</span><span class="rv" style="color:var(--red);">ESF Mod. Unsatisfactory may become Unsatisfactory</span></div></div></td></tr>
+        <tr class="tbl-row-clickable" data-acc="i-2"><td>Obtain Bank NOL — DH-P05 contract award</td><td>PMU Procurement</td><td style="color:var(--red);">1 May 2026</td><td><span class="b br">Overdue</span></td></tr>
+        <tr class="acc-row" id="i-2"><td colspan="4" class="acc-cell"><div class="acc-inner"><div class="row"><span class="rl">Pending with</span><span class="rv">World Bank procurement specialist</span></div><div class="row"><span class="rl">Bank query</span><span class="rv">Bid evaluation methodology — raised 10 May 2026</span></div><div class="row"><span class="rl">PMU response</span><span class="rv">Submitted 22 May 2026 — under Bank review</span></div></div></td></tr>
+        <tr class="tbl-row-clickable" data-acc="i-3"><td>Submit IUFR Q1 2026</td><td>PMU Finance</td><td>15 Jun 2026</td><td><span class="b ba">In progress</span></td></tr>
+        <tr class="acc-row" id="i-3"><td colspan="4" class="acc-cell"><div class="acc-inner"><div class="row"><span class="rl">Draft status</span><span class="rv">80% complete — Component 3 figures pending</span></div><div class="row"><span class="rl">Finance officer</span><span class="rv">Ms. Gitanjali Das</span></div><div class="row"><span class="rl">Auditor sign-off required</span><span class="rv">By 12 Jun 2026</span></div></div></td></tr>
+        <tr class="tbl-row-clickable" data-acc="i-4"><td>Social safeguards specialist mobilisation</td><td>PMU Procurement</td><td style="color:var(--red);">1 Apr 2026</td><td><span class="b br">Overdue</span></td></tr>
+        <tr class="acc-row" id="i-4"><td colspan="4" class="acc-cell"><div class="acc-inner"><div class="row"><span class="rl">Current status</span><span class="rv">NOL for SSS method pending with Bank</span></div><div class="row"><span class="rl">Impact</span><span class="rv" style="color:var(--red);">RAP monitoring gap — ESS5 and ESS7 at risk</span></div><div class="row"><span class="rl">Interim cover</span><span class="rv">PMC social officer — partial coverage only</span></div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="page" id="p-admin">
+  <div class="ph"><div><div class="pt">Administration</div><div class="ps">Users · Role-based access · System health · Notifications</div></div></div>
+  <div class="kg3">
+    <div class="kc kb"><div class="kc-l">Active users</div><div class="kc-v">38</div><div class="kc-s">All roles · 3 districts</div></div>
+    <div class="kc ka"><div class="kc-l">Pending approvals</div><div class="kc-v" style="color:var(--amber);">11</div><div class="kc-s">Across all modules</div></div>
+    <div class="kc kg"><div class="kc-l">System uptime</div><div class="kc-v" style="color:var(--green);">99.4%</div><div class="kc-s">Last 30 days</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch">User roles — click a role to expand</div>
+      <table class="tbl">
+        <thead><tr><th style="width:36%;">Role</th><th style="width:10%;">Users</th><th style="width:28%;">Module access</th><th>MFA</th></tr></thead>
+        <tbody>
+          <tr class="tbl-row-clickable" data-acc="ad-1"><td>Project Director</td><td>1</td><td>All modules</td><td><span class="b bg">Enabled</span></td></tr>
+          <tr class="acc-row" id="ad-1"><td colspan="4" class="acc-cell"><div class="acc-inner"><div class="row"><span class="rl">User</span><span class="rv">Mr. Rajen Phukan — APWRD</span></div><div class="row"><span class="rl">Last login</span><span class="rv">28 May 2026 · 08:42 IST</span></div><div class="row"><span class="rl">Actions today</span><span class="rv">4 approvals · 2 escalations</span></div><div class="row"><span class="rl">Pending approvals</span><span class="rv" style="color:var(--amber);">3 bills · 1 ESF sign-off</span></div></div></td></tr>
+          <tr class="tbl-row-clickable" data-acc="ad-2"><td>World Bank TTL</td><td>2</td><td>All modules (read only)</td><td><span class="b bg">Enabled</span></td></tr>
+          <tr class="acc-row" id="ad-2"><td colspan="4" class="acc-cell"><div class="acc-inner"><div class="row"><span class="rl">Users</span><span class="rv">TTL + Procurement specialist</span></div><div class="row"><span class="rl">Last access</span><span class="rv">26 May 2026 — ISR review session</span></div><div class="row"><span class="rl">Permissions</span><span class="rv">Read all · No edit · Procurement queries</span></div></div></td></tr>
+          <tr class="tbl-row-clickable" data-acc="ad-3"><td>PMU Officer</td><td>4</td><td>All modules</td><td><span class="b bg">Enabled</span></td></tr>
+          <tr class="acc-row" id="ad-3"><td colspan="4" class="acc-cell"><div class="acc-inner"><div class="row"><span class="rl">Coverage</span><span class="rv">1 per functional area — finance, procurement, social, env</span></div><div class="row"><span class="rl">Edit access</span><span class="rv">All modules except admin</span></div><div class="row"><span class="rl">Last active</span><span class="rv">28 May 2026</span></div></div></td></tr>
+          <tr><td>District Engineer</td><td>6</td><td>Works · Drone · Env</td><td><span class="b ba">Partial</span></td></tr>
+          <tr><td>Field Engineer</td><td>14</td><td>Mobile — Works · Photos</td><td><span class="b bgr">Not required</span></td></tr>
+          <tr><td>Contractor portal</td><td>11</td><td>Bill submission only</td><td><span class="b bgr">OTP</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="ch">System health</div>
+      <div class="row"><span class="rl">Last backup</span><span class="rv">28 May · 03:00 IST</span></div>
+      <div class="row"><span class="rl">Data hosting</span><span class="b bg">India region — compliant</span></div>
+      <div class="row"><span class="rl">Encryption in transit</span><span class="b bg">TLS 1.3</span></div>
+      <div class="row"><span class="rl">GPS override incidents</span><span class="rv">0 this month</span></div>
+      <div class="row"><span class="rl">Audit log retention</span><span class="rv">7 years — immutable</span></div>
+      <div class="sep"></div>
+      <div style="font-size:11px;font-weight:600;color:var(--t1);margin-bottom:8px;">Notification routing</div>
+      <div class="row"><span class="rl">Disaster alerts</span><span class="rv">SMS + in-app · All PDs</span></div>
+      <div class="row"><span class="rl">ESF violations</span><span class="rv">Email + in-app · PMU</span></div>
+      <div class="row"><span class="rl">Bill ageing beyond 15 days</span><span class="rv">In-app · Finance officer</span></div>
+      <div class="row"><span class="rl">Procurement delays</span><span class="rv">Email · PMU + TTL</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════
+// PAGE NAV
+// ═══════════════════════════════════════════
+var titles = {
+  overview:'Project Overview',
+  works:'Works progress',
+  env:'Environment — ESF compliance', social:'Social safeguards and GRM',
+  proc:'Procurement', finance:'Financial management',
+  disaster:'Disaster response', isr:'ISR reporting', admin:'Administration'
+};
+
+var PRODUCT_CARD_CONFIG = {
+  type: 'card',
+  customOptions: {
+    direction: 'vertical',
+    alignment: 'center',
+    fontSize: 1.75,
+    suffixFontSize: 1,
+    fontBold: true,
+    showViewDetails: true,
+    showHeader: true,
+    onclickAction: 'openPopup',
+    title: 'Total Road Works',
+    cardData: [
+      {
+        summaryKey: 'Total Road workers',
+        summaryColor: '#628BCE'
+      }
+    ]
+  }
+};
+
+function applyProductCardConfig(scope) {
+  var root = document.documentElement;
+  var cfg = PRODUCT_CARD_CONFIG.customOptions;
+  root.style.setProperty('--product-card-value-size', (cfg.fontSize || 1.75) + 'rem');
+  root.style.setProperty('--product-card-suffix-size', (cfg.suffixFontSize || 1) + 'rem');
+
+  var kpiCards = (scope || document).querySelectorAll('.kc');
+  kpiCards.forEach(function(card) {
+    card.classList.add('product-kpi-card');
+
+    if (cfg.showHeader === false) {
+      var lbl = card.querySelector('.kc-l');
+      if (lbl) lbl.style.display = 'none';
+    }
+
+    var val = card.querySelector('.kc-v');
+    if (val && cfg.fontBold) val.style.fontWeight = '700';
+
+    var titleNode = card.querySelector('.kc-l');
+    var isTotalRoadWorksCard = titleNode && titleNode.textContent.trim().toLowerCase() === cfg.title.toLowerCase();
+    if (isTotalRoadWorksCard && val && cfg.cardData && cfg.cardData[0] && cfg.cardData[0].summaryColor) {
+      val.style.color = cfg.cardData[0].summaryColor;
+    }
+
+    if (cfg.showViewDetails && !card.querySelector('.card-view-details')) {
+      var vd = document.createElement('div');
+      vd.className = 'card-view-details';
+      vd.textContent = 'View details';
+      card.appendChild(vd);
+    }
+  });
+
+  var infoCards = (scope || document).querySelectorAll('.card');
+  infoCards.forEach(function(card) {
+    if (cfg.showViewDetails && !card.querySelector('.card-view-details')) {
+      var vd = document.createElement('div');
+      vd.className = 'card-view-details';
+      vd.textContent = 'View details';
+      card.appendChild(vd);
+    }
+  });
+}
+
+function ensureProductPopup() {
+  if (document.getElementById('product-popup-mask')) return;
+  var mask = document.createElement('div');
+  mask.id = 'product-popup-mask';
+  mask.className = 'popup-mask';
+  mask.innerHTML = '<div class="popup-box"><div class="popup-head"><div class="popup-title" id="product-popup-title">Card details</div><div class="popup-close" id="product-popup-close">&times;</div></div><div class="popup-body"><div class="popup-label">Value</div><div class="popup-value" id="product-popup-value">-</div><div class="popup-label">Summary</div><div class="popup-sub" id="product-popup-sub">-</div></div></div>';
+  document.body.appendChild(mask);
+
+  mask.addEventListener('click', function(ev) {
+    if (ev.target === mask || ev.target.id === 'product-popup-close') {
+      mask.classList.remove('open');
+    }
+  });
+}
+
+function openProductPopupFromCard(card) {
+  ensureProductPopup();
+  var titleNode = card.querySelector('.kc-l') || card.querySelector('.ch') || card.querySelector('.pt');
+  var valueNode = card.querySelector('.kc-v') || card.querySelector('.fb-n') || card.querySelector('.donut-value') || card.querySelector('.rv') || card.querySelector('.b');
+  var subNode = card.querySelector('.kc-s') || card.querySelector('.ch-m') || card.querySelector('.ps') || card.querySelector('.row .rl');
+
+  document.getElementById('product-popup-title').textContent = titleNode ? titleNode.textContent.trim() : 'Card details';
+  document.getElementById('product-popup-value').textContent = valueNode ? valueNode.textContent.trim() : 'N/A';
+  document.getElementById('product-popup-sub').textContent = subNode ? subNode.textContent.trim() : 'No additional summary';
+  document.getElementById('product-popup-mask').classList.add('open');
+}
+
+function setTopbarMode(pageKey) {
+  var isOverview = pageKey === 'overview';
+  document.body.classList.toggle('overview-mode', isOverview);
+}
+
+document.querySelectorAll('.ni[data-p]').forEach(function(el) {
+  el.addEventListener('click', function() {
+    var p = this.dataset.p;
+    document.querySelectorAll('.ni').forEach(function(n) { n.classList.remove('on'); });
+    this.classList.add('on');
+    document.querySelectorAll('.page').forEach(function(pg) { pg.classList.remove('on'); });
+    var pg = document.getElementById('p-' + p);
+    if (pg) pg.classList.add('on');
+    document.getElementById('tbt').textContent = titles[p] || p;
+    setTopbarMode(p);
+    if (p === 'proc') showProcL1();
+    if (p === 'works') showWL1();
+  });
+});
+
+setTopbarMode('overview');
+applyProductCardConfig();
+
+var productCardObserver = new MutationObserver(function(mutations) {
+  var shouldApply = mutations.some(function(m) {
+    return m.addedNodes && m.addedNodes.length > 0;
+  });
+  if (shouldApply) applyProductCardConfig();
+});
+productCardObserver.observe(document.body, { childList: true, subtree: true });
+
+document.addEventListener('click', function(ev) {
+  var trigger = ev.target.closest('.card-view-details');
+  if (!trigger) return;
+  var cfg = PRODUCT_CARD_CONFIG.customOptions || {};
+  if (cfg.onclickAction && cfg.onclickAction !== 'openPopup') return;
+  var card = trigger.closest('.kc, .card, .dp-stat');
+  if (!card) return;
+  openProductPopupFromCard(card);
+});
+
+// ═══════════════════════════════════════════
+// GENERIC ACCORDION (all pages except works/proc)
+// ═══════════════════════════════════════════
+document.querySelectorAll('.tbl-row-clickable[data-acc]').forEach(function(row) {
+  row.addEventListener('click', function() {
+    var id = this.dataset.acc;
+    var acc = document.getElementById(id);
+    if (!acc) return;
+    var isOpen = acc.classList.contains('open');
+    var tbl = this.closest('table');
+    if (tbl) {
+      tbl.querySelectorAll('.tbl-row-clickable').forEach(function(r) { r.classList.remove('open'); });
+      tbl.querySelectorAll('.acc-row').forEach(function(r) { r.classList.remove('open'); });
+    }
+    if (!isOpen) { this.classList.add('open'); acc.classList.add('open'); }
+  });
+});
+
+// ═══════════════════════════════════════════
+// CROSS-MODULE NAVIGATION HELPERS
+// ═══════════════════════════════════════════
+function jumpToProcPkg(pkg) {
+  document.querySelectorAll('.ni').forEach(function(n) { n.classList.remove('on'); });
+  document.querySelector('.ni[data-p="proc"]').classList.add('on');
+  document.querySelectorAll('.page').forEach(function(pg) { pg.classList.remove('on'); });
+  document.getElementById('p-proc').classList.add('on');
+  document.getElementById('tbt').textContent = 'Procurement';
+  setTopbarMode('proc');
+  showProcL2(pkg);
+}
+function jumpToFinance() {
+  document.querySelectorAll('.ni').forEach(function(n) { n.classList.remove('on'); });
+  document.querySelector('.ni[data-p="finance"]').classList.add('on');
+  document.querySelectorAll('.page').forEach(function(pg) { pg.classList.remove('on'); });
+  document.getElementById('p-finance').classList.add('on');
+  document.getElementById('tbt').textContent = 'Financial management';
+  setTopbarMode('finance');
+}
+function jumpToEnv() {
+  document.querySelectorAll('.ni').forEach(function(n) { n.classList.remove('on'); });
+  document.querySelector('.ni[data-p="env"]').classList.add('on');
+  document.querySelectorAll('.page').forEach(function(pg) { pg.classList.remove('on'); });
+  document.getElementById('p-env').classList.add('on');
+  document.getElementById('tbt').textContent = 'Environment — ESF compliance';
+  setTopbarMode('env');
+}
+
+// ═══════════════════════════════════════════
+// WORKS DATA MODEL
+// ═══════════════════════════════════════════
+var WD = {
+  'DH-P01': {
+    pkg:'DH-P01', district:'Dima Hasao', length:'28 km', value:'USD 18.4M',
+    contractor:'GVK Infra Ltd', city:'Hyderabad',
+    procPkg:'DH-P03', method:'ICB', contractDate:'1 Sep 2025',
+    completion:'31 Aug 2027', engineer:'J. Borthakur', supervisor:'AECOM India',
+    status:'Stopped', planPct:48, actualPct:34, delay:43,
+    desc:'NH-27 realignment — DH-04 section. Climate resilience design. Currently under stop order due to ESF6 violation at km 22.',
+    lifecycle:[
+      {step:'Advertisement', date:'15 Jun 2025', st:'done', link:null},
+      {step:'Bid submission deadline', date:'15 Aug 2025', st:'done', link:null},
+      {step:'Bid evaluation', date:'1 Sep 2025', st:'done', link:'proc'},
+      {step:'Bank NOL received', date:'25 Aug 2025', st:'done', link:'proc'},
+      {step:'Contract signed', date:'1 Sep 2025', st:'done', link:'proc'},
+      {step:'Site handover', date:'8 Sep 2025', st:'done', link:null},
+      {step:'Commencement', date:'15 Sep 2025', st:'done', link:null},
+      {step:'ESF6 stop order issued', date:'16 May 2026', st:'issue', link:'env'},
+      {step:'Works suspended', date:'16 May 2026', st:'issue', link:null},
+      {step:'Corrective action', date:'Pending', st:'pending', link:null},
+      {step:'Works resumption', date:'TBD', st:'pending', link:null},
+      {step:'Financial completion', date:'TBD', st:'pending', link:'finance'}
+    ],
+    bills:{ total:'USD 5.1M', certified:'USD 5.1M', pending:'USD 0', rejected:'USD 0' },
+    subPackages:[
+      {
+        id:'DH-P01-A', name:'Earthworks and subgrade', km:'km 0 to 10', planPct:80, actualPct:68,
+        value:'USD 4.2M', status:'Partial',
+        items:[
+          {id:'DH-P01-A-01', desc:'Clearing and grubbing', unit:'Ha', qty:14, rate:'USD 1,200', planPct:100, actualPct:100, st:'Complete',
+            payments:[
+              {ipc:'IPC-01',date:'15 Nov 2025',claimed:'USD 168K',certified:'USD 168K',paid:'USD 168K',qcRef:'QC-A-001',droneRef:'DR-DH04-01',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'DH-P01-A-02', desc:'Bulk earthworks cutting', unit:'m³', qty:182000, rate:'USD 8.4', planPct:90, actualPct:72, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'15 Nov 2025',claimed:'USD 380K',certified:'USD 380K',paid:'USD 380K',qcRef:'QC-A-002',droneRef:'DR-DH04-01',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-02',date:'15 Jan 2026',claimed:'USD 460K',certified:'USD 440K',paid:'USD 440K',qcRef:'QC-A-003',droneRef:'DR-DH04-02',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-03',date:'10 Mar 2026',claimed:'USD 520K',certified:'USD 510K',paid:'USD 510K',qcRef:'QC-A-004',droneRef:'DR-DH04-03',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'DH-P01-A-03', desc:'Embankment formation', unit:'m³', qty:95000, rate:'USD 6.2', planPct:75, actualPct:55, st:'In progress',
+            payments:[
+              {ipc:'IPC-02',date:'15 Jan 2026',claimed:'USD 210K',certified:'USD 205K',paid:'USD 205K',qcRef:'QC-A-005',droneRef:'DR-DH04-02',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-03',date:'10 Mar 2026',claimed:'USD 185K',certified:'USD 180K',paid:'USD 180K',qcRef:'QC-A-006',droneRef:'DR-DH04-03',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'DH-P01-B', name:'Sub-base and base course', km:'km 0 to 28', planPct:55, actualPct:34,
+        value:'USD 5.8M', status:'Delayed',
+        items:[
+          {id:'DH-P01-B-01', desc:'Granular sub-base (GSB)', unit:'m³', qty:112000, rate:'USD 18', planPct:60, actualPct:41, st:'In progress',
+            payments:[
+              {ipc:'IPC-02',date:'15 Jan 2026',claimed:'USD 310K',certified:'USD 300K',paid:'USD 300K',qcRef:'QC-B-001',droneRef:'DR-DH04-02',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-03',date:'10 Mar 2026',claimed:'USD 280K',certified:'USD 270K',paid:'USD 270K',qcRef:'QC-B-002',droneRef:'DR-DH04-03',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'DH-P01-B-02', desc:'Wet mix macadam (WMM)', unit:'m³', qty:89000, rate:'USD 22', planPct:45, actualPct:26, st:'In progress',
+            payments:[
+              {ipc:'IPC-03',date:'10 Mar 2026',claimed:'USD 190K',certified:'USD 185K',paid:'USD 185K',qcRef:'QC-B-003',droneRef:'DR-DH04-03',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'DH-P01-C', name:'Retaining walls and slope protection', km:'km 6 to 22', planPct:30, actualPct:12,
+        value:'USD 4.1M', status:'Stopped',
+        items:[
+          {id:'DH-P01-C-01', desc:'Retaining wall — RCC type I', unit:'m³', qty:8400, rate:'USD 185', planPct:25, actualPct:10, st:'Stopped',
+            payments:[
+              {ipc:'IPC-02',date:'15 Jan 2026',claimed:'USD 156K',certified:'USD 156K',paid:'USD 156K',qcRef:'QC-C-001',droneRef:'DR-DH04-02',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'DH-P01-C-02', desc:'Slope stabilisation — km 14 to 22', unit:'m²', qty:18500, rate:'USD 42', planPct:20, actualPct:0, st:'Stopped — ESF6',
+            payments:[]
+          }
+        ]
+      },
+      {
+        id:'DH-P01-D', name:'Culverts and drainage', km:'km 0 to 28', planPct:60, actualPct:34,
+        value:'USD 3.2M', status:'Delayed',
+        items:[
+          {id:'DH-P01-D-01', desc:'Box culverts — 2m span', unit:'No.', qty:18, rate:'USD 48,000', planPct:67, actualPct:44, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'15 Nov 2025',claimed:'USD 144K',certified:'USD 144K',paid:'USD 144K',qcRef:'QC-D-001',droneRef:'DR-DH04-01',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-02',date:'15 Jan 2026',claimed:'USD 192K',certified:'USD 188K',paid:'USD 188K',qcRef:'QC-D-002',droneRef:'DR-DH04-02',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'DH-P01-D-02', desc:'Catch water drains — cement concrete', unit:'m', qty:4200, rate:'USD 48', planPct:55, actualPct:28, st:'In progress',
+            payments:[
+              {ipc:'IPC-02',date:'15 Jan 2026',claimed:'USD 58K',certified:'USD 55K',paid:'USD 55K',qcRef:'QC-D-003',droneRef:'DR-DH04-02',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'DH-P01-E', name:'Carriageway and surfacing', km:'km 0 to 28', planPct:15, actualPct:0,
+        value:'USD 1.1M', status:'Not started',
+        items:[
+          {id:'DH-P01-E-01', desc:'Dense bituminous macadam (DBM)', unit:'m²', qty:84000, rate:'USD 7.2', planPct:10, actualPct:0, st:'Not started', payments:[]},
+          {id:'DH-P01-E-02', desc:'Bituminous concrete wearing course', unit:'m²', qty:84000, rate:'USD 5.8', planPct:5, actualPct:0, st:'Not started', payments:[]}
+        ]
+      }
+    ]
+  },
+  'DH-P02': {
+    pkg:'DH-P02', district:'Dima Hasao', length:'34 km', value:'USD 21.2M',
+    contractor:'GVK Infra Ltd', city:'Hyderabad',
+    procPkg:'DH-P03', method:'ICB', contractDate:'15 Sep 2025',
+    completion:'14 Sep 2027', engineer:'D. Nath', supervisor:'AECOM India',
+    status:'Delayed', planPct:50, actualPct:39, delay:28,
+    desc:'NH-27 corridor continuation — DH-05 and DH-06 sections. Delayed 28 days. Recovery plan approved 10 May 2026.',
+    lifecycle:[
+      {step:'Advertisement', date:'15 Jun 2025', st:'done', link:null},
+      {step:'Bid evaluation', date:'5 Sep 2025', st:'done', link:'proc'},
+      {step:'Bank NOL received', date:'10 Sep 2025', st:'done', link:'proc'},
+      {step:'Contract signed', date:'15 Sep 2025', st:'done', link:'proc'},
+      {step:'Site handover', date:'22 Sep 2025', st:'done', link:null},
+      {step:'Commencement', date:'1 Oct 2025', st:'done', link:null},
+      {step:'IPC #1 certified', date:'30 Nov 2025', st:'done', link:'finance'},
+      {step:'IPC #2 certified', date:'31 Jan 2026', st:'done', link:'finance'},
+      {step:'IPC #3 certified', date:'31 Mar 2026', st:'done', link:'finance'},
+      {step:'IPC #4 certified', date:'30 Apr 2026', st:'done', link:'finance'},
+      {step:'IPC #5 submitted', date:'10 May 2026', st:'issue', link:'finance'},
+      {step:'Recovery plan approved', date:'10 May 2026', st:'done', link:null},
+      {step:'Financial completion', date:'14 Sep 2027 (est.)', st:'pending', link:'finance'}
+    ],
+    bills:{ total:'USD 8.6M', certified:'USD 6.8M', pending:'USD 1.8M', rejected:'USD 0' },
+    subPackages:[
+      {
+        id:'DH-P02-A', name:'Earthworks and subgrade', km:'km 0 to 16', planPct:85, actualPct:71,
+        value:'USD 5.1M', status:'In progress',
+        items:[
+          {id:'DH-P02-A-01', desc:'Clearing and grubbing', unit:'Ha', qty:20, rate:'USD 1,200', planPct:100, actualPct:100, st:'Complete',
+            payments:[
+              {ipc:'IPC-01',date:'30 Nov 2025',claimed:'USD 24K',certified:'USD 24K',paid:'USD 24K',qcRef:'QC-A-101',droneRef:'DR-DH05-01',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'DH-P02-A-02', desc:'Bulk earthworks cutting', unit:'m³', qty:210000, rate:'USD 8.4', planPct:88, actualPct:74, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Nov 2025',claimed:'USD 420K',certified:'USD 415K',paid:'USD 415K',qcRef:'QC-A-102',droneRef:'DR-DH05-01',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-02',date:'31 Jan 2026',claimed:'USD 510K',certified:'USD 505K',paid:'USD 505K',qcRef:'QC-A-103',droneRef:'DR-DH05-02',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-03',date:'31 Mar 2026',claimed:'USD 480K',certified:'USD 475K',paid:'USD 475K',qcRef:'QC-A-104',droneRef:'DR-DH05-03',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-04',date:'30 Apr 2026',claimed:'USD 295K',certified:'USD 290K',paid:'USD 290K',qcRef:'QC-A-105',droneRef:'DR-DH05-04',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'DH-P02-B', name:'Sub-base and base course', km:'km 0 to 34', planPct:55, actualPct:38,
+        value:'USD 6.8M', status:'Delayed',
+        items:[
+          {id:'DH-P02-B-01', desc:'Granular sub-base (GSB)', unit:'m³', qty:136000, rate:'USD 18', planPct:62, actualPct:45, st:'In progress',
+            payments:[
+              {ipc:'IPC-02',date:'31 Jan 2026',claimed:'USD 390K',certified:'USD 385K',paid:'USD 385K',qcRef:'QC-B-101',droneRef:'DR-DH05-02',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-03',date:'31 Mar 2026',claimed:'USD 420K',certified:'USD 415K',paid:'USD 415K',qcRef:'QC-B-102',droneRef:'DR-DH05-03',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'DH-P02-B-02', desc:'Wet mix macadam (WMM)', unit:'m³', qty:108000, rate:'USD 22', planPct:48, actualPct:30, st:'In progress',
+            payments:[
+              {ipc:'IPC-03',date:'31 Mar 2026',claimed:'USD 310K',certified:'USD 305K',paid:'USD 305K',qcRef:'QC-B-103',droneRef:'DR-DH05-03',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-05',date:'10 May 2026',claimed:'USD 380K',certified:null,paid:'—',qcRef:'QC-B-104',droneRef:'DR-DH05-05',esfFlag:false,st:'Pending'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'DH-P02-C', name:'Culverts and drainage', km:'km 0 to 34', planPct:65, actualPct:57,
+        value:'USD 3.8M', status:'In progress',
+        items:[
+          {id:'DH-P02-C-01', desc:'Box culverts — 2m and 3m spans', unit:'No.', qty:24, rate:'USD 55,000', planPct:70, actualPct:62, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Nov 2025',claimed:'USD 220K',certified:'USD 220K',paid:'USD 220K',qcRef:'QC-C-101',droneRef:'DR-DH05-01',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-02',date:'31 Jan 2026',claimed:'USD 330K',certified:'USD 325K',paid:'USD 325K',qcRef:'QC-C-102',droneRef:'DR-DH05-02',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'DH-P02-D', name:'Retaining walls and slope works', km:'km 8 to 28', planPct:40, actualPct:28,
+        value:'USD 5.5M', status:'Delayed',
+        items:[
+          {id:'DH-P02-D-01', desc:'Retaining wall — RCC type I', unit:'m³', qty:10200, rate:'USD 185', planPct:42, actualPct:30, st:'In progress',
+            payments:[
+              {ipc:'IPC-02',date:'31 Jan 2026',claimed:'USD 190K',certified:'USD 188K',paid:'USD 188K',qcRef:'QC-D-101',droneRef:'DR-DH05-02',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-03',date:'31 Mar 2026',claimed:'USD 210K',certified:'USD 208K',paid:'USD 208K',qcRef:'QC-D-102',droneRef:'DR-DH05-03',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  'KA-P01': {
+    pkg:'KA-P01', district:'Karbi Anglong', length:'38 km', value:'USD 32.1M',
+    contractor:'PNC Infratech Ltd', city:'Agra',
+    procPkg:'KA-P07', method:'NCB', contractDate:'12 Mar 2026',
+    completion:'11 Mar 2028', engineer:'P. Deka', supervisor:'AECOM India',
+    status:'On track', planPct:50, actualPct:52, delay:0,
+    desc:'KA northern corridor — KA-03 and KA-12 sections. 12 days ahead of programme. Best performing package.',
+    lifecycle:[
+      {step:'Advertisement', date:'1 Nov 2025', st:'done', link:null},
+      {step:'Bid evaluation', date:'18 Feb 2026', st:'done', link:'proc'},
+      {step:'Bank NOL received', date:'5 Mar 2026', st:'done', link:'proc'},
+      {step:'Contract signed', date:'12 Mar 2026', st:'done', link:'proc'},
+      {step:'Site handover', date:'15 Mar 2026', st:'done', link:null},
+      {step:'Commencement', date:'1 Apr 2026', st:'done', link:null},
+      {step:'IPC #1 certified', date:'30 Apr 2026', st:'done', link:'finance'},
+      {step:'IPC #2 under review', date:'31 May 2026', st:'active', link:'finance'},
+      {step:'Financial completion', date:'11 Mar 2028 (est.)', st:'pending', link:'finance'}
+    ],
+    bills:{ total:'USD 14.2M', certified:'USD 14.2M', pending:'USD 1.4M (IPC#2)', rejected:'USD 0' },
+    subPackages:[
+      {
+        id:'KA-P01-A', name:'Earthworks and subgrade', km:'km 0 to 20', planPct:90, actualPct:78,
+        value:'USD 7.2M', status:'On track',
+        items:[
+          {id:'KA-P01-A-01', desc:'Clearing and grubbing', unit:'Ha', qty:22, rate:'USD 1,200', planPct:100, actualPct:100, st:'Complete',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 26.4K',certified:'USD 26.4K',paid:'USD 26.4K',qcRef:'QC-KA-001',droneRef:'DR-KA03-01',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'KA-P01-A-02', desc:'Bulk earthworks cutting', unit:'m³', qty:240000, rate:'USD 8.4', planPct:88, actualPct:80, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 960K',certified:'USD 950K',paid:'USD 950K',qcRef:'QC-KA-002',droneRef:'DR-KA03-01',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-02',date:'31 May 2026',claimed:'USD 480K',certified:null,paid:'—',qcRef:'QC-KA-003',droneRef:'DR-KA03-02',esfFlag:false,st:'Under review'},
+            ]
+          },
+          {id:'KA-P01-A-03', desc:'Embankment formation', unit:'m³', qty:110000, rate:'USD 6.2', planPct:82, actualPct:72, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 310K',certified:'USD 305K',paid:'USD 305K',qcRef:'QC-KA-004',droneRef:'DR-KA03-01',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'KA-P01-B', name:'Sub-base and base course', km:'km 0 to 38', planPct:65, actualPct:60,
+        value:'USD 9.4M', status:'On track',
+        items:[
+          {id:'KA-P01-B-01', desc:'Granular sub-base (GSB)', unit:'m³', qty:152000, rate:'USD 18', planPct:68, actualPct:62, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 680K',certified:'USD 675K',paid:'USD 675K',qcRef:'QC-KA-005',droneRef:'DR-KA03-01',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'KA-P01-B-02', desc:'Wet mix macadam (WMM)', unit:'m³', qty:121000, rate:'USD 22', planPct:58, actualPct:54, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 720K',certified:'USD 715K',paid:'USD 715K',qcRef:'QC-KA-006',droneRef:'DR-KA03-01',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'KA-P01-C', name:'Culverts and drainage', km:'km 0 to 38', planPct:72, actualPct:72,
+        value:'USD 4.8M', status:'On track',
+        items:[
+          {id:'KA-P01-C-01', desc:'Box culverts — multiple spans', unit:'No.', qty:28, rate:'USD 58,000', planPct:71, actualPct:71, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 1.16M',certified:'USD 1.15M',paid:'USD 1.15M',qcRef:'QC-KA-007',droneRef:'DR-KA03-01',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  'WK-P01': {
+    pkg:'WK-P01', district:'West Karbi Anglong', length:'34 km', value:'USD 14.8M',
+    contractor:'Dilip Buildcon Ltd', city:'Bhopal',
+    procPkg:'WK-P03', method:'RFB', contractDate:'5 Feb 2026',
+    completion:'4 Feb 2028', engineer:'B. Sonowal', supervisor:'AECOM India',
+    status:'On track', planPct:58, actualPct:61, delay:0,
+    desc:'WK district road — best completion rate in project. 8 days ahead of programme. Retaining walls 80% complete.',
+    lifecycle:[
+      {step:'Advertisement (RFB)', date:'Dec 2025', st:'done', link:null},
+      {step:'Bid evaluation', date:'Jan 2026', st:'done', link:'proc'},
+      {step:'Bank NOL received', date:'28 Jan 2026', st:'done', link:'proc'},
+      {step:'Contract signed', date:'5 Feb 2026', st:'done', link:'proc'},
+      {step:'Advance payment', date:'15 Feb 2026', st:'done', link:'finance'},
+      {step:'Commencement', date:'15 Feb 2026', st:'done', link:null},
+      {step:'IPC #1 certified', date:'30 Apr 2026', st:'done', link:'finance'},
+      {step:'IPC #2 certified', date:'12 May 2026', st:'done', link:'finance'},
+      {step:'Financial completion', date:'4 Feb 2028 (est.)', st:'pending', link:'finance'}
+    ],
+    bills:{ total:'USD 8.1M', certified:'USD 8.1M', pending:'Nil', rejected:'USD 0' },
+    subPackages:[
+      {
+        id:'WK-P01-A', name:'Earthworks and subgrade', km:'km 0 to 18', planPct:88, actualPct:88,
+        value:'USD 3.8M', status:'On track',
+        items:[
+          {id:'WK-P01-A-01', desc:'Bulk earthworks cutting', unit:'m³', qty:168000, rate:'USD 8.4', planPct:90, actualPct:90, st:'Near complete',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 640K',certified:'USD 635K',paid:'USD 635K',qcRef:'QC-WK-001',droneRef:'DR-WK01-01',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-02',date:'12 May 2026',claimed:'USD 520K',certified:'USD 518K',paid:'USD 518K',qcRef:'QC-WK-002',droneRef:'DR-WK01-02',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'WK-P01-B', name:'Retaining walls and slope works', km:'km 4 to 28', planPct:78, actualPct:80,
+        value:'USD 4.2M', status:'Ahead',
+        items:[
+          {id:'WK-P01-B-01', desc:'Retaining wall — RCC type II', unit:'m³', qty:9200, rate:'USD 195', planPct:76, actualPct:80, st:'Ahead of plan',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 860K',certified:'USD 855K',paid:'USD 855K',qcRef:'QC-WK-003',droneRef:'DR-WK01-01',esfFlag:false,st:'Paid'},
+              {ipc:'IPC-02',date:'12 May 2026',claimed:'USD 540K',certified:'USD 538K',paid:'USD 538K',qcRef:'QC-WK-004',droneRef:'DR-WK01-02',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      },
+      {
+        id:'WK-P01-C', name:'Sub-base and base course', km:'km 0 to 34', planPct:55, actualPct:58,
+        value:'USD 3.6M', status:'On track',
+        items:[
+          {id:'WK-P01-C-01', desc:'Granular sub-base (GSB)', unit:'m³', qty:136000, rate:'USD 18', planPct:56, actualPct:60, st:'In progress',
+            payments:[
+              {ipc:'IPC-01',date:'30 Apr 2026',claimed:'USD 480K',certified:'USD 478K',paid:'USD 478K',qcRef:'QC-WK-005',droneRef:'DR-WK01-01',esfFlag:false,st:'Paid'},
+            ]
+          },
+          {id:'WK-P01-C-02', desc:'Surface dressing — first coat', unit:'m²', qty:102000, rate:'USD 4.8', planPct:50, actualPct:55, st:'In progress',
+            payments:[
+              {ipc:'IPC-02',date:'12 May 2026',claimed:'USD 270K',certified:'USD 268K',paid:'USD 268K',qcRef:'QC-WK-006',droneRef:'DR-WK01-02',esfFlag:false,st:'Paid'},
+            ]
+          }
+        ]
+      }
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════
+// WORKS: LEVEL NAVIGATION
+// ═══════════════════════════════════════════
+var wState = { pkg:null, spIdx:null, itemIdx:null };
+
+function setWorksDrillNav(targetId, activeStep, crumbs) {
+  var el = document.getElementById(targetId);
+  if (!el) return;
+  el.className = 'bc';
+  el.innerHTML = crumbs.map(function(c, i) {
+    var item = c.click
+      ? '<span class="bca" onclick="' + c.click + '">' + c.label + '</span>'
+      : '<span class="drill-crumb-current">' + c.label + '</span>';
+    var sep = i < crumbs.length - 1 ? '<span class="drill-crumb-sep">›</span>' : '';
+    return item + sep;
+  }).join(' ');
+}
+
+function showWL1() {
+  ['w-l1','w-l2','w-l3','w-l4','w-l5','w-l6'].forEach(function(id,i) {
+    document.getElementById(id).style.display = i===0 ? 'block' : 'none';
+  });
+}
+function showWL2(pkg) {
+  wState.pkg = pkg;
+  var d = WD[pkg]; if (!d) return;
+  document.getElementById('w-l1').style.display = 'none';
+  document.getElementById('w-l2').style.display = 'block';
+  document.getElementById('w-l3').style.display = 'none';
+  document.getElementById('w-l4').style.display = 'none';
+  document.getElementById('w-l5').style.display = 'none';
+  document.getElementById('w-l6').style.display = 'none';
+
+  // Product breadcrumb + step flow
+  setWorksDrillNav('w-bc2', 1, [
+    { label: 'Works', click: 'showWL1()' },
+    { label: d.pkg }
+  ]);
+
+  // Lifecycle timeline HTML
+  var lcRows = d.lifecycle.map(function(lc) {
+    var dot = lc.st === 'done' ? 'var(--green)' : lc.st === 'issue' ? 'var(--red)' : lc.st === 'active' ? 'var(--blue)' : 'var(--t3)';
+    var stLbl = lc.st === 'done' ? '&#10003;' : lc.st === 'issue' ? '!' : lc.st === 'active' ? '&#9654;' : '&#9675;';
+    var linkBtn = '';
+    if (lc.link === 'proc') linkBtn = '<span class="drill-link" style="margin-left:8px;" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; Procurement</span>';
+    if (lc.link === 'finance') linkBtn = '<span class="drill-link success" style="margin-left:8px;" onclick="jumpToFinance()">&#8594; Finance</span>';
+    if (lc.link === 'env') linkBtn = '<span class="drill-link warn" style="margin-left:8px;" onclick="jumpToEnv()">&#8594; Environment</span>';
+    return '<div class="drill-timeline-row">' +
+      '<div class="drill-timeline-dot" style="background:' + dot + ';">' + stLbl + '</div>' +
+      '<div class="drill-timeline-step">' + lc.step + linkBtn + '</div>' +
+      '<div class="drill-timeline-date">' + lc.date + '</div>' +
+      '</div>';
+  }).join('');
+
+  // Sub-package summary rows
+  var spRows = d.subPackages.map(function(sp, idx) {
+    var stCls = sp.status === 'On track' || sp.status === 'Ahead' ? 'bg' : sp.status === 'In progress' ? 'bb' : sp.status === 'Delayed' ? 'ba' : sp.status === 'Stopped' ? 'br' : 'bgr';
+    var barCol = sp.status === 'Ahead' || sp.status === 'On track' ? 'var(--green)' : sp.status === 'Delayed' ? 'var(--amber)' : sp.status === 'Stopped' ? 'var(--red)' : 'var(--blue)';
+    return '<tr style="cursor:pointer;" onclick="showWL3(' + idx + ')" class="tbl-row-clickable">' +
+      '<td>' + sp.id + '</td>' +
+      '<td>' + sp.name + '</td>' +
+      '<td>' + sp.km + '</td>' +
+      '<td>' + sp.value + '</td>' +
+      '<td style="color:var(--t2);">' + sp.planPct + '%</td>' +
+      '<td>' + sp.actualPct + '%</td>' +
+      '<td><div class="pbw"><div class="pb" style="width:' + sp.actualPct + '%;background:' + barCol + ';"></div></div></td>' +
+      '<td><span class="b ' + stCls + '">' + sp.status + '</span></td>' +
+      '</tr>';
+  }).join('');
+
+  var statusCls = d.status === 'On track' ? 'bg' : d.status === 'Delayed' ? 'ba' : d.status === 'Stopped' ? 'br' : 'bgr';
+  var planVsActual = d.actualPct >= d.planPct ? '+' + (d.actualPct - d.planPct) + '% ahead' : (d.planPct - d.actualPct) + '% behind';
+  var planCol = d.actualPct >= d.planPct ? 'var(--green)' : 'var(--red)';
+
+  var html =
+    '<div class="dp l2">' +
+    '<div class="dp-title">' + d.pkg + ' — ' + d.desc + '</div>' +
+    '<div class="dp-sub">Contractor: ' + d.contractor + ' · ' + d.length + ' · Method: ' + d.method +
+    ' · <span class="b ' + statusCls + '">' + d.status + '</span>' +
+    ' &nbsp;<span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; Open in Procurement</span>' +
+    '</div></div>' +
+
+    '<div class="dp-g4" style="margin-bottom:14px;">' +
+    '<div class="dp-stat"><div class="dp-stat-l">Contract value</div><div class="dp-stat-v">' + d.value + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Plan vs actual</div><div class="dp-stat-v" style="font-size:13px;color:' + planCol + ';">' + planVsActual + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Bills certified</div><div class="dp-stat-v" style="font-size:13px;color:var(--green);">' + d.bills.certified + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Bills pending</div><div class="dp-stat-v" style="font-size:13px;color:' + (d.bills.pending === 'Nil' ? 'var(--green)' : 'var(--amber)') + ';">' + d.bills.pending + '</div></div>' +
+    '</div>' +
+
+    '<div class="g2">' +
+    '<div class="card"><div class="ch">Contract and team</div>' +
+    '<div class="row"><span class="rl">Contract date</span><span class="rv">' + d.contractDate + '</span></div>' +
+    '<div class="row"><span class="rl">Completion date</span><span class="rv">' + d.completion + '</span></div>' +
+    '<div class="row"><span class="rl">Site engineer</span><span class="rv">' + d.engineer + '</span></div>' +
+    '<div class="row"><span class="rl">Supervision firm</span><span class="rv">' + d.supervisor + '</span></div>' +
+    '<div class="row"><span class="rl">Delay / float</span><span class="rv" style="color:' + (d.delay === 0 ? 'var(--green)' : 'var(--amber)') + ';">' + (d.delay === 0 ? 'No delay' : d.delay + ' days behind') + '</span></div>' +
+    '<div class="sep"></div>' +
+    '<div class="drill-mini-title">Jump to linked modules</div>' +
+    '<div class="row"><span class="rl">Procurement record</span><span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; ' + d.procPkg + ' in Procurement</span></div>' +
+    '<div class="row"><span class="rl">Payment records</span><span class="drill-link success" onclick="jumpToFinance()">&#8594; Open Financial mgmt</span></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">Tender to payment lifecycle</div>' + lcRows + '</div>' +
+    '</div>' +
+
+    '<div class="card" style="margin-top:12px;">' +
+    '<div class="ch">Sub-packages — click any row to drill into work items</div>' +
+    '<table class="tbl"><thead><tr>' +
+    '<th style="width:12%;">ID</th><th style="width:22%;">Sub-package</th><th style="width:12%;">Section</th><th style="width:10%;">Value</th>' +
+    '<th style="width:7%;">Plan</th><th style="width:7%;">Actual</th><th style="width:16%;">Progress</th><th>Status</th>' +
+    '</tr></thead><tbody>' + spRows + '</tbody></table></div>';
+
+  document.getElementById('w-l2-content').innerHTML = html;
+}
+
+function showWL3(spIdx) {
+  wState.spIdx = spIdx;
+  var d = WD[wState.pkg]; var sp = d.subPackages[spIdx];
+  document.getElementById('w-l2').style.display = 'none';
+  document.getElementById('w-l3').style.display = 'block';
+  document.getElementById('w-l4').style.display = 'none';
+  document.getElementById('w-l5').style.display = 'none';
+  document.getElementById('w-l6').style.display = 'none';
+
+  setWorksDrillNav('w-bc3', 2, [
+    { label: 'Works', click: 'showWL1()' },
+    { label: wState.pkg, click: 'showWL2(\'' + wState.pkg + '\')' },
+    { label: sp.id }
+  ]);
+
+  var stCls = sp.status === 'On track' || sp.status === 'Ahead' ? 'bg' : sp.status === 'Delayed' ? 'ba' : sp.status === 'Stopped' ? 'br' : 'bb';
+
+  var itemRows = sp.items.map(function(item, iIdx) {
+    var iCls = item.st === 'Complete' || item.st === 'Ahead of plan' || item.st === 'Near complete' ? 'bg' : item.st === 'In progress' ? 'bb' : item.st.indexOf('Stopped') > -1 ? 'br' : item.st === 'Not started' ? 'bgr' : 'ba';
+    var barCol = item.actualPct >= item.planPct ? 'var(--green)' : item.actualPct < item.planPct * 0.7 ? 'var(--red)' : 'var(--amber)';
+    return '<tr style="cursor:pointer;" onclick="showWL4(' + iIdx + ')" class="tbl-row-clickable">' +
+      '<td>' + item.id + '</td>' +
+      '<td>' + item.desc + '</td>' +
+      '<td style="font-family:var(--mono);">' + item.unit + '</td>' +
+      '<td style="font-family:var(--mono);">' + item.qty.toLocaleString() + '</td>' +
+      '<td>' + item.rate + '</td>' +
+      '<td style="color:var(--t2);">' + item.planPct + '%</td>' +
+      '<td>' + item.actualPct + '%</td>' +
+      '<td><div class="pbw"><div class="pb" style="width:' + item.actualPct + '%;background:' + barCol + ';"></div></div></td>' +
+      '<td><span class="b ' + iCls + '">' + item.st + '</span></td>' +
+      '</tr>';
+  }).join('');
+
+  var html =
+    '<div class="dp l3">' +
+    '<div class="dp-title">' + sp.id + ' — ' + sp.name + ' <span class="b ' + stCls + '" style="float:right;">' + sp.status + '</span></div>' +
+    '<div class="dp-sub">Section: ' + sp.km + ' · Contract value: ' + sp.value + '</div></div>' +
+    '<div class="dp-g4" style="margin-bottom:14px;">' +
+    '<div class="dp-stat"><div class="dp-stat-l">Sub-package value</div><div class="dp-stat-v" style="font-size:13px;">' + sp.value + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Planned progress</div><div class="dp-stat-v" style="font-size:13px;">' + sp.planPct + '%</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Actual progress</div><div class="dp-stat-v" style="font-size:13px;color:' + (sp.actualPct >= sp.planPct ? 'var(--green)' : 'var(--amber)') + ';">' + sp.actualPct + '%</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Work items</div><div class="dp-stat-v" style="font-size:13px;">' + sp.items.length + '</div></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">Work items — click any item for measurements, QC, and payment history</div>' +
+    '<table class="tbl"><thead><tr>' +
+    '<th style="width:14%;">Item ID</th><th style="width:24%;">Description</th><th style="width:6%;">Unit</th><th style="width:10%;">Qty</th>' +
+    '<th style="width:10%;">Rate</th><th style="width:7%;">Plan</th><th style="width:7%;">Actual</th><th style="width:12%;">Bar</th><th>Status</th>' +
+    '</tr></thead><tbody>' + itemRows + '</tbody></table></div>';
+
+  document.getElementById('w-l3-content').innerHTML = html;
+}
+
+function showWL4(iIdx) {
+  wState.itemIdx = iIdx;
+  var d = WD[wState.pkg]; var sp = d.subPackages[wState.spIdx]; var item = sp.items[iIdx];
+  document.getElementById('w-l3').style.display = 'none';
+  document.getElementById('w-l4').style.display = 'block';
+  document.getElementById('w-l5').style.display = 'none';
+  document.getElementById('w-l6').style.display = 'none';
+
+  setWorksDrillNav('w-bc4', 3, [
+    { label: 'Works', click: 'showWL1()' },
+    { label: wState.pkg, click: 'showWL2(\'' + wState.pkg + '\')' },
+    { label: sp.id, click: 'showWL3(' + wState.spIdx + ')' },
+    { label: item.id }
+  ]);
+
+  var iCls = item.st === 'Complete' || item.st === 'Ahead of plan' ? 'bg' : item.st === 'In progress' || item.st === 'Near complete' ? 'bb' : item.st.indexOf('Stopped') > -1 ? 'br' : item.st === 'Not started' ? 'bgr' : 'ba';
+  var totalCertified = item.payments.reduce(function(s, p) {
+    if (p.certified && p.certified !== null) {
+      var n = parseFloat(p.certified.replace(/[^0-9.]/g,''));
+      return s + (isNaN(n) ? 0 : n);
+    } return s;
+  }, 0);
+  var paymentCount = item.payments.length;
+  var pendingPay = item.payments.filter(function(p){ return p.st === 'Pending' || p.st === 'Under review'; }).length;
+
+  var payRows = item.payments.length ? item.payments.map(function(p, pIdx) {
+    var pCls = p.st === 'Paid' ? 'bg' : p.st === 'Under review' ? 'bb' : p.st === 'Pending' ? 'ba' : 'bgr';
+    return '<tr style="cursor:pointer;" onclick="showWL5(' + pIdx + ')" class="tbl-row-clickable">' +
+      '<td>' + p.ipc + '</td>' +
+      '<td>' + p.date + '</td>' +
+      '<td style="font-family:var(--mono);">' + p.claimed + '</td>' +
+      '<td style="font-family:var(--mono);color:' + (p.certified ? 'var(--green)' : 'var(--amber)') + ';">' + (p.certified || '—') + '</td>' +
+      '<td>' + p.qcRef + '</td>' +
+      '<td>' + p.droneRef + '</td>' +
+      '<td><span class="b ' + pCls + '">' + p.st + '</span></td>' +
+      '</tr>';
+  }).join('') :
+    '<tr><td colspan="7" style="color:var(--t2);padding:10px 0;font-style:italic;">No payments recorded yet</td></tr>';
+
+  var html =
+    '<div class="dp l4">' +
+    '<div class="dp-title">' + item.id + ' — ' + item.desc + ' <span class="b ' + iCls + '" style="float:right;">' + item.st + '</span></div>' +
+    '<div class="dp-sub">Sub-package: ' + sp.id + ' — ' + sp.name + ' · Package: ' + wState.pkg + '</div></div>' +
+
+    '<div class="dp-g4" style="margin-bottom:14px;">' +
+    '<div class="dp-stat"><div class="dp-stat-l">Unit</div><div class="dp-stat-v" style="font-size:14px;">' + item.unit + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Total quantity</div><div class="dp-stat-v" style="font-size:14px;">' + item.qty.toLocaleString() + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Rate</div><div class="dp-stat-v" style="font-size:13px;">' + item.rate + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Qty done</div><div class="dp-stat-v" style="font-size:14px;color:' + (item.actualPct >= item.planPct ? 'var(--green)' : 'var(--amber)') + ';">' + Math.round(item.qty * item.actualPct / 100).toLocaleString() + '</div></div>' +
+    '</div>' +
+
+    '<div class="g2">' +
+    '<div class="card"><div class="ch">Physical progress</div>' +
+    '<div class="row"><span class="rl">Planned progress</span><span class="rv">' + item.planPct + '%</span></div>' +
+    '<div class="row"><span class="rl">Actual progress</span><span class="rv" style="color:' + (item.actualPct >= item.planPct ? 'var(--green)' : 'var(--red)') + ';">' + item.actualPct + '%</span></div>' +
+    '<div class="row"><span class="rl">Quantity executed</span><span class="rv">' + Math.round(item.qty * item.actualPct / 100).toLocaleString() + ' ' + item.unit + '</span></div>' +
+    '<div class="row"><span class="rl">Quantity remaining</span><span class="rv">' + Math.round(item.qty * (100 - item.actualPct) / 100).toLocaleString() + ' ' + item.unit + '</span></div>' +
+    '<div class="sep"></div>' +
+    '<div class="row"><span class="rl">Payment certificates</span><span class="rv">' + paymentCount + ' total</span></div>' +
+    '<div class="row"><span class="rl">Pending / under review</span><span class="rv" style="color:' + (pendingPay > 0 ? 'var(--amber)' : 'var(--green)') + ';">' + pendingPay + '</span></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">Measurement and QC summary</div>' +
+    '<div class="row"><span class="rl">Last measurement date</span><span class="rv">' + (item.payments.length ? item.payments[item.payments.length-1].date : 'Not yet measured') + '</span></div>' +
+    '<div class="row"><span class="rl">Last drone survey ref</span><span class="rv">' + (item.payments.length ? item.payments[item.payments.length-1].droneRef : '—') + '</span></div>' +
+    '<div class="row"><span class="rl">Last QC report ref</span><span class="rv">' + (item.payments.length ? item.payments[item.payments.length-1].qcRef : '—') + '</span></div>' +
+    '<div class="row"><span class="rl">ESF flag on item</span><span class="b ' + (item.st.indexOf('Stopped') > -1 ? 'br' : 'bg') + '">' + (item.st.indexOf('Stopped') > -1 ? 'Yes — stop order' : 'None') + '</span></div>' +
+    '</div></div>' +
+
+    '<div class="card" style="margin-top:12px;"><div class="ch">Payment register — click any IPC for full invoice, QC, and drone detail</div>' +
+    '<table class="tbl"><thead><tr>' +
+    '<th style="width:10%;">IPC ref</th><th style="width:14%;">Date</th><th style="width:14%;">Claimed</th><th style="width:14%;">Certified</th>' +
+    '<th style="width:12%;">QC ref</th><th style="width:12%;">Drone ref</th><th>Status</th>' +
+    '</tr></thead><tbody>' + payRows + '</tbody></table></div>';
+
+  document.getElementById('w-l4-content').innerHTML = html;
+}
+
+function showWL5(pIdx) {
+  var d = WD[wState.pkg]; var sp = d.subPackages[wState.spIdx]; var item = sp.items[wState.itemIdx]; var pay = item.payments[pIdx];
+  document.getElementById('w-l4').style.display = 'none';
+  document.getElementById('w-l5').style.display = 'block';
+  document.getElementById('w-l6').style.display = 'none';
+
+  setWorksDrillNav('w-bc5', 4, [
+    { label: 'Works', click: 'showWL1()' },
+    { label: wState.pkg, click: 'showWL2(\'' + wState.pkg + '\')' },
+    { label: sp.id, click: 'showWL3(' + wState.spIdx + ')' },
+    { label: item.id, click: 'showWL4(' + wState.itemIdx + ')' },
+    { label: pay.ipc }
+  ]);
+
+  var pCls = pay.st === 'Paid' ? 'bg' : pay.st === 'Under review' ? 'bb' : pay.st === 'Pending' ? 'ba' : 'bgr';
+  var qtyDone = Math.round(item.qty * item.actualPct / 100).toLocaleString();
+
+  var html =
+    '<div class="dp l2" style="border-left-color:var(--green);">' +
+    '<div class="dp-title">' + pay.ipc + ' — Interim Payment Certificate <span class="b ' + pCls + '" style="float:right;">' + pay.st + '</span></div>' +
+    '<div class="dp-sub">Work item: ' + item.id + ' — ' + item.desc + ' · Package: ' + wState.pkg + '</div></div>' +
+
+    '<div class="dp-g4" style="margin-bottom:14px;">' +
+    '<div class="dp-stat"><div class="dp-stat-l">Amount claimed</div><div class="dp-stat-v" style="font-size:13px;">' + pay.claimed + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Amount certified</div><div class="dp-stat-v" style="font-size:13px;color:' + (pay.certified ? 'var(--green)' : 'var(--amber)') + ';">' + (pay.certified || 'Pending') + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Payment status</div><div class="dp-stat-v" style="font-size:13px;"><span class="b ' + pCls + '">' + pay.st + '</span></div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Certificate date</div><div class="dp-stat-v" style="font-size:13px;">' + pay.date + '</div></div>' +
+    '</div>' +
+
+    '<div class="g3">' +
+    '<div class="card"><div class="ch">Measurement basis</div>' +
+    '<div class="row"><span class="rl">Item description</span><span class="rv">' + item.desc + '</span></div>' +
+    '<div class="row"><span class="rl">Total contract qty</span><span class="rv">' + item.qty.toLocaleString() + ' ' + item.unit + '</span></div>' +
+    '<div class="row"><span class="rl">Qty executed to date</span><span class="rv">' + qtyDone + ' ' + item.unit + '</span></div>' +
+    '<div class="row"><span class="rl">Unit rate</span><span class="rv">' + item.rate + '</span></div>' +
+    '<div class="row"><span class="rl">Measurement recorded by</span><span class="rv">Eng. ' + d.engineer + '</span></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">QC and supervision</div>' +
+    '<div class="row"><span class="rl">QC report reference</span><span class="rv" style="font-family:var(--mono);">' + pay.qcRef + '</span></div>' +
+    '<div class="row"><span class="rl">QC verdict</span><span class="b ' + (pay.st.indexOf('Pending') > -1 || pay.st === 'Under review' ? 'ba' : 'bg') + '">' + (pay.st.indexOf('Pending') > -1 ? 'Pending sign-off' : pay.st === 'Under review' ? 'Under review' : 'Pass') + '</span></div>' +
+    '<div class="row"><span class="rl">Supervision firm</span><span class="rv">' + d.supervisor + '</span></div>' +
+    '<div class="row"><span class="rl">Certifying officer</span><span class="rv">Eng. ' + d.engineer + '</span></div>' +
+    '<div class="row"><span class="rl">ESF flag on payment</span><span class="b ' + (pay.esfFlag ? 'br' : 'bg') + '">' + (pay.esfFlag ? 'Yes — withheld' : 'None') + '</span></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">Drone verification</div>' +
+    '<div class="row"><span class="rl">Drone ref</span><span class="rv" style="font-family:var(--mono);">' + pay.droneRef + '</span></div>' +
+    '<div class="row"><span class="rl">Drone survey status</span><span class="b bg">Completed</span></div>' +
+    '<div class="row"><span class="rl">GPS co-ordinates</span><span class="rv">On file — verified</span></div>' +
+    '<div class="row"><span class="rl">Photo count</span><span class="rv">18 geotagged images</span></div>' +
+    '<div class="row"><span class="rl">Drone module</span><span class="rv">Removed from navigation</span></div>' +
+    '</div></div>' +
+
+    '<div class="card" style="margin-top:12px;"><div class="ch">View full invoice and financial record</div>' +
+    '<div class="drill-actions">' +
+    '<div style="font-size:12px;color:var(--t2);">This IPC flows into Financial Management for withdrawal application processing.</div>' +
+    '<span class="drill-pill-btn success" onclick="showWL6(' + pIdx + ')">&#8594; Open full invoice detail</span>' +
+    '<span class="drill-pill-btn" onclick="jumpToFinance()">&#8594; Jump to Financial mgmt</span>' +
+    '</div></div>';
+
+  document.getElementById('w-l5-content').innerHTML = html;
+  wState._pIdx = pIdx;
+}
+
+function showWL6(pIdx) {
+  var d = WD[wState.pkg]; var sp = d.subPackages[wState.spIdx]; var item = sp.items[wState.itemIdx]; var pay = item.payments[pIdx];
+  document.getElementById('w-l5').style.display = 'none';
+  document.getElementById('w-l6').style.display = 'block';
+
+  setWorksDrillNav('w-bc6', 5, [
+    { label: 'Works', click: 'showWL1()' },
+    { label: wState.pkg, click: 'showWL2(\'' + wState.pkg + '\')' },
+    { label: sp.id, click: 'showWL3(' + wState.spIdx + ')' },
+    { label: item.id, click: 'showWL4(' + wState.itemIdx + ')' },
+    { label: pay.ipc, click: 'showWL5(' + wState._pIdx + ')' },
+    { label: 'Invoice detail' }
+  ]);
+
+  var pCls = pay.st === 'Paid' ? 'bg' : pay.st === 'Under review' ? 'bb' : pay.st === 'Pending' ? 'ba' : 'bgr';
+  var auditRows =
+    '<div class="audit-row"><div class="audit-dot" style="background:var(--blue);"></div><div class="audit-time">' + pay.date + ' · 08:00</div><div class="audit-user">Contractor portal</div><div class="audit-act">' + pay.ipc + ' submitted with measurement sheets and QC ' + pay.qcRef + '</div></div>' +
+    '<div class="audit-row"><div class="audit-dot" style="background:var(--blue);"></div><div class="audit-time">' + pay.date + ' · 10:30</div><div class="audit-user">Eng. ' + d.engineer + '</div><div class="audit-act">Measurement joint inspection completed — quantities verified on site</div></div>' +
+    '<div class="audit-row"><div class="audit-dot" style="background:var(--purple);"></div><div class="audit-time">' + pay.date + ' · 13:00</div><div class="audit-user">' + d.supervisor + '</div><div class="audit-act">QC report ' + pay.qcRef + ' reviewed — all tests within specification</div></div>' +
+    (pay.st === 'Paid' ?
+      '<div class="audit-row"><div class="audit-dot" style="background:var(--green);"></div><div class="audit-time">' + pay.date + ' · 15:00</div><div class="audit-user">PMU Finance</div><div class="audit-act">IPC certified — ' + pay.certified + ' approved for payment</div></div>' +
+      '<div class="audit-row"><div class="audit-dot" style="background:var(--green);"></div><div class="audit-time">' + pay.date + ' · 16:30</div><div class="audit-user">System</div><div class="audit-act">Payment ' + pay.ipc + '-PAY released to contractor — ' + pay.paid + '</div></div>'
+    : pay.st === 'Under review' ?
+      '<div class="audit-row"><div class="audit-dot" style="background:var(--amber);"></div><div class="audit-time">' + pay.date + ' · 14:00</div><div class="audit-user">PMU Finance</div><div class="audit-act">IPC under review — pending final quantity verification</div></div>'
+    :
+      '<div class="audit-row"><div class="audit-dot" style="background:var(--amber);"></div><div class="audit-time">' + pay.date + ' · 14:00</div><div class="audit-user">System</div><div class="audit-act">IPC awaiting certifying officer sign-off</div></div>'
+    );
+
+  var html =
+    '<div class="dp l4" style="border-left-color:var(--purple);">' +
+    '<div class="dp-title">Invoice detail — ' + pay.ipc + ' <span class="b ' + pCls + '" style="float:right;">' + pay.st + '</span></div>' +
+    '<div class="dp-sub">Item: ' + item.id + ' — ' + item.desc + ' · Package: ' + wState.pkg + ' · Sub-package: ' + sp.id + '</div></div>' +
+
+    '<div class="dp-g4" style="margin-bottom:14px;">' +
+    '<div class="dp-stat"><div class="dp-stat-l">Invoice ref</div><div class="dp-stat-v" style="font-size:13px;font-family:var(--mono);">' + pay.ipc + '-INV</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Amount claimed</div><div class="dp-stat-v" style="font-size:13px;">' + pay.claimed + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Amount certified</div><div class="dp-stat-v" style="font-size:13px;color:' + (pay.certified ? 'var(--green)' : 'var(--amber)') + ';">' + (pay.certified || 'Pending') + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Payment made</div><div class="dp-stat-v" style="font-size:13px;color:' + (pay.paid !== '—' ? 'var(--green)' : 'var(--t3)') + ';">' + pay.paid + '</div></div>' +
+    '</div>' +
+
+    '<div class="g2">' +
+    '<div class="card"><div class="ch">Invoice breakdown</div>' +
+    '<div class="row"><span class="rl">Gross claimed</span><span class="rv">' + pay.claimed + '</span></div>' +
+    '<div class="row"><span class="rl">Retention deduction (5%)</span><span class="rv" style="color:var(--amber);">' + (pay.certified ? 'USD ' + (parseFloat(pay.certified.replace(/[^0-9.]/g,'')) * 0.05).toFixed(0) + 'K' : '—') + '</span></div>' +
+    '<div class="row"><span class="rl">Advance recovery</span><span class="rv">USD 0 (recovered)</span></div>' +
+    '<div class="row"><span class="rl">Net certified</span><span class="rv" style="color:var(--green);">' + (pay.certified || 'Pending') + '</span></div>' +
+    '<div class="row"><span class="rl">Payment mode</span><span class="rv">Bank transfer — RTGS</span></div>' +
+    '<div class="row"><span class="rl">Bank reference</span><span class="rv" style="font-family:var(--mono);">' + pay.ipc + '-RTGS-001</span></div>' +
+    '<div class="sep"></div>' +
+    '<div class="row"><span class="rl">Jump to Finance</span><span class="drill-link success" onclick="jumpToFinance()">&#8594; Financial management module</span></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">Supporting documents</div>' +
+    '<div class="row"><span class="rl">Measurement book ref</span><span class="rv" style="font-family:var(--mono);">MB-' + wState.pkg + '-' + pay.ipc + '</span></div>' +
+    '<div class="row"><span class="rl">QC test report</span><span class="rv" style="font-family:var(--mono);">' + pay.qcRef + '</span></div>' +
+    '<div class="row"><span class="rl">Drone verification</span><span class="rv" style="font-family:var(--mono);">' + pay.droneRef + '</span></div>' +
+    '<div class="row"><span class="rl">Hindrances / remarks</span><span class="rv">' + (pay.esfFlag ? 'ESF flag raised — withheld' : 'Nil') + '</span></div>' +
+    '<div class="row"><span class="rl">Procurement link</span><span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; ' + d.procPkg + ' in Procurement</span></div>' +
+    '</div></div>' +
+
+    '<div class="card" style="margin-top:12px;"><div class="ch">Full audit trail — ' + pay.ipc + '</div>' + auditRows + '</div>';
+
+  document.getElementById('w-l6-content').innerHTML = html;
+}
+
+// Wire Works package rows
+document.querySelectorAll('[data-wpkg]').forEach(function(row) {
+  row.addEventListener('click', function() { showWL2(this.dataset.wpkg); });
+});
+
+// Back buttons — Works
+document.getElementById('w-back2').addEventListener('click', showWL1);
+document.getElementById('w-back3').addEventListener('click', function() { showWL2(wState.pkg); });
+document.getElementById('w-back4').addEventListener('click', function() { showWL3(wState.spIdx); });
+document.getElementById('w-back5').addEventListener('click', function() { showWL4(wState.itemIdx); });
+document.getElementById('w-back6').addEventListener('click', function() { showWL5(wState._pIdx); });
+
+// ═══════════════════════════════════════════
+// PROCUREMENT DATA
+// ═══════════════════════════════════════════
+var procData = {
+  'DH-P03': {
+    pkg:'DH-P03', method:'ICB', value:'USD 24.6M', stage:'Bid evaluation',
+    planDate:'15 Apr 2026', actualDate:'Delayed', nol:'Requested 20 May 2026',
+    risk:'Medium', riskCls:'ba', delay:'43 days',
+    desc:'Construction of 34 km all-weather road — Dima Hasao corridor, NH-27 realignment.',
+    contractor:'GVK Infra Ltd', city:'Hyderabad', regRef:'GVK-2019-AP-001', classification:'Class A — Roads',
+    debarred:false, litigation:false, blacklist:false,
+    pastProjects:['NHAI NH-44 — Karnataka (USD 180M)', 'AP State Roads Phase II (USD 94M)'],
+    milestones:[
+      {m:'REOI published',plan:'10 Jan 2026',actual:'10 Jan 2026',st:'Done'},
+      {m:'Shortlisting',plan:'10 Feb 2026',actual:'12 Feb 2026',st:'Done'},
+      {m:'RFP issued',plan:'1 Mar 2026',actual:'5 Mar 2026',st:'Done'},
+      {m:'Bid submission',plan:'15 Apr 2026',actual:'15 Apr 2026',st:'Done'},
+      {m:'Bid evaluation',plan:'15 Apr 2026',actual:'In progress',st:'Delayed'},
+      {m:'Bank NOL',plan:'30 Apr 2026',actual:'—',st:'Pending'},
+      {m:'Contract signing',plan:'15 May 2026',actual:'—',st:'Pending'}
+    ],
+    transactions:[
+      {ref:'BID-DHP03',date:'15 Apr 2026',type:'Bid security received',amount:'USD 246K',st:'Valid'},
+      {ref:'EMD-DHP03',date:'15 Apr 2026',type:'EMD deposited',amount:'USD 492K',st:'Held'},
+      {ref:'EVAL-DHP03',date:'18 Apr 2026',type:'Evaluation commenced',amount:'—',st:'In progress'}
+    ],
+    riskFlags:[
+      {flag:'Bid evaluation delayed 43 days — single responsive bid',sev:'Medium',owner:'PMU Procurement'},
+      {flag:'Competition adequacy concern — Bank review triggered',sev:'Medium',owner:'TTL review'}
+    ],
+    audit:[
+      {time:'28 May · 09:02',user:'Eng. Sharma (PMU)',act:'Evaluation report draft v3 uploaded'},
+      {time:'22 May · 14:30',user:'Bank Proc. Specialist',act:'Query on technical scoring methodology'},
+      {time:'18 Apr · 11:00',user:'Eng. Sharma (PMU)',act:'Bid evaluation committee constituted'},
+      {time:'15 Apr · 16:45',user:'System',act:'Bid deadline passed — 1 bid received'}
+    ]
+  },
+  'DH-P05': {
+    pkg:'DH-P05', method:'ICB', value:'USD 31.2M', stage:'Awaiting NOL',
+    planDate:'1 May 2026', actualDate:'Pending NOL', nol:'Submitted to Bank',
+    risk:'High', riskCls:'br', delay:'28 days',
+    desc:'41 km all-weather road — Dima Hasao eastern sector.',
+    contractor:'Shapoorji Pallonji and Co.', city:'Mumbai', regRef:'SP-2001-MH-007', classification:'Class AA',
+    debarred:false, litigation:true, blacklist:false,
+    pastProjects:['Mumbai Metro Line 3 (USD 2.1B)', 'NHAI NH-48 (USD 380M)'],
+    milestones:[
+      {m:'Advertisement',plan:'1 Dec 2025',actual:'1 Dec 2025',st:'Done'},
+      {m:'Bid submission',plan:'28 Feb 2026',actual:'28 Feb 2026',st:'Done'},
+      {m:'Evaluation complete',plan:'1 Apr 2026',actual:'3 Apr 2026',st:'Done'},
+      {m:'Bank NOL',plan:'1 May 2026',actual:'—',st:'Pending'},
+      {m:'Contract signing',plan:'15 May 2026',actual:'—',st:'Pending'}
+    ],
+    transactions:[
+      {ref:'BID-DHP05',date:'28 Feb 2026',type:'Bid security received',amount:'USD 312K',st:'Valid'},
+      {ref:'NOL-DHP05',date:'10 Apr 2026',type:'NOL package submitted',amount:'—',st:'Under review'}
+    ],
+    riskFlags:[
+      {flag:'NOL delayed — Bank query on evaluation scoring',sev:'High',owner:'PMU + TTL'},
+      {flag:'Litigation history — 2 arbitration cases active',sev:'Medium',owner:'Legal cell'}
+    ],
+    audit:[
+      {time:'22 May · 10:00',user:'Bank Proc. Specialist',act:'Query raised — response requested'},
+      {time:'10 Apr · 09:30',user:'Eng. Mehta (PMU)',act:'NOL package submitted to World Bank'},
+      {time:'3 Apr · 17:00',user:'Evaluation committee',act:'Report signed — SP and Co recommended'}
+    ]
+  },
+  'KA-P07': {
+    pkg:'KA-P07', method:'NCB', value:'USD 18.4M', stage:'Signed',
+    planDate:'10 Mar 2026', actualDate:'12 Mar 2026', nol:'Obtained 5 Mar 2026',
+    risk:'Low', riskCls:'bg', delay:'None',
+    desc:'28 km road — Karbi Anglong northern sector.',
+    contractor:'PNC Infratech Ltd', city:'Agra', regRef:'PNC-2005-UP-003', classification:'Class A',
+    debarred:false, litigation:false, blacklist:false,
+    pastProjects:['NHAI NH-19 (USD 260M)', 'UP State Highways (USD 110M)'],
+    milestones:[
+      {m:'Advertisement',plan:'1 Nov 2025',actual:'1 Nov 2025',st:'Done'},
+      {m:'Bid submission',plan:'15 Jan 2026',actual:'15 Jan 2026',st:'Done'},
+      {m:'Evaluation',plan:'15 Feb 2026',actual:'18 Feb 2026',st:'Done'},
+      {m:'Bank NOL',plan:'5 Mar 2026',actual:'5 Mar 2026',st:'Done'},
+      {m:'Contract signed',plan:'10 Mar 2026',actual:'12 Mar 2026',st:'Done'},
+      {m:'Commencement',plan:'1 Apr 2026',actual:'1 Apr 2026',st:'Done'}
+    ],
+    transactions:[
+      {ref:'PB-KAP07',date:'14 Mar 2026',type:'Performance bond received',amount:'USD 1.84M',st:'Valid'},
+      {ref:'ADV-KAP07',date:'1 Apr 2026',type:'Advance payment disbursed',amount:'USD 1.84M',st:'Paid'},
+      {ref:'IPC01-KAP07',date:'30 Apr 2026',type:'IPC #1 certified',amount:'USD 1.2M',st:'Certified'},
+      {ref:'IPC02-KAP07',date:'31 May 2026',type:'IPC #2 submitted',amount:'USD 1.4M',st:'Under review'}
+    ],
+    riskFlags:[{flag:'Monsoon season risk — potential stoppage Jul to Sep',sev:'Low',owner:'Site monitoring'}],
+    audit:[
+      {time:'31 May · 09:00',user:'PNC portal',act:'IPC #2 submitted — USD 1.4M'},
+      {time:'1 May · 14:00',user:'Eng. P. Deka',act:'IPC #1 certified — USD 1.2M'},
+      {time:'12 Mar · 11:00',user:'PMU Director',act:'Contract signed — PNC Infratech'}
+    ]
+  },
+  'KA-P08': {
+    pkg:'KA-P08', method:'NCB', value:'USD 22.1M', stage:'Advertisement',
+    planDate:'20 May 2026', actualDate:'20 May 2026', nol:'N/A',
+    risk:'Low', riskCls:'bg', delay:'None',
+    desc:'34 km road — Karbi Anglong southern sector. Open NCB tender.',
+    contractor:'Open tender', city:'—', regRef:'—', classification:'—',
+    debarred:false, litigation:false, blacklist:false, pastProjects:[],
+    milestones:[
+      {m:'Advertisement',plan:'20 May 2026',actual:'20 May 2026',st:'Done'},
+      {m:'Bid submission',plan:'5 Jul 2026',actual:'—',st:'Upcoming'},
+      {m:'Contract signing',plan:'1 Sep 2026',actual:'—',st:'Upcoming'}
+    ],
+    transactions:[],
+    riskFlags:[],
+    audit:[{time:'20 May · 09:00',user:'PMU Procurement',act:'Advertisement published — NCB open tender'}]
+  },
+  'WK-P03': {
+    pkg:'WK-P03', method:'RFB', value:'USD 11.3M', stage:'Signed',
+    planDate:'1 Feb 2026', actualDate:'5 Feb 2026', nol:'Obtained 28 Jan 2026',
+    risk:'Low', riskCls:'bg', delay:'None',
+    desc:'28 km road — West Karbi Anglong.',
+    contractor:'Dilip Buildcon Ltd', city:'Bhopal', regRef:'DIL-2002-MP-002', classification:'Class A',
+    debarred:false, litigation:false, blacklist:false,
+    pastProjects:['NHDP Phase III — MP (USD 190M)', 'PMGSY II — West Karbi (USD 42M)'],
+    milestones:[
+      {m:'RFB issued',plan:'Dec 2025',actual:'Dec 2025',st:'Done'},
+      {m:'Bank NOL',plan:'28 Jan 2026',actual:'28 Jan 2026',st:'Done'},
+      {m:'Contract signed',plan:'1 Feb 2026',actual:'5 Feb 2026',st:'Done'},
+      {m:'Commencement',plan:'15 Feb 2026',actual:'15 Feb 2026',st:'Done'}
+    ],
+    transactions:[
+      {ref:'PB-WKP03',date:'7 Feb 2026',type:'Performance bond received',amount:'USD 565K',st:'Valid'},
+      {ref:'ADV-WKP03',date:'15 Feb 2026',type:'Advance payment',amount:'USD 565K',st:'Paid'},
+      {ref:'IPC01-WKP03',date:'30 Apr 2026',type:'IPC #1 certified',amount:'USD 0.9M',st:'Certified'}
+    ],
+    riskFlags:[{flag:'Single bidder — competition concern noted',sev:'Low',owner:'Bank acknowledged in NOL'}],
+    audit:[
+      {time:'30 Apr · 14:00',user:'Eng. Sonowal',act:'IPC #1 certified'},
+      {time:'5 Feb · 10:00',user:'PMU Director',act:'Contract signed — Dilip Buildcon'}
+    ]
+  },
+  'CS-SUP': {
+    pkg:'CS-SUP', method:'QCBS', value:'USD 8.2M', stage:'Mobilised',
+    planDate:'Mar 2026', actualDate:'Mar 2026', nol:'Obtained Feb 2026',
+    risk:'Low', riskCls:'bg', delay:'None',
+    desc:'Supervision consultant — all 24 works packages.',
+    contractor:'AECOM India Pvt Ltd', city:'New Delhi', regRef:'AECOM-2010-DL-001', classification:'International',
+    debarred:false, litigation:false, blacklist:false,
+    pastProjects:['ADB Roads Assam (USD 340M)', 'World Bank PMGSY III (USD 200M)'],
+    milestones:[
+      {m:'REOI',plan:'Sep 2025',actual:'Sep 2025',st:'Done'},
+      {m:'Bank NOL',plan:'Feb 2026',actual:'Feb 2026',st:'Done'},
+      {m:'Contract signed',plan:'Mar 2026',actual:'Mar 2026',st:'Done'},
+      {m:'Team mobilised',plan:'Mar 2026',actual:'Mar 2026',st:'Done'}
+    ],
+    transactions:[
+      {ref:'INV-SUP01',date:'30 Apr 2026',type:'Monthly invoice #1',amount:'USD 68K',st:'Paid'},
+      {ref:'INV-SUP02',date:'31 May 2026',type:'Monthly invoice #2',amount:'USD 68K',st:'Under review'}
+    ],
+    riskFlags:[{flag:'2 resident engineer positions vacant — KA district',sev:'Low',owner:'AECOM HR'}],
+    audit:[
+      {time:'31 May · 09:00',user:'AECOM Finance',act:'Invoice #2 submitted'},
+      {time:'1 May · 11:00',user:'PMU Finance',act:'Invoice #1 paid — USD 68K'}
+    ]
+  },
+  'CS-PMC': {
+    pkg:'CS-PMC', method:'QCBS', value:'USD 3.1M', stage:'Mobilised',
+    planDate:'Feb 2026', actualDate:'Feb 2026', nol:'Obtained Jan 2026',
+    risk:'Low', riskCls:'bg', delay:'None',
+    desc:'PMC — PMU capacity support, ePMS coordination.',
+    contractor:'STUP Consultants Pvt Ltd', city:'Mumbai', regRef:'STUP-1999-MH-001', classification:'National',
+    debarred:false, litigation:false, blacklist:false,
+    pastProjects:['NHDP Phase V PMC', 'Mumbai Trans-Harbour Link PMC'],
+    milestones:[
+      {m:'Contract signed',plan:'Feb 2026',actual:'Feb 2026',st:'Done'},
+      {m:'Team mobilised',plan:'Feb 2026',actual:'Feb 2026',st:'Done'}
+    ],
+    transactions:[{ref:'RET-PMC01',date:'28 Apr 2026',type:'Monthly retainer #1',amount:'USD 26K',st:'Paid'}],
+    riskFlags:[],
+    audit:[{time:'28 Apr · 11:00',user:'PMU Finance',act:'Retainer #1 paid — STUP Consultants'}]
+  },
+  'CS-SSS': {
+    pkg:'CS-SSS', method:'SSS', value:'USD 0.4M', stage:'Pending NOL',
+    planDate:'Apr 2026', actualDate:'Pending NOL', nol:'Pending',
+    risk:'High', riskCls:'br', delay:'60+ days',
+    desc:'Social safeguards specialist — RAP monitoring, TDP support.',
+    contractor:'TBD', city:'—', regRef:'—', classification:'—',
+    debarred:false, litigation:false, blacklist:false, pastProjects:[],
+    milestones:[
+      {m:'SSS justification',plan:'Feb 2026',actual:'Mar 2026',st:'Done'},
+      {m:'NOL for method',plan:'Mar 2026',actual:'—',st:'Pending'},
+      {m:'Contract award',plan:'Apr 2026',actual:'—',st:'Pending'}
+    ],
+    transactions:[],
+    riskFlags:[
+      {flag:'Social specialist vacancy — monitoring gap since Feb 2026',sev:'High',owner:'PMU + TTL'},
+      {flag:'ESS5 and ESS7 compliance at risk',sev:'High',owner:'TTL — ISR action item'}
+    ],
+    audit:[
+      {time:'15 Mar · 09:00',user:'PMU Social',act:'SSS justification submitted to Bank'},
+      {time:'28 Feb · 11:00',user:'TTL',act:'SSS approach discussed — aide memoire action'}
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════
+// PROCUREMENT FUNCTIONS
+// ═══════════════════════════════════════════
+var currentPkg = null;
+
+function showProcL1() {
+  document.getElementById('proc-l1').style.display = 'block';
+  document.getElementById('proc-l2').style.display = 'none';
+  document.getElementById('proc-l3').style.display = 'none';
+  document.getElementById('proc-l4').style.display = 'none';
+}
+
+function showProcL2(pkg) {
+  var d = procData[pkg]; if (!d) return;
+  currentPkg = pkg;
+  document.getElementById('proc-l1').style.display = 'none';
+  document.getElementById('proc-l2').style.display = 'block';
+  document.getElementById('proc-l3').style.display = 'none';
+  document.getElementById('proc-l4').style.display = 'none';
+  document.getElementById('bc-l2-label').textContent = d.pkg + ' — ' + (d.contractor === 'TBD' || d.contractor === 'Open tender' ? 'Pending award' : d.contractor);
+
+  var mRows = d.milestones.map(function(m) {
+    var sc = m.st === 'Done' ? 'bg' : m.st === 'Delayed' ? 'br' : m.st === 'Pending' ? 'ba' : 'bgr';
+    return '<tr><td>' + m.m + '</td><td style="color:var(--t2);">' + m.plan + '</td><td>' + m.actual + '</td><td><span class="b ' + sc + '">' + m.st + '</span></td></tr>';
+  }).join('');
+
+  var rfHTML = d.riskFlags.length ? d.riskFlags.map(function(r) {
+    var sc = r.sev === 'High' ? 'br' : r.sev === 'Medium' ? 'ba' : 'bg';
+    return '<div class="row"><span class="rl">' + r.flag + '</span><div style="display:flex;gap:6px;align-items:center;flex-shrink:0;"><span class="b ' + sc + '">' + r.sev + '</span><span style="font-size:10px;color:var(--t3);">' + r.owner + '</span></div></div>';
+  }).join('') : '<div class="row"><span class="rl">No risk flags</span><span class="b bg">Clean</span></div>';
+
+  var auditHTML = d.audit.map(function(a) {
+    return '<div class="audit-row"><div class="audit-dot" style="background:var(--blue);"></div><div class="audit-time">' + a.time + '</div><div class="audit-user">' + a.user + '</div><div class="audit-act">' + a.act + '</div></div>';
+  }).join('');
+
+  var html =
+    '<div class="dp l2"><div class="dp-title">' + d.pkg + ' — ' + d.desc +
+    ' <span class="dp-close" onclick="showProcL1()">&#x2715;</span></div>' +
+    '<div class="dp-sub">Method: ' + d.method + ' &nbsp;|&nbsp; Value: ' + d.value + ' &nbsp;|&nbsp; Stage: ' + d.stage +
+    ' &nbsp;|&nbsp; Risk: <span class="b ' + d.riskCls + '">' + d.risk + '</span></div>' +
+    '<div class="dp-g4">' +
+    '<div class="dp-stat"><div class="dp-stat-l">Planned</div><div class="dp-stat-v" style="font-size:13px;">' + d.planDate + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Actual / expected</div><div class="dp-stat-v" style="font-size:13px;">' + d.actualDate + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">NOL status</div><div class="dp-stat-v" style="font-size:12px;">' + d.nol + '</div></div>' +
+    '<div class="dp-stat"><div class="dp-stat-l">Delay</div><div class="dp-stat-v" style="font-size:13px;color:' + (d.delay === 'None' ? 'var(--green)' : 'var(--red)') + ';">' + d.delay + '</div></div>' +
+    '</div></div>' +
+    '<div class="tabs" id="ptabs">' +
+    '<div class="tab on" data-tc="tc-ms">Milestones</div>' +
+    '<div class="tab" data-tc="tc-vd">Vendor profile</div>' +
+    '<div class="tab" data-tc="tc-rf">Risk flags</div>' +
+    '<div class="tab" data-tc="tc-at">Audit trail</div>' +
+    '</div>' +
+    '<div class="tab-content on" id="tc-ms"><div class="card"><div class="ch">Milestone tracker</div>' +
+    '<table class="tbl"><thead><tr><th style="width:38%;">Milestone</th><th style="width:18%;">Planned</th><th style="width:18%;">Actual</th><th>Status</th></tr></thead><tbody>' + mRows + '</tbody></table></div></div>' +
+    '<div class="tab-content" id="tc-vd"><div class="card"><div class="ch">Vendor summary — <span style="color:var(--blue);cursor:pointer;" id="open-l3">View full vendor and transactions &#8594;</span></div>' +
+    '<div class="g2"><div>' +
+    '<div class="row"><span class="rl">Contractor</span><span class="rv">' + d.contractor + '</span></div>' +
+    '<div class="row"><span class="rl">City</span><span class="rv">' + d.city + '</span></div>' +
+    '<div class="row"><span class="rl">Registry ref</span><span class="rv">' + d.regRef + '</span></div>' +
+    '</div><div>' +
+    '<div class="row"><span class="rl">WB debarment</span><span class="b ' + (d.debarred?'br':'bg') + '">' + (d.debarred?'DEBARRED':'Clear') + '</span></div>' +
+    '<div class="row"><span class="rl">Litigation</span><span class="b ' + (d.litigation?'ba':'bg') + '">' + (d.litigation?'2 cases active':'None') + '</span></div>' +
+    '</div></div></div></div>' +
+    '<div class="tab-content" id="tc-rf"><div class="card"><div class="ch">Risk flags</div>' + rfHTML + '</div></div>' +
+    '<div class="tab-content" id="tc-at"><div class="card"><div class="ch">Audit trail</div>' + auditHTML + '</div></div>';
+
+  document.getElementById('proc-l2-content').innerHTML = html;
+
+  document.querySelectorAll('#ptabs .tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('#ptabs .tab').forEach(function(t) { t.classList.remove('on'); });
+      this.classList.add('on');
+      document.querySelectorAll('#proc-l2-content .tab-content').forEach(function(tc) { tc.classList.remove('on'); });
+      var tc = document.getElementById(this.dataset.tc); if (tc) tc.classList.add('on');
+    });
+  });
+  var l3btn = document.getElementById('open-l3');
+  if (l3btn) l3btn.addEventListener('click', function() { showProcL3(currentPkg); });
+}
+
+function showProcL3(pkg) {
+  var d = procData[pkg]; if (!d) return;
+  currentPkg = pkg;
+  document.getElementById('proc-l2').style.display = 'none';
+  document.getElementById('proc-l3').style.display = 'block';
+  document.getElementById('proc-l4').style.display = 'none';
+  document.getElementById('bc-l3-label').textContent = d.contractor;
+  document.getElementById('bc-l2b').textContent = d.pkg;
+
+  var txRows = d.transactions.length ? d.transactions.map(function(t) {
+    var sc = t.st === 'Paid' || t.st === 'Certified' ? 'bg' : t.st === 'Valid' ? 'bb' : t.st === 'Under review' ? 'ba' : t.st === 'Held' ? 'bgr' : 'ba';
+    return '<tr class="click-row" data-txref="' + t.ref + '"><td>' + t.ref + '</td><td>' + t.date + '</td><td>' + t.type + '</td><td style="font-family:var(--mono);">' + t.amount + '</td><td><span class="b ' + sc + '">' + t.st + '</span></td></tr>';
+  }).join('') : '<tr><td colspan="5" style="color:var(--t2);padding:10px 0;font-style:italic;">No transactions yet</td></tr>';
+
+  var ppHTML = d.pastProjects.length ? d.pastProjects.map(function(p) {
+    return '<div class="row"><span class="rl">' + p + '</span><span class="b bg">Completed</span></div>';
+  }).join('') : '<div class="row"><span class="rl">No prior projects on record</span></div>';
+
+  var html =
+    '<div class="dp l3"><div class="dp-title">' + d.contractor + ' — Vendor Profile <span class="dp-close" onclick="showProcL2(\'' + pkg + '\')">&#x2715;</span></div>' +
+    '<div class="dp-sub">Registry: ' + d.regRef + ' · Classification: ' + d.classification + '</div></div>' +
+    '<div class="g2">' +
+    '<div class="card"><div class="ch">Compliance</div>' +
+    '<div class="row"><span class="rl">Contractor</span><span class="rv">' + d.contractor + '</span></div>' +
+    '<div class="row"><span class="rl">City</span><span class="rv">' + d.city + '</span></div>' +
+    '<div class="row"><span class="rl">WB debarment</span><span class="b ' + (d.debarred?'br':'bg') + '">' + (d.debarred?'DEBARRED':'Clear') + '</span></div>' +
+    '<div class="row"><span class="rl">GoI blacklist</span><span class="b ' + (d.blacklist?'br':'bg') + '">' + (d.blacklist?'Listed':'Clear') + '</span></div>' +
+    '<div class="row"><span class="rl">Litigation</span><span class="b ' + (d.litigation?'ba':'bg') + '">' + (d.litigation?'2 active cases':'None') + '</span></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">Past projects</div>' + ppHTML + '</div></div>' +
+    '<div class="card"><div class="ch">Transaction register — click any row for detail</div>' +
+    '<table class="tbl"><thead><tr><th style="width:16%;">Ref</th><th style="width:16%;">Date</th><th style="width:32%;">Type</th><th style="width:16%;">Amount</th><th>Status</th></tr></thead>' +
+    '<tbody>' + txRows + '</tbody></table></div>';
+
+  document.getElementById('proc-l3-content').innerHTML = html;
+
+  document.querySelectorAll('.click-row[data-txref]').forEach(function(row) {
+    row.addEventListener('click', function() { showProcL4(this.dataset.txref, currentPkg); });
+  });
+}
+
+function showProcL4(txRef, pkg) {
+  var d = procData[pkg]; if (!d) return;
+  var tx = d.transactions.filter(function(t) { return t.ref === txRef; })[0]; if (!tx) return;
+  currentPkg = pkg;
+  document.getElementById('proc-l3').style.display = 'none';
+  document.getElementById('proc-l4').style.display = 'block';
+  document.getElementById('bc-l4-label').textContent = tx.ref + ' — ' + tx.type;
+  document.getElementById('bc-l3c').textContent = d.contractor;
+  document.getElementById('bc-l2c').textContent = d.pkg;
+
+  var sc = tx.st === 'Paid' || tx.st === 'Certified' ? 'bg' : tx.st === 'Valid' ? 'bb' : tx.st === 'Held' ? 'bgr' : 'ba';
+  var html =
+    '<div class="dp l4"><div class="dp-title">Transaction: ' + tx.ref + ' <span class="dp-close" onclick="showProcL3(\'' + pkg + '\')">&#x2715;</span></div>' +
+    '<div class="dp-sub">Package: ' + d.pkg + ' · Contractor: ' + d.contractor + '</div></div>' +
+    '<div class="g2">' +
+    '<div class="card"><div class="ch">Transaction detail</div>' +
+    '<div class="row"><span class="rl">Reference</span><span class="rv">' + tx.ref + '</span></div>' +
+    '<div class="row"><span class="rl">Date</span><span class="rv">' + tx.date + '</span></div>' +
+    '<div class="row"><span class="rl">Type</span><span class="rv">' + tx.type + '</span></div>' +
+    '<div class="row"><span class="rl">Amount</span><span class="rv" style="font-family:var(--mono);">' + tx.amount + '</span></div>' +
+    '<div class="row"><span class="rl">Status</span><span class="b ' + sc + '">' + tx.st + '</span></div>' +
+    '</div>' +
+    '<div class="card"><div class="ch">Authorisation</div>' +
+    '<div class="row"><span class="rl">Authorised by</span><span class="rv">PMU Director — APWRD</span></div>' +
+    '<div class="row"><span class="rl">WB prior review</span><span class="rv">Required — prior review package</span></div>' +
+    '<div class="row"><span class="rl">Audit retention</span><span class="b bg">7 years — immutable</span></div>' +
+    '</div></div>' +
+    '<div class="card"><div class="ch">Audit log</div>' +
+    '<div class="audit-row"><div class="audit-dot" style="background:var(--green);"></div><div class="audit-time">' + tx.date + ' · 09:00</div><div class="audit-user">System</div><div class="audit-act">' + tx.ref + ' recorded — ' + tx.type + '</div></div>' +
+    '<div class="audit-row"><div class="audit-dot" style="background:var(--blue);"></div><div class="audit-time">' + tx.date + ' · 14:00</div><div class="audit-user">PMU Director</div><div class="audit-act">Transaction authorised — status set to ' + tx.st + '</div></div>' +
+    '</div>';
+
+  document.getElementById('proc-l4-content').innerHTML = html;
+}
+
+// Wire Procurement rows
+document.querySelectorAll('[data-proc]').forEach(function(row) {
+  row.addEventListener('click', function() { showProcL2(this.dataset.proc); });
+});
+document.getElementById('proc-back2').addEventListener('click', showProcL1);
+document.getElementById('proc-back3').addEventListener('click', function() { showProcL2(currentPkg); });
+document.getElementById('proc-back4').addEventListener('click', function() { showProcL3(currentPkg); });
+document.getElementById('bc-l1a').addEventListener('click', showProcL1);
+document.getElementById('bc-l1b').addEventListener('click', showProcL1);
+document.getElementById('bc-l1c').addEventListener('click', showProcL1);
+document.getElementById('bc-l2b').addEventListener('click', function() { showProcL2(currentPkg); });
+document.getElementById('bc-l2c').addEventListener('click', function() { showProcL2(currentPkg); });
+document.getElementById('bc-l3c').addEventListener('click', function() { showProcL3(currentPkg); });
+</script>
+</body>
+</html>
