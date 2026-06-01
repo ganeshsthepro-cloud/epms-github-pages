@@ -1379,10 +1379,11 @@ function openGIS2Popup(districtKey) {
 }
 
 // CLOSE POPUP
-var closeBtn = document.getElementById('gis2-popup-close');
-if (closeBtn) {
-  closeBtn.addEventListener('click', function() {
-    document.getElementById('gis2-popup-mask').style.display = 'none';
+// Close on backdrop click
+var mask = document.getElementById('gis2-popup-mask');
+if (mask) {
+  mask.addEventListener('click', function(e) {
+    if (e.target === mask) mask.style.display = 'none';
   });
 }
 
@@ -2718,7 +2719,7 @@ document.getElementById('bc-l3c').addEventListener('click', function() { showPro
   <div class="gis2-popup" role="dialog" aria-modal="true" aria-labelledby="gis2-popup-title">
     <div class="gis2-popup-head">
       <div class="gis2-popup-title" id="gis2-popup-title">District Details</div>
-      <div class="gis2-popup-close" id="gis2-popup-close">&times;</div>
+      <div class="gis2-popup-close" id="gis2-popup-close" onclick="document.getElementById('gis2-popup-mask').style.display='none'">&times;</div>
     </div>
     <div class="gis2-popup-body">
       <div class="gis2-section">
