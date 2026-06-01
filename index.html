@@ -453,38 +453,46 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 #p-overview .card > .card-view-details{display:none!important;}
 .overview-card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid var(--ui-border);font-size:11px;color:#8A97AB;}
 .overview-meta-link{color:#8A97AB;}
+.g2 > .card,.g3 > .card{height:100%;display:flex;flex-direction:column;margin-bottom:0;}
+.g2 > .card .overview-card-meta,.g3 > .card .overview-card-meta{margin-top:auto;}
 
 /* Screenshot-style KPI cards for project dashboard */
 .overview-kpi-ref{grid-template-columns:repeat(5,minmax(0,1fr));}
 .overview-kpi-ref .kc{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
   text-align:center;
   border:1px solid #D2DBE7!important;
   border-radius:12px!important;
-  padding:14px 12px 16px!important;
+  min-height:176px;
+  padding:14px 12px 14px!important;
   box-shadow:none!important;
 }
 .overview-kpi-ref .kc-l{
-  font-size:32px;
+  font-size:12px;
   color:#1F2A37!important;
   text-transform:none;
   letter-spacing:0;
-  margin-bottom:10px;
-}
-.overview-kpi-ref .kc-v{
-  font-size:43px!important;
-  line-height:1.02;
   margin-bottom:8px;
 }
+.overview-kpi-ref .kc-v{
+  font-size:40px!important;
+  line-height:1.02;
+  margin-bottom:10px;
+}
 .overview-kpi-ref .kc-s{
-  font-size:37px;
+  font-size:13px;
+  line-height:1.3;
   color:#5C7191!important;
   margin-top:0;
 }
 .overview-kpi-ref .card-view-details{
   display:block!important;
-  margin-top:7px;
+  margin-top:auto;
+  padding-top:10px;
   color:#3B6D11!important;
-  font-size:31px;
+  font-size:12px;
   font-weight:500;
 }
 
