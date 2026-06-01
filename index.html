@@ -1223,8 +1223,7 @@ function openProductPopupFromCard(card) {
 }
 
 function setTopbarMode(pageKey) {
-  var isOverview = pageKey === 'overview';
-  document.body.classList.toggle('overview-mode', isOverview);
+  document.body.classList.add('overview-mode');
 }
 
 document.querySelectorAll('.ni[data-p]').forEach(function(el) {
