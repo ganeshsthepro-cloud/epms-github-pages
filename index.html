@@ -1247,47 +1247,6 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
   </div>
 </div>
 
-<div class="gis2-popup-mask" id="gis2-popup-mask">
-  <div class="gis2-popup" role="dialog" aria-modal="true" aria-labelledby="gis2-popup-title">
-    <div class="gis2-popup-head">
-      <div class="gis2-popup-title" id="gis2-popup-title">District Details</div>
-      <div class="gis2-popup-close" id="gis2-popup-close">&times;</div>
-    </div>
-    <div class="gis2-popup-body">
-      <div class="gis2-section">
-        <div class="gis2-section-head">Road Construction Works</div>
-        <div id="gis2-works-list"></div>
-      </div>
-      <div class="gis2-image-grid" id="gis2-image-grid"></div>
-      <div class="gis2-meta-grid">
-        <div class="gis2-meta"><div class="gis2-meta-l">District Name</div><div class="gis2-meta-v" id="gis2-district-name"></div></div>
-        <div class="gis2-meta"><div class="gis2-meta-l">Project Name</div><div class="gis2-meta-v" id="gis2-project-name"></div></div>
-        <div class="gis2-meta"><div class="gis2-meta-l">Highway / Road Name</div><div class="gis2-meta-v" id="gis2-road-name"></div></div>
-        <div class="gis2-meta"><div class="gis2-meta-l">Contractor</div><div class="gis2-meta-v" id="gis2-contractor"></div></div>
-        <div class="gis2-meta"><div class="gis2-meta-l">Status</div><div class="gis2-meta-v" id="gis2-status"></div></div>
-        <div class="gis2-meta"><div class="gis2-meta-l">Progress %</div><div class="gis2-meta-v" id="gis2-progress"></div></div>
-        <div class="gis2-meta"><div class="gis2-meta-l">Risk Flag</div><div class="gis2-meta-v" id="gis2-risk"></div></div>
-        <div class="gis2-meta"><div class="gis2-meta-l">Milestone</div><div class="gis2-meta-v" id="gis2-milestone"></div></div>
-      </div>
-      <div class="gis2-section">
-        <div class="gis2-section-head">Milestones</div>
-        <ul class="gis2-list" id="gis2-milestone-list"></ul>
-      </div>
-      <div class="gis2-section">
-        <div class="gis2-section-head">Risk Flags</div>
-        <ul class="gis2-list" id="gis2-risk-list"></ul>
-      </div>
-      <div class="gis2-section">
-        <div class="gis2-section-head">Audit Trail</div>
-        <ul class="gis2-list" id="gis2-audit-list"></ul>
-      </div>
-      <div class="gis2-action" style="justify-content:flex-start;">
-        <a class="gis2-btn" id="gis2-view-details" href="#" target="_blank" rel="noopener noreferrer">View Details</a>
-      </div>
-    </div>
-  </div>
-</div>
-
 </div><!-- /main -->
 </div><!-- /app -->
 
@@ -1301,32 +1260,36 @@ var GIS2_DATA = {
 };
 
 // GIS GEOJSON
-var GIS2_ASSAM_DISTRICTS_GEOJSON = {type:'FeatureCollection',features:[{id:'west_karbi_anglong',type:'Feature',properties:{name:'West Karbi Anglong',key:'west_karbi_anglong'},geometry:{type:'Polygon',coordinates:[[[93.35,26.28],[93.60,26.35],[93.85,26.42],[93.90,26.68],[93.75,26.95],[93.40,27.05],[93.20,26.85],[93.15,26.55],[93.25,26.35],[93.35,26.28]]]}},{id:'karbi_anglong',type:'Feature',properties:{name:'Karbi Anglong',key:'karbi_anglong'},geometry:{type:'Polygon',coordinates:[[[93.50,25.00],[93.95,25.05],[94.30,25.15],[94.45,25.50],[94.50,26.00],[94.35,26.35],[93.90,26.42],[93.60,26.35],[93.50,25.90],[93.48,25.40],[93.50,25.00]]]}},{id:'dima_hasao',type:'Feature',properties:{name:'Dima Hasao',key:'dima_hasao'},geometry:{type:'Polygon',coordinates:[[[92.65,25.80],[93.20,25.75],[93.50,25.90],[93.48,26.30],[93.15,26.55],[92.95,26.40],[92.75,26.10],[92.70,25.95],[92.65,25.80]]]}}]};
+var GIS2_ASSAM_DISTRICTS_GEOJSON = {type:'FeatureCollection',features:[{id:'dima_hasao',type:'Feature',properties:{name:'Dima Hasao',key:'dima_hasao'},geometry:{type:'Polygon',coordinates:[[[92.08,24.52],[92.45,24.38],[92.82,24.40],[93.15,24.62],[93.48,24.88],[93.52,25.22],[93.38,25.58],[93.10,25.82],[92.78,25.95],[92.42,25.88],[92.15,25.65],[91.98,25.30],[92.02,24.90],[92.08,24.52]]]}},{id:'west_karbi_anglong',type:'Feature',properties:{name:'West Karbi Anglong',key:'west_karbi_anglong'},geometry:{type:'Polygon',coordinates:[[[92.78,25.95],[93.10,25.82],[93.38,25.58],[93.52,25.22],[93.72,25.18],[93.90,25.38],[93.95,25.72],[93.82,26.08],[93.55,26.42],[93.25,26.62],[92.98,26.55],[92.72,26.35],[92.65,26.05],[92.78,25.95]]]}},{id:'karbi_anglong',type:'Feature',properties:{name:'Karbi Anglong',key:'karbi_anglong'},geometry:{type:'Polygon',coordinates:[[[93.52,25.22],[93.48,24.88],[93.80,24.82],[94.20,24.90],[94.65,25.05],[95.12,25.28],[95.58,25.62],[95.82,26.05],[95.72,26.48],[95.35,26.78],[94.88,26.92],[94.35,26.85],[93.88,26.68],[93.55,26.42],[93.82,26.08],[93.95,25.72],[93.90,25.38],[93.72,25.18],[93.52,25.22]]]}}]};
 
 // MAP INIT
+var GIS2_COLORS = {
+  dima_hasao:        {color:'#e05252',fill:'#e05252'},
+  west_karbi_anglong:{color:'#3a8fd6',fill:'#3a8fd6'},
+  karbi_anglong:     {color:'#2ecc85',fill:'#2ecc85'}
+};
 function initGIS2Map() {
   var mapContainer = document.getElementById('gis2-leaflet-map');
   if (!mapContainer || mapContainer._leaflet_id) return;
   var map = L.map('gis2-leaflet-map').setView([25.5, 93.5], 7);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OpenStreetMap',maxZoom:18}).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
   var geoJsonLayer = L.geoJSON(GIS2_ASSAM_DISTRICTS_GEOJSON, {
-    style: {color:'#3A8FD6',weight:2,opacity:0.8,fillColor:'#3A8FD6',fillOpacity:0.35},
+    style: function(feature) {
+      var c = GIS2_COLORS[feature.properties.key] || {color:'#3A8FD6',fill:'#3A8FD6'};
+      return {color:c.color,weight:2,opacity:0.9,fillColor:c.fill,fillOpacity:0.35};
+    },
     onEachFeature: function(feature, layer) {
       var key = feature.properties.key;
+      var data = GIS2_DATA[key];
+      var tipText = '<strong>' + feature.properties.name + '</strong><br>' + (data ? data.progress + ' complete \u00b7 ' + data.status : '');
+      layer.bindTooltip(tipText, {permanent:false,direction:'center',className:'gis2-district-tooltip'});
       layer.on('click', function() { openGIS2Popup(key); });
-      layer.on('mouseover', function() {
-        layer.setStyle({fillOpacity:0.55, weight:3});
-        var name = feature.properties.name;
-        var data = GIS2_DATA[key];
-        var tooltip = name + ': ' + data.progress + ' complete';
-        layer.bindTooltip(tooltip, {permanent:false, direction:'center'}).openTooltip();
-      });
-      layer.on('mouseout', function() {
-        layer.setStyle({fillOpacity:0.35, weight:2});
-        layer.closeTooltip();
-      });
+      layer.on('mouseover', function() { layer.setStyle({fillOpacity:0.6,weight:3}); layer.openTooltip(); });
+      layer.on('mouseout', function() { geoJsonLayer.resetStyle(layer); layer.closeTooltip(); });
     }
   }).addTo(map);
+  map.fitBounds(geoJsonLayer.getBounds(), {padding:[30,30]});
+  setTimeout(function() { map.invalidateSize(); }, 100);
 }
 
 // POPUP
@@ -2701,6 +2664,49 @@ document.getElementById('bc-l2b').addEventListener('click', function() { showPro
 document.getElementById('bc-l2c').addEventListener('click', function() { showProcL2(currentPkg); });
 document.getElementById('bc-l3c').addEventListener('click', function() { showProcL3(currentPkg); });
 </script>
+<div class="gis2-popup-mask" id="gis2-popup-mask">
+  <div class="gis2-popup" role="dialog" aria-modal="true" aria-labelledby="gis2-popup-title">
+    <div class="gis2-popup-head">
+      <div class="gis2-popup-title" id="gis2-popup-title">District Details</div>
+      <div class="gis2-popup-close" id="gis2-popup-close">&times;</div>
+    </div>
+    <div class="gis2-popup-body">
+      <div class="gis2-section">
+        <div class="gis2-section-head">Road Construction Works</div>
+        <div id="gis2-works-list"></div>
+      </div>
+      <div class="gis2-image-grid" id="gis2-image-grid"></div>
+      <div class="gis2-meta-grid">
+        <div class="gis2-meta"><div class="gis2-meta-l">District Name</div><div class="gis2-meta-v" id="gis2-district-name"></div></div>
+        <div class="gis2-meta"><div class="gis2-meta-l">Project Name</div><div class="gis2-meta-v" id="gis2-project-name"></div></div>
+        <div class="gis2-meta"><div class="gis2-meta-l">Highway / Road Name</div><div class="gis2-meta-v" id="gis2-road-name"></div></div>
+        <div class="gis2-meta"><div class="gis2-meta-l">Contractor</div><div class="gis2-meta-v" id="gis2-contractor"></div></div>
+        <div class="gis2-meta"><div class="gis2-meta-l">Status</div><div class="gis2-meta-v" id="gis2-status"></div></div>
+        <div class="gis2-meta"><div class="gis2-meta-l">Progress %</div><div class="gis2-meta-v" id="gis2-progress"></div></div>
+        <div class="gis2-meta"><div class="gis2-meta-l">Risk Flag</div><div class="gis2-meta-v" id="gis2-risk"></div></div>
+        <div class="gis2-meta"><div class="gis2-meta-l">Milestone</div><div class="gis2-meta-v" id="gis2-milestone"></div></div>
+      </div>
+      <div class="gis2-section">
+        <div class="gis2-section-head">Milestones</div>
+        <ul class="gis2-list" id="gis2-milestone-list"></ul>
+      </div>
+      <div class="gis2-section">
+        <div class="gis2-section-head">Risk Flags</div>
+        <ul class="gis2-list" id="gis2-risk-list"></ul>
+      </div>
+      <div class="gis2-section">
+        <div class="gis2-section-head">Audit Trail</div>
+        <ul class="gis2-list" id="gis2-audit-list"></ul>
+      </div>
+      <div class="gis2-action" style="justify-content:flex-start;">
+        <a class="gis2-btn" id="gis2-view-details" href="#" target="_blank" rel="noopener noreferrer">View Details</a>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
+
+
+
 
