@@ -62,8 +62,6 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fon
 .menu-bar{display:inline-flex;align-items:center;padding:4px 10px;border:1px solid var(--ui-border);border-radius:8px;background:var(--ui-surface-soft);text-decoration:none;color:#334155;font-size:11px;font-weight:500;white-space:nowrap;}
 .mb-label-link{text-decoration:none;color:#334155;font-size:11px;font-weight:500;white-space:nowrap;}
 .mb-label-link:hover{text-decoration:underline;}
-.top-close-link{width:24px;height:24px;margin-left:2px;border:1px solid var(--ui-border);border-radius:7px;background:#FFFFFF;color:#334155;font-size:12px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
-.top-close-link:hover{background:#F3F6FA;}
 .chip{display:flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid;font-weight:500;white-space:nowrap;}
 .chr{background:var(--rbg);color:#ff8080;border-color:rgba(224,82,82,0.25);}
 .cha{background:var(--abg);color:#ffc860;border-color:rgba(240,165,40,0.25);}
@@ -643,7 +641,6 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
       <div class="chip cha">ISR Due 18 days</div>
       <div class="chip chb">9 Red Flags</div>
       <a class="menu-bar mb-label-link" id="mb-link" href="https://dashboards.datamocha.in/dashboards" target="_self">DSO Targeting</a>
-      <button class="top-close-link" id="top-close-link" type="button" data-link="https://dashboards.datamocha.in/dashboards" aria-label="Go to link">X</button>
     </div>
   </div>
 
@@ -1271,19 +1268,6 @@ document.addEventListener('click', function(ev) {
   if (!card) return;
   openProductPopupFromCard(card);
 });
-
-var topMenuClose = document.getElementById('top-close-link');
-if (topMenuClose) {
-  topMenuClose.addEventListener('click', function() {
-    var targetLink = topMenuClose.getAttribute('data-link');
-    if (targetLink) {
-      window.location.href = targetLink;
-      return;
-    }
-    var topMenuBar = document.getElementById('top-menu-bar');
-    if (topMenuBar) topMenuBar.style.display = 'none';
-  });
-}
 
 // ═══════════════════════════════════════════
 // GENERIC ACCORDION (all pages except works/proc)
