@@ -570,6 +570,26 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 .popup-value{font-size:18px;font-weight:700;color:#1E2733;}
 .popup-sub{font-size:12px;color:#475569;}
 
+/* Project dashboard tooltip */
+.overview-tooltip{
+  position:fixed;
+  z-index:10000;
+  pointer-events:none;
+  max-width:240px;
+  padding:7px 9px;
+  border-radius:7px;
+  background:#1F2A37;
+  color:#FFFFFF;
+  font-size:11px;
+  line-height:1.35;
+  border:1px solid rgba(255,255,255,0.16);
+  box-shadow:0 8px 20px rgba(15,23,42,0.28);
+  opacity:0;
+  transform:translateY(2px);
+  transition:opacity .1s ease,transform .1s ease;
+}
+.overview-tooltip.on{opacity:1;transform:translateY(0);}
+
 /* Dashboard-only topbar behavior (keeps card components unchanged) */
 .tb-sub{display:block!important;}
 .chip{display:flex!important;}
@@ -1197,6 +1217,69 @@ function applyProductCardConfig(scope) {
   });
 }
 
+function ensureOverviewTooltipNode() {
+  var tip = document.getElementById('overview-tooltip');
+  if (tip) return tip;
+  tip = document.createElement('div');
+  tip.id = 'overview-tooltip';
+  tip.className = 'overview-tooltip';
+  document.body.appendChild(tip);
+  return tip;
+}
+
+function getOverviewTooltipText(el) {
+  if (!el) return '';
+  if (el.dataset.tip) return el.dataset.tip;
+
+  if (el.classList.contains('overview-hrow')) {
+    var district = el.querySelector('.overview-hlabel');
+    var pct = el.querySelector('.overview-hval');
+    return district && pct ? district.textContent.trim() + ': ' + pct.textContent.trim() + ' complete' : '';
+  }
+
+  return '';
+}
+
+function bindOverviewTooltips(scope) {
+  var root = scope || document.getElementById('p-overview');
+  if (!root) return;
+
+  var tip = ensureOverviewTooltipNode();
+
+  function placeTip(ev) {
+    var x = ev.clientX + 12;
+    var y = ev.clientY + 14;
+    var w = tip.offsetWidth;
+    var h = tip.offsetHeight;
+    var maxX = window.innerWidth - w - 8;
+    var maxY = window.innerHeight - h - 8;
+    tip.style.left = Math.max(8, Math.min(x, maxX)) + 'px';
+    tip.style.top = Math.max(8, Math.min(y, maxY)) + 'px';
+  }
+
+  function showTip(ev) {
+    var text = getOverviewTooltipText(ev.currentTarget);
+    if (!text) return;
+    tip.textContent = text;
+    tip.classList.add('on');
+    placeTip(ev);
+  }
+
+  function hideTip() {
+    tip.classList.remove('on');
+  }
+
+  root.querySelectorAll('.overview-hrow').forEach(function(el) {
+    if (el.dataset.tipBound === '1') return;
+    el.dataset.tipBound = '1';
+    el.addEventListener('mouseenter', showTip);
+    el.addEventListener('mousemove', placeTip);
+    el.addEventListener('mouseleave', hideTip);
+  });
+
+  window.addEventListener('scroll', hideTip, { passive:true });
+}
+
 function ensureProductPopup() {
   if (document.getElementById('product-popup-mask')) return;
   var mask = document.createElement('div');
@@ -1254,6 +1337,7 @@ if (sidebarNav && droneNavItem) {
 
 setTopbarMode('overview');
 applyProductCardConfig();
+bindOverviewTooltips();
 
 var productCardObserver = new MutationObserver(function(mutations) {
   var shouldApply = mutations.some(function(m) {
