@@ -46,7 +46,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fon
 .ni[data-p="proc"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233B6D11' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='2' width='10' height='12' rx='1.5'/%3E%3Cpath d='M5.2 5.3h5.6M5.2 8h5.6M5.2 10.7h3.6'/%3E%3C/svg%3E");}
 .ni[data-p="finance"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233B6D11' stroke-width='1.5' stroke-linecap='round'%3E%3Cpath d='M2.5 13.2h11'/%3E%3Cpath d='M4.2 13.2V8.8M8 13.2V6.2M11.8 13.2V4'/%3E%3C/svg%3E");}
 .ni[data-p="disaster"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233B6D11' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2.3l6 10.4H2L8 2.3z'/%3E%3Cpath d='M8 6v3.4M8 11.6h.01'/%3E%3C/svg%3E");}
-.ni[data-p="drone"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233B6D11' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6.2' y='6.2' width='3.6' height='3.6' rx='0.8'/%3E%3Ccircle cx='3.5' cy='3.5' r='1.7'/%3E%3Ccircle cx='12.5' cy='3.5' r='1.7'/%3E%3Ccircle cx='3.5' cy='12.5' r='1.7'/%3E%3Ccircle cx='12.5' cy='12.5' r='1.7'/%3E%3Cpath d='M5 5l1.6 1.6M11 5L9.4 6.6M5 11l1.6-1.6M11 11L9.4 9.4'/%3E%3C/svg%3E");}
+.ni[data-p="drone"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.1 8.4l2-3 2.3-.9 2.1-.9 2.2.6 1.5 1.4 1.5 2-.7 2.1-2 1-1.2 1.7-2.6.7-2-.5-1.2-1.5-1.9-.7z' fill='%233B6D11'/%3E%3Cpath d='M6.2 7.2l1.6.9-1 1.8M9.2 6.3l1 1' fill='none' stroke='%23FFFFFF' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='6' cy='10.8' r='.7' fill='%23FFFFFF'/%3E%3C/svg%3E");}
 .ni[data-p="isr"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233B6D11' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 13.2h11'/%3E%3Cpath d='M3.2 10.8l2.7-2.3 2.3 1.8 4-4.3'/%3E%3Ccircle cx='12.2' cy='6' r='1'/%3E%3C/svg%3E");}
 .ni[data-p="admin"]::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%233B6D11' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='8' cy='8' r='2.2'/%3E%3Cpath d='M8 2.3v1.5M8 12.2v1.5M13.7 8h-1.5M3.8 8H2.3M12 4l-1 1M5 11l-1 1M12 12l-1-1M5 5L4 4'/%3E%3C/svg%3E");}
 .nb{margin-left:auto;font-size:9px;padding:1px 5px;border-radius:7px;font-weight:600;}
@@ -632,7 +632,7 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
     <div class="sb-lbl">Reporting</div>
     <div class="ni" data-p="isr">ISR reports</div>
     <div class="ni" data-p="admin">Administration</div>
-    <a class="ni" data-p="drone" href="https://stage-gpmd-dashboardui.theproindia.com/view/5ab239a4-ebf6-4649-9f77-e4f627cafafa?preview=true&dbConnectionType=NaN" target="_blank" rel="noopener noreferrer">Drone</a>
+    <a class="ni" data-p="drone" href="https://stage-gpmd-dashboardui.theproindia.com/view/5ab239a4-ebf6-4649-9f77-e4f627cafafa?preview=true&dbConnectionType=NaN" target="_blank" rel="noopener noreferrer">GIS</a>
   </nav>
   <div class="sb-foot" style="text-align:center;font-weight:500;">Powered by PRO</div>
 </aside>
@@ -1127,7 +1127,7 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 var titles = {
   overview:'Project Overview',
   works:'Works progress',
-  drone:'Drone',
+  drone:'GIS',
   env:'Environment — ESF compliance', social:'Social safeguards and GRM',
   proc:'Procurement', finance:'Financial management',
   disaster:'Disaster response', isr:'ISR reporting', admin:'Administration'
