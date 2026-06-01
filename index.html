@@ -24,6 +24,30 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fon
 .ni{display:flex;align-items:center;gap:9px;padding:8px 16px;font-size:12px;color:var(--t2);cursor:pointer;border-left:2px solid transparent;transition:all .12s;}
 .ni:hover{color:var(--t1);background:rgba(255,255,255,0.03);}
 .ni.on{color:var(--t1);background:rgba(58,143,214,0.1);border-left-color:var(--blue);}
+.ni::before{
+  width:18px;
+  height:18px;
+  border-radius:5px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--sb-primary-soft);
+  color:var(--sb-primary);
+  font-size:9px;
+  font-weight:600;
+  line-height:1;
+  flex-shrink:0;
+}
+.ni.on::before{background:#FFFFFF;color:var(--sb-primary);}
+.ni[data-p="overview"]::before{content:'PD';}
+.ni[data-p="works"]::before{content:'WK';}
+.ni[data-p="env"]::before{content:'EN';}
+.ni[data-p="social"]::before{content:'SG';}
+.ni[data-p="proc"]::before{content:'PR';}
+.ni[data-p="finance"]::before{content:'FM';}
+.ni[data-p="disaster"]::before{content:'DR';}
+.ni[data-p="isr"]::before{content:'IR';}
+.ni[data-p="admin"]::before{content:'AD';}
 .nb{margin-left:auto;font-size:9px;padding:1px 5px;border-radius:7px;font-weight:600;}
 .nb-r{background:rgba(224,82,82,0.2);color:#ff8080;}
 .nb-a{background:rgba(240,165,40,0.2);color:#ffc860;}
