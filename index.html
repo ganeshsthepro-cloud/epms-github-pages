@@ -632,7 +632,7 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
     <div class="sb-lbl">Reporting</div>
     <div class="ni" data-p="isr">ISR reports</div>
     <div class="ni" data-p="admin">Administration</div>
-    <div class="ni" data-p="drone">Drone</div>
+    <a class="ni" data-p="drone" href="https://stage-gpmd-dashboardui.theproindia.com/view/5ab239a4-ebf6-4649-9f77-e4f627cafafa?preview=true&dbConnectionType=NaN" target="_blank" rel="noopener noreferrer">Drone</a>
   </nav>
   <div class="sb-foot" style="text-align:center;font-weight:500;">Powered by PRO</div>
 </aside>
@@ -1234,9 +1234,6 @@ document.querySelectorAll('.ni[data-p]').forEach(function(el) {
   el.addEventListener('click', function() {
     var p = this.dataset.p;
     if (p === 'drone') {
-      var droneUrl = 'https://stage-gpmd-dashboardui.theproindia.com/view/5ab239a4-ebf6-4649-9f77-e4f627cafafa?preview=true&dbConnectionType=NaN';
-      var popup = window.open(droneUrl, '_blank', 'noopener,noreferrer');
-      if (!popup) window.location.href = droneUrl;
       return;
     }
     document.querySelectorAll('.ni').forEach(function(n) { n.classList.remove('on'); });
