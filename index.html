@@ -63,8 +63,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fon
 .mb-label{font-size:11px;color:#334155;font-weight:500;white-space:nowrap;}
 .mb-label-link{text-decoration:none;color:#334155;font-size:11px;font-weight:500;white-space:nowrap;}
 .mb-label-link:hover{text-decoration:underline;}
-.mb-close{width:20px;height:20px;border:1px solid var(--ui-border);border-radius:6px;background:#FFFFFF;color:#334155;font-size:11px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
-.mb-close:hover{background:#F3F6FA;}
+.top-close-link{width:24px;height:24px;border:1px solid var(--ui-border);border-radius:7px;background:#FFFFFF;color:#334155;font-size:12px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
+.top-close-link:hover{background:#F3F6FA;}
 .chip{display:flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid;font-weight:500;white-space:nowrap;}
 .chr{background:var(--rbg);color:#ff8080;border-color:rgba(224,82,82,0.25);}
 .cha{background:var(--abg);color:#ffc860;border-color:rgba(240,165,40,0.25);}
@@ -645,8 +645,8 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
       <div class="chip chb">9 Red Flags</div>
       <div class="menu-bar" id="top-menu-bar">
         <a class="mb-label-link" id="mb-link" href="https://dashboards.datamocha.in/dashboards" target="_self">DSO Targeting</a>
-        <button class="mb-close" id="mb-close" type="button" data-link="https://dashboards.datamocha.in/dashboards" aria-label="Go to link">X</button>
       </div>
+      <button class="top-close-link" id="top-close-link" type="button" data-link="https://dashboards.datamocha.in/dashboards" aria-label="Go to link">X</button>
     </div>
   </div>
 
@@ -1275,7 +1275,7 @@ document.addEventListener('click', function(ev) {
   openProductPopupFromCard(card);
 });
 
-var topMenuClose = document.getElementById('mb-close');
+var topMenuClose = document.getElementById('top-close-link');
 if (topMenuClose) {
   topMenuClose.addEventListener('click', function() {
     var targetLink = topMenuClose.getAttribute('data-link');
