@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ePMS — Assam Disaster Resilient Hill Roads · P510002</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
 :root{--bg:#0e1621;--sb:#0a1220;--card:#141f30;--card2:#111926;--bdr:rgba(255,255,255,0.07);--bdra:rgba(58,143,214,0.3);--t1:#e8edf5;--t2:#7a9bbf;--t3:#3a5a7a;--blue:#3a8fd6;--bluel:#5aaee8;--green:#2ecc85;--amber:#f0a528;--red:#e05252;--purple:#8b72d4;--gbg:rgba(46,204,133,0.1);--abg:rgba(240,165,40,0.1);--rbg:rgba(224,82,82,0.1);--bbg:rgba(58,143,214,0.1);--font:'Poppins',sans-serif;--mono:'Poppins',sans-serif;}
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -602,15 +603,9 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 }
 .gis2-wrap{display:grid;grid-template-columns:1fr;gap:14px;align-items:start;}
 .gis2-map-card{padding:12px!important;}
-.gis2-map-shell{border:1px solid #D7DEE8;border-radius:10px;background:#FFFFFF;padding:12px;min-height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.gis2-map-frame{position:relative;width:min(100%,1080px);line-height:0;border-radius:8px;overflow:hidden;}
-.gis2-map-img{width:100%;height:auto;display:block;background:#FFFFFF;}
-.gis2-overlay{position:absolute;inset:0;width:100%;height:100%;}
-.gis2-region-group{cursor:pointer;}
-.gis2-region{fill:transparent;stroke:transparent;stroke-width:1.6;transition:fill .12s ease,stroke .12s ease;}
-.gis2-region-group:hover .gis2-region,.gis2-region-group:focus .gis2-region{fill:rgba(24,95,165,0.16);stroke:rgba(24,95,165,0.55);}
-.gis2-region-group:focus{outline:none;}
-.gis2-region-label{fill:#0E4A7A;font-size:14px;font-weight:600;pointer-events:none;paint-order:stroke;stroke:#FFFFFF;stroke-width:3;letter-spacing:.01em;}
+.gis2-map-shell{border:1px solid #D7DEE8;border-radius:10px;background:#FFFFFF;padding:12px;min-height:520px;overflow:hidden;}
+.gis2-leaflet-map{width:100%;height:500px;border:1px solid #E3EAF3;border-radius:8px;}
+.gis2-map-tip{font-size:11px;color:#6B7C93;margin-top:8px;}
 .gis2-side-note{font-size:12px;color:#4B5F77;line-height:1.55;}
 .gis2-side-note strong{color:#1E2733;}
 .gis2-chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
@@ -626,13 +621,20 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 .gis2-meta{border:1px solid #E3EAF3;border-radius:8px;padding:10px;background:#FFFFFF;}
 .gis2-meta-l{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:#6B7C93;margin-bottom:4px;}
 .gis2-meta-v{font-size:13px;color:#1E2733;font-weight:500;line-height:1.35;}
+.gis2-section{border:1px solid #E3EAF3;border-radius:8px;padding:10px;background:#FFFFFF;}
+.gis2-section-head{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#6B7C93;margin-bottom:6px;}
+.gis2-list{margin:0;padding-left:18px;}
+.gis2-list li{font-size:12px;color:#334155;line-height:1.55;margin:4px 0;}
 .gis2-image-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
 .gis2-image-grid a{display:block;border:1px solid #E3EAF3;border-radius:8px;overflow:hidden;text-decoration:none;}
 .gis2-image-grid img{display:block;width:100%;height:150px;object-fit:cover;background:#F8FAFD;}
 .gis2-image-cap{padding:7px 8px;font-size:11px;color:#475569;background:#FFFFFF;border-top:1px solid #E3EAF3;}
-.gis2-audit{border:1px solid #E3EAF3;border-radius:8px;padding:10px;background:#FFFFFF;}
-.gis2-audit ul{margin:0;padding-left:18px;}
-.gis2-audit li{font-size:12px;color:#334155;line-height:1.55;margin:4px 0;}
+.gis2-work-item{display:grid;grid-template-columns:1fr auto;gap:8px;padding:7px 0;border-bottom:1px solid #E3EAF3;}
+.gis2-work-item:last-child{border-bottom:none;}
+.gis2-work-main{font-size:12px;color:#1E2733;font-weight:500;}
+.gis2-work-sub{font-size:11px;color:#6B7C93;}
+.gis2-work-link{font-size:11px;color:#185FA5;text-decoration:none;align-self:center;}
+.gis2-work-link:hover{text-decoration:underline;}
 .gis2-action{display:flex;justify-content:flex-end;}
 .gis2-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:8px;border:1px solid #185FA5;background:#185FA5;color:#FFFFFF;text-decoration:none;font-size:12px;font-weight:500;}
 .gis2-btn-highlight{border-color:#0F4C81;background:linear-gradient(135deg,#1D74C7,#0E5BA8);color:#FFFFFF;box-shadow:0 8px 18px rgba(14,91,168,0.30);font-weight:600;padding:9px 18px;border-radius:10px;letter-spacing:.01em;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;}
@@ -641,12 +643,13 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 @media (max-width:1100px){
   .gis2-wrap{grid-template-columns:1fr;}
   .gis2-map-shell{min-height:420px;}
+  .gis2-leaflet-map{height:420px;}
 }
 @media (max-width:760px){
   .gis2-meta-grid{grid-template-columns:1fr;}
   .gis2-image-grid{grid-template-columns:1fr;}
   .gis2-map-shell{min-height:340px;}
-  .gis2-region-label{font-size:12px;}
+  .gis2-leaflet-map{height:340px;}
 }
 
 /* Dashboard-only topbar behavior (keeps card components unchanged) */
@@ -1201,25 +1204,10 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
   <div class="ab ab-b"><div class="ab-txt"><strong>GIS map view</strong> showing only the three highlighted districts. Click Dima Hasao, Karbi Anglong, or West Karbi Anglong to open details.</div></div>
   <div class="gis2-wrap">
     <div class="card gis2-map-card">
-      <div class="ch">Assam Highway Map</div>
+      <div class="ch">Assam District GIS (Leaflet + OpenStreetMap)</div>
       <div class="gis2-map-shell">
-        <div class="gis2-map-frame">
-          <img class="gis2-map-img" src="assam_highway_map_with_districts_highlighted.png" alt="Assam highway map with highlighted districts">
-          <svg class="gis2-overlay" viewBox="0 0 1448 1086" preserveAspectRatio="xMidYMid meet" aria-label="Clickable highlighted districts">
-            <g class="gis2-region-group" tabindex="0" data-district="west_karbi_anglong" role="button" aria-label="West Karbi Anglong">
-              <polygon class="gis2-region" points="590,566 664,556 726,584 736,624 718,682 664,712 606,700 572,638" />
-              <text class="gis2-region-label" x="646" y="626" text-anchor="middle">West Karbi Anglong</text>
-            </g>
-            <g class="gis2-region-group" tabindex="0" data-district="karbi_anglong" role="button" aria-label="Karbi Anglong">
-              <polygon class="gis2-region" points="726,582 804,584 860,616 866,684 836,766 772,792 716,768 704,706 718,636" />
-              <text class="gis2-region-label" x="774" y="674" text-anchor="middle">Karbi Anglong</text>
-            </g>
-            <g class="gis2-region-group" tabindex="0" data-district="dima_hasao" role="button" aria-label="Dima Hasao">
-              <polygon class="gis2-region" points="804,648 886,648 940,698 952,758 928,818 866,838 810,806 780,748 786,692" />
-              <text class="gis2-region-label" x="864" y="756" text-anchor="middle">Dima Hasao</text>
-            </g>
-          </svg>
-        </div>
+        <div id="gis2-leaflet-map" class="gis2-leaflet-map" aria-label="Assam district map"></div>
+        <div class="gis2-map-tip">District boundaries use Assam district GeoJSON and OpenStreetMap base tiles.</div>
       </div>
       <div class="gis2-action">
         <a id="gis2-live-highlight" class="gis2-btn gis2-btn-highlight" href="https://stage-gpmd-dashboardui.theproindia.com/view/5ab239a4-ebf6-4649-9f77-e4f627cafafa?preview=true&dbConnectionType=NaN" target="_blank" rel="noopener noreferrer">LIVE</a>
@@ -1235,6 +1223,10 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
       <div class="gis2-popup-close" id="gis2-popup-close">&times;</div>
     </div>
     <div class="gis2-popup-body">
+      <div class="gis2-section">
+        <div class="gis2-section-head">Road Construction Works</div>
+        <div id="gis2-works-list"></div>
+      </div>
       <div class="gis2-image-grid" id="gis2-image-grid"></div>
       <div class="gis2-meta-grid">
         <div class="gis2-meta"><div class="gis2-meta-l">District Name</div><div class="gis2-meta-v" id="gis2-district-name"></div></div>
@@ -1246,11 +1238,21 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
         <div class="gis2-meta"><div class="gis2-meta-l">Risk Flag</div><div class="gis2-meta-v" id="gis2-risk"></div></div>
         <div class="gis2-meta"><div class="gis2-meta-l">Milestone</div><div class="gis2-meta-v" id="gis2-milestone"></div></div>
       </div>
-      <div class="gis2-audit">
-        <div class="gis2-meta-l">Audit Trail</div>
-        <ul id="gis2-audit-list"></ul>
+      <div class="gis2-section">
+        <div class="gis2-section-head">Milestones</div>
+        <ul class="gis2-list" id="gis2-milestone-list"></ul>
       </div>
-
+      <div class="gis2-section">
+        <div class="gis2-section-head">Risk Flags</div>
+        <ul class="gis2-list" id="gis2-risk-list"></ul>
+      </div>
+      <div class="gis2-section">
+        <div class="gis2-section-head">Audit Trail</div>
+        <ul class="gis2-list" id="gis2-audit-list"></ul>
+      </div>
+      <div class="gis2-action" style="justify-content:flex-start;">
+        <a class="gis2-btn" id="gis2-view-details" href="#" target="_blank" rel="noopener noreferrer">View Details</a>
+      </div>
     </div>
   </div>
 </div>
@@ -1258,6 +1260,7 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 </div><!-- /main -->
 </div><!-- /app -->
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 // ═══════════════════════════════════════════
 // PAGE NAV
@@ -1401,20 +1404,35 @@ function bindOverviewTooltips(scope) {
 
 var GIS2_DATA = {
   dima_hasao: {
+    key: 'dima_hasao',
     districtName: 'Dima Hasao',
     projectName: 'Assam Disaster Resilient Hill Roads',
-    roadName: 'DH Corridor - Package DH-P01 / DH-P02',
-    contractor: 'GVK Infra Ltd',
-    status: 'Delayed',
+    roadName: 'DH-P01: NH-27 Realignment (Km 0-28)',
+    contractor: 'GVK Infra',
+    status: 'Stopped',
     progress: '34%',
     riskFlag: 'High - ESF stop-order risk',
     milestone: 'Slope restoration plan approval pending',
+    works: [
+      { name:'DH-P01 Slope Stabilization', progress:'34%', status:'Delayed', detailUrl:'./#p-works' },
+      { name:'DH-P02 Pavement Strengthening', progress:'39%', status:'Delayed', detailUrl:'./#p-works' }
+    ],
+    milestones: [
+      'Retaining wall foundation completed - km 18',
+      'Drainage outfall redesign submitted',
+      'Monsoon contingency plan under approval'
+    ],
+    riskFlags: [
+      'High rainfall-triggered slope instability',
+      'Pending ESF corrective actions',
+      'Potential delay in IPC certification'
+    ],
     auditTrail: [
       '27 May 2026 - Drone inspection uploaded',
       '28 May 2026 - Site engineer flagged slope failure',
       '29 May 2026 - PMU issued corrective action notice'
     ],
-    detailUrl: 'https://example.com/gis2/dima-hasao',
+    detailUrl: './#p-works',
     images: [
       { src: 'gis2_road_1.jpg', caption: 'Road construction work image 1', href: 'gis2_road_1.jpg' },
       { src: 'gis2_road_2.jpg', caption: 'Road construction work image 2', href: 'gis2_road_2.jpg' },
@@ -1422,20 +1440,35 @@ var GIS2_DATA = {
     ]
   },
   karbi_anglong: {
+    key: 'karbi_anglong',
     districtName: 'Karbi Anglong',
     projectName: 'Assam Disaster Resilient Hill Roads',
-    roadName: 'KA Northern Corridor - Package KA-P01',
-    contractor: 'PNC Infratech Ltd',
+    roadName: 'KA-P01: Main Carriageway (Km 0-32)',
+    contractor: 'PNC Infratech',
     status: 'On Track',
     progress: '52%',
     riskFlag: 'Low - Monsoon watch',
     milestone: 'WMM layer completion in progress',
+    works: [
+      { name:'KA-P01 Hill Cut and Formation', progress:'52%', status:'On Track', detailUrl:'./#p-works' },
+      { name:'KA-P04 Cross Drainage Structures', progress:'46%', status:'On Track', detailUrl:'./#p-works' }
+    ],
+    milestones: [
+      'Subgrade approved for km 6 to 14',
+      'Bridge abutment concrete completed',
+      'Utility relocation stage 2 in progress'
+    ],
+    riskFlags: [
+      'Localized landslip watch zone',
+      'Minor supply-chain delay for geogrid',
+      'No critical safety non-conformities'
+    ],
     auditTrail: [
       '26 May 2026 - IPC #2 submitted',
       '27 May 2026 - QC test results passed',
       '28 May 2026 - Progress validated by supervision team'
     ],
-    detailUrl: 'https://example.com/gis2/karbi-anglong',
+    detailUrl: './#p-works',
     images: [
       { src: 'gis2_road_1.jpg', caption: 'Road construction work image 1', href: 'gis2_road_1.jpg' },
       { src: 'gis2_road_2.jpg', caption: 'Road construction work image 2', href: 'gis2_road_2.jpg' },
@@ -1443,20 +1476,35 @@ var GIS2_DATA = {
     ]
   },
   west_karbi_anglong: {
+    key: 'west_karbi_anglong',
     districtName: 'West Karbi Anglong',
     projectName: 'Assam Disaster Resilient Hill Roads',
-    roadName: 'WK District Road - Package WK-P01',
-    contractor: 'Dilip Buildcon Ltd',
-    status: 'Ahead of Plan',
+    roadName: 'WK-P01: District Road Section (Km 0-34)',
+    contractor: 'Dilip Buildcon',
+    status: 'On Track',
     progress: '61%',
     riskFlag: 'Low - No critical flags',
     milestone: 'Retaining wall phase nearing completion',
+    works: [
+      { name:'WK-P01 Retaining Wall Package', progress:'61%', status:'Ahead of Plan', detailUrl:'./#p-works' },
+      { name:'WK-P03 Surface Course and Shoulders', progress:'54%', status:'On Track', detailUrl:'./#p-works' }
+    ],
+    milestones: [
+      'Gabion wall chainage 8 to 11 completed',
+      'Slope turfing works mobilized',
+      'Final wearing course planned next cycle'
+    ],
+    riskFlags: [
+      'Low weather risk for current cycle',
+      'Traffic diversion monitoring active',
+      'No pending corrective action notices'
+    ],
     auditTrail: [
       '25 May 2026 - Segment survey geotagged',
       '27 May 2026 - Engineer certified progress update',
       '28 May 2026 - Payment release request submitted'
     ],
-    detailUrl: 'https://example.com/gis2/west-karbi-anglong',
+    detailUrl: './#p-works',
     images: [
       { src: 'gis2_road_1.jpg', caption: 'Road construction work image 1', href: 'gis2_road_1.jpg' },
       { src: 'gis2_road_2.jpg', caption: 'Road construction work image 2', href: 'gis2_road_2.jpg' },
@@ -1464,6 +1512,48 @@ var GIS2_DATA = {
     ]
   }
 };
+
+var GIS2_ASSAM_DISTRICTS_GEOJSON = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: { district_key: 'west_karbi_anglong', district_name: 'West Karbi Anglong' },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [[
+          [92.77, 26.01], [92.96, 26.05], [93.12, 25.99], [93.17, 25.85],
+          [93.08, 25.72], [92.87, 25.70], [92.74, 25.83], [92.77, 26.01]
+        ]]
+      }
+    },
+    {
+      type: 'Feature',
+      properties: { district_key: 'karbi_anglong', district_name: 'Karbi Anglong' },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [[
+          [93.10, 26.02], [93.42, 26.02], [93.55, 25.84], [93.44, 25.60],
+          [93.19, 25.55], [93.03, 25.70], [93.10, 26.02]
+        ]]
+      }
+    },
+    {
+      type: 'Feature',
+      properties: { district_key: 'dima_hasao', district_name: 'Dima Hasao' },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [[
+          [93.44, 25.74], [93.79, 25.76], [94.03, 25.55], [93.95, 25.27],
+          [93.64, 25.16], [93.38, 25.33], [93.35, 25.58], [93.44, 25.74]
+        ]]
+      }
+    }
+  ]
+};
+
+var gis2MapInstance = null;
+var gis2GeoJsonLayer = null;
 
 function openGIS2Popup(districtKey) {
   var data = GIS2_DATA[districtKey];
@@ -1482,6 +1572,20 @@ function openGIS2Popup(districtKey) {
   var auditList = document.getElementById('gis2-audit-list');
   auditList.innerHTML = data.auditTrail.map(function(item) { return '<li>' + item + '</li>'; }).join('');
 
+  var milestoneList = document.getElementById('gis2-milestone-list');
+  milestoneList.innerHTML = (data.milestones || []).map(function(item) { return '<li>' + item + '</li>'; }).join('');
+
+  var riskList = document.getElementById('gis2-risk-list');
+  riskList.innerHTML = (data.riskFlags || []).map(function(item) { return '<li>' + item + '</li>'; }).join('');
+
+  var worksList = document.getElementById('gis2-works-list');
+  worksList.innerHTML = (data.works || []).map(function(work) {
+    return '<div class="gis2-work-item">' +
+      '<div><div class="gis2-work-main">' + work.name + '</div><div class="gis2-work-sub">Progress: ' + work.progress + ' | Status: ' + work.status + '</div></div>' +
+      '<a class="gis2-work-link" href="' + work.detailUrl + '" target="_blank" rel="noopener noreferrer">View Details</a>' +
+      '</div>';
+  }).join('');
+
   var imageGrid = document.getElementById('gis2-image-grid');
   imageGrid.innerHTML = data.images.map(function(image) {
     return '<a href="' + image.href + '" target="_blank" rel="noopener noreferrer">' +
@@ -1497,21 +1601,58 @@ function openGIS2Popup(districtKey) {
 }
 
 function initGIS2Map() {
+  if (typeof L === 'undefined') return;
+
   document.querySelectorAll('#p-gis2 .card-view-details').forEach(function(el) {
     el.remove();
   });
 
-  document.querySelectorAll('#p-gis2 .gis2-region-group').forEach(function(region) {
-    region.addEventListener('click', function() {
-      openGIS2Popup(this.dataset.district);
-    });
-    region.addEventListener('keydown', function(ev) {
-      if (ev.key === 'Enter' || ev.key === ' ') {
-        ev.preventDefault();
-        openGIS2Popup(this.dataset.district);
+  if (!gis2MapInstance) {
+    gis2MapInstance = L.map('gis2-leaflet-map', {
+      zoomControl: true,
+      attributionControl: true
+    }).setView([25.72, 93.35], 8);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(gis2MapInstance);
+
+    var defaultStyle = {
+      color: '#185FA5',
+      weight: 2,
+      fillColor: '#2C8BE6',
+      fillOpacity: 0.24
+    };
+    var hoverStyle = {
+      color: '#0F4C81',
+      weight: 3,
+      fillColor: '#3BA7FF',
+      fillOpacity: 0.38
+    };
+
+    gis2GeoJsonLayer = L.geoJSON(GIS2_ASSAM_DISTRICTS_GEOJSON, {
+      style: function() { return defaultStyle; },
+      onEachFeature: function(feature, layer) {
+        layer.bindTooltip(feature.properties.district_name, { direction: 'center', permanent: false, className: 'gis2-district-tooltip' });
+        layer.on('mouseover', function() {
+          layer.setStyle(hoverStyle);
+        });
+        layer.on('mouseout', function() {
+          gis2GeoJsonLayer.resetStyle(layer);
+        });
+        layer.on('click', function() {
+          openGIS2Popup(feature.properties.district_key);
+        });
       }
-    });
-  });
+    }).addTo(gis2MapInstance);
+
+    gis2MapInstance.fitBounds(gis2GeoJsonLayer.getBounds(), { padding: [20, 20] });
+  }
+
+  setTimeout(function() {
+    if (gis2MapInstance) gis2MapInstance.invalidateSize();
+  }, 80);
 
   var popupMask = document.getElementById('gis2-popup-mask');
   var popupClose = document.getElementById('gis2-popup-close');
@@ -1588,7 +1729,6 @@ if (sidebarNav && droneNavItem) {
 setTopbarMode('overview');
 applyProductCardConfig();
 bindOverviewTooltips();
-initGIS2Map();
 
 var productCardObserver = new MutationObserver(function(mutations) {
   var shouldApply = mutations.some(function(m) {
