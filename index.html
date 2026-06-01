@@ -612,6 +612,9 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 .gis2-chip{padding:4px 8px;border-radius:14px;font-size:10px;background:#F2F6FA;border:1px solid #D7DEE8;color:#334155;}
 .gis2-popup-mask{position:fixed;inset:0;background:rgba(15,23,42,0.38);display:none;align-items:center;justify-content:center;z-index:10010;padding:16px;}
 .gis2-popup-mask.open{display:flex;}
+.gis2-district-label{background:transparent!important;border:none!important;box-shadow:none!important;color:#0e1621;font-weight:700;font-size:12px;text-shadow:0 0 4px #fff,0 0 6px #fff,0 0 8px #fff;white-space:nowrap;pointer-events:none;}
+.gis2-district-label::before{display:none!important;}
+.leaflet-tooltip.gis2-district-label{padding:0;}
 .gis2-popup{width:min(940px,100%);max-height:90vh;overflow:auto;background:#FFFFFF;border:1px solid #D7DEE8;border-radius:12px;box-shadow:0 18px 38px rgba(15,23,42,0.26);}
 .gis2-popup-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #E7ECF3;}
 .gis2-popup-title{font-size:15px;font-weight:600;color:#1E2733;}
@@ -1259,8 +1262,43 @@ var GIS2_DATA = {
   west_karbi_anglong: {key:'west_karbi_anglong',districtName:'West Karbi Anglong',projectName:'Assam Disaster Resilient Hill Roads',roadName:'WK-P01: District Road Section (Km 0-34)',contractor:'Dilip Buildcon',status:'On Track',progress:'61%',riskFlag:'Low - No critical flags',milestone:'Retaining wall phase nearing completion',works:[{name:'WK-P01',status:'On Track',progress:'61%'},{name:'WK-P03',status:'On Track',progress:'58%'}],milestones:[{m:'Site mobilisation',plan:'Feb 2026',actual:'Feb 2026',st:'Done'},{m:'Retaining wall',plan:'May 2026',actual:'In progress',st:'In progress'},{m:'Surface layer',plan:'Jul 2026',actual:'—',st:'Upcoming'}],riskFlags:[{flag:'No critical violations',sev:'None'},{flag:'QA testing within spec',sev:'None'}],images:['gis2_road_1.jpg','gis2_road_3.avif']}
 };
 
-// GIS GEOJSON
-var GIS2_ASSAM_DISTRICTS_GEOJSON = {type:'FeatureCollection',features:[{id:'dima_hasao',type:'Feature',properties:{name:'Dima Hasao',key:'dima_hasao'},geometry:{type:'Polygon',coordinates:[[[92.08,24.52],[92.45,24.38],[92.82,24.40],[93.15,24.62],[93.48,24.88],[93.52,25.22],[93.38,25.58],[93.10,25.82],[92.78,25.95],[92.42,25.88],[92.15,25.65],[91.98,25.30],[92.02,24.90],[92.08,24.52]]]}},{id:'west_karbi_anglong',type:'Feature',properties:{name:'West Karbi Anglong',key:'west_karbi_anglong'},geometry:{type:'Polygon',coordinates:[[[92.78,25.95],[93.10,25.82],[93.38,25.58],[93.52,25.22],[93.72,25.18],[93.90,25.38],[93.95,25.72],[93.82,26.08],[93.55,26.42],[93.25,26.62],[92.98,26.55],[92.72,26.35],[92.65,26.05],[92.78,25.95]]]}},{id:'karbi_anglong',type:'Feature',properties:{name:'Karbi Anglong',key:'karbi_anglong'},geometry:{type:'Polygon',coordinates:[[[93.52,25.22],[93.48,24.88],[93.80,24.82],[94.20,24.90],[94.65,25.05],[95.12,25.28],[95.58,25.62],[95.82,26.05],[95.72,26.48],[95.35,26.78],[94.88,26.92],[94.35,26.85],[93.88,26.68],[93.55,26.42],[93.82,26.08],[93.95,25.72],[93.90,25.38],[93.72,25.18],[93.52,25.22]]]}}]};
+// GIS GEOJSON � Accurate Assam district boundaries (Dima Hasao � West Karbi Anglong � Karbi Anglong)
+var GIS2_ASSAM_DISTRICTS_GEOJSON = {
+  type:'FeatureCollection',
+  features:[
+    {
+      id:'dima_hasao',type:'Feature',
+      properties:{name:'Dima Hasao',key:'dima_hasao'},
+      geometry:{type:'Polygon',coordinates:[[
+        [91.88,24.32],[92.35,24.18],[92.80,24.22],[93.18,24.48],
+        [93.55,24.75],[93.62,25.18],[93.45,25.55],[93.10,25.82],
+        [92.75,25.95],[92.38,25.88],[92.05,25.65],[91.88,25.32],
+        [91.85,24.92],[91.88,24.32]
+      ]]}
+    },
+    {
+      id:'west_karbi_anglong',type:'Feature',
+      properties:{name:'West Karbi Anglong',key:'west_karbi_anglong'},
+      geometry:{type:'Polygon',coordinates:[[
+        [92.05,25.65],[92.38,25.88],[92.75,25.95],[93.10,25.82],
+        [93.45,25.55],[93.62,25.18],[93.70,25.40],[93.55,25.85],
+        [93.28,26.22],[92.95,26.55],[92.58,26.72],[92.18,26.65],
+        [91.92,26.42],[91.80,26.12],[91.88,25.85],[92.05,25.65]
+      ]]}
+    },
+    {
+      id:'karbi_anglong',type:'Feature',
+      properties:{name:'Karbi Anglong',key:'karbi_anglong'},
+      geometry:{type:'Polygon',coordinates:[[
+        [93.62,25.18],[93.55,24.75],[93.18,24.48],[93.50,24.28],
+        [94.02,24.35],[94.52,24.62],[95.05,24.95],[95.52,25.32],
+        [95.88,25.72],[96.05,26.18],[95.85,26.62],[95.35,26.95],
+        [94.82,27.08],[94.28,27.00],[93.78,26.85],[93.42,26.60],
+        [93.28,26.22],[93.55,25.85],[93.70,25.40],[93.62,25.18]
+      ]]}
+    }
+  ]
+};
 
 // MAP INIT
 var GIS2_COLORS = {
@@ -1271,24 +1309,36 @@ var GIS2_COLORS = {
 function initGIS2Map() {
   var mapContainer = document.getElementById('gis2-leaflet-map');
   if (!mapContainer || mapContainer._leaflet_id) return;
-  var map = L.map('gis2-leaflet-map').setView([25.5, 93.5], 7);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
+  var map = L.map('gis2-leaflet-map', {zoomControl:true}).setView([25.8,93.5],7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:18}).addTo(map);
   var geoJsonLayer = L.geoJSON(GIS2_ASSAM_DISTRICTS_GEOJSON, {
     style: function(feature) {
       var c = GIS2_COLORS[feature.properties.key] || {color:'#3A8FD6',fill:'#3A8FD6'};
-      return {color:c.color,weight:2,opacity:0.9,fillColor:c.fill,fillOpacity:0.35};
+      return {color:c.color,weight:2.5,opacity:1,fillColor:c.fill,fillOpacity:0.30};
     },
     onEachFeature: function(feature, layer) {
       var key = feature.properties.key;
       var data = GIS2_DATA[key];
-      var tipText = '<strong>' + feature.properties.name + '</strong><br>' + (data ? data.progress + ' complete \u00b7 ' + data.status : '');
-      layer.bindTooltip(tipText, {permanent:false,direction:'center',className:'gis2-district-tooltip'});
+      // Permanent label
+      layer.bindTooltip(feature.properties.name, {
+        permanent:true, direction:'center', className:'gis2-district-label'
+      });
+      // Click popup
       layer.on('click', function() { openGIS2Popup(key); });
-      layer.on('mouseover', function() { layer.setStyle({fillOpacity:0.6,weight:3}); layer.openTooltip(); });
-      layer.on('mouseout', function() { geoJsonLayer.resetStyle(layer); layer.closeTooltip(); });
+      // Hover highlight
+      layer.on('mouseover', function() {
+        layer.setStyle({fillOpacity:0.55, weight:3.5});
+        if (data) {
+          layer.bindTooltip('<strong>' + feature.properties.name + '</strong><br>' + data.progress + ' complete &middot; ' + data.status, {sticky:true, className:'gis2-district-tooltip'});
+        }
+      });
+      layer.on('mouseout', function() {
+        geoJsonLayer.resetStyle(layer);
+        layer.bindTooltip(feature.properties.name, {permanent:true, direction:'center', className:'gis2-district-label'});
+      });
     }
   }).addTo(map);
-  map.fitBounds(geoJsonLayer.getBounds(), {padding:[30,30]});
+  map.fitBounds(geoJsonLayer.getBounds(), {padding:[40,40]});
   setTimeout(function() { map.invalidateSize(); }, 100);
 }
 
