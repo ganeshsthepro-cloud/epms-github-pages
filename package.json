@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "node -e \"const fs=require('fs');fs.rmSync('dist',{recursive:true,force:true});\"",
-    "build": "node -e \"const fs=require('fs');fs.rmSync('dist',{recursive:true,force:true});fs.mkdirSync('dist',{recursive:true});fs.copyFileSync('index.html','dist/index.html');console.log('Build complete: dist/index.html');\"",
+    "build": "node -e \"const fs=require('fs');const path=require('path');const dist='dist';const files=['index.html','assam_highway_map_with_districts_highlighted.png','gis2_road_1.jpg','gis2_road_2.jpg','gis2_road_3.avif'];fs.rmSync(dist,{recursive:true,force:true});fs.mkdirSync(dist,{recursive:true});files.forEach(function(f){if(fs.existsSync(f)){fs.copyFileSync(f,path.join(dist,f));}});console.log('Build complete: dist with index and GIS assets');\"",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "test": "echo \"No tests configured\""
