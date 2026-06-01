@@ -1249,6 +1249,12 @@ document.querySelectorAll('.ni[data-p]').forEach(function(el) {
   });
 });
 
+var sidebarNav = document.querySelector('.sb nav');
+var droneNavItem = sidebarNav ? sidebarNav.querySelector('.ni[data-p="drone"]') : null;
+if (sidebarNav && droneNavItem) {
+  sidebarNav.appendChild(droneNavItem);
+}
+
 setTopbarMode('overview');
 applyProductCardConfig();
 
