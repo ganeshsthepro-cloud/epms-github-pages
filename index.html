@@ -58,6 +58,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fon
 .tb-sub{font-size:11px;color:var(--t3);font-family:var(--mono);}
 .tb-r{display:flex;align-items:center;gap:8px;}
 .tb-icon{display:none;width:22px;height:22px;align-items:center;justify-content:center;color:#202938;font-size:14px;cursor:pointer;}
+.menu-bar{display:inline-flex;align-items:center;gap:8px;padding:4px 8px;border:1px solid var(--ui-border);border-radius:8px;background:var(--ui-surface-soft);}
+.mb-label{font-size:11px;color:#334155;font-weight:500;white-space:nowrap;}
+.mb-close{width:20px;height:20px;border:1px solid var(--ui-border);border-radius:6px;background:#FFFFFF;color:#334155;font-size:11px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
+.mb-close:hover{background:#F3F6FA;}
 .chip{display:flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid;font-weight:500;white-space:nowrap;}
 .chr{background:var(--rbg);color:#ff8080;border-color:rgba(224,82,82,0.25);}
 .cha{background:var(--abg);color:#ffc860;border-color:rgba(240,165,40,0.25);}
@@ -634,6 +638,10 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
       <div class="chip chr">1 Disaster Alert</div>
       <div class="chip cha">ISR Due 18 days</div>
       <div class="chip chb">9 Red Flags</div>
+      <div class="menu-bar" id="top-menu-bar">
+        <span class="mb-label">DSO Targeting</span>
+        <button class="mb-close" id="mb-close" type="button" aria-label="Close menu bar">X</button>
+      </div>
     </div>
   </div>
 
@@ -1252,6 +1260,14 @@ document.addEventListener('click', function(ev) {
   if (!card) return;
   openProductPopupFromCard(card);
 });
+
+var topMenuClose = document.getElementById('mb-close');
+if (topMenuClose) {
+  topMenuClose.addEventListener('click', function() {
+    var topMenuBar = document.getElementById('top-menu-bar');
+    if (topMenuBar) topMenuBar.style.display = 'none';
+  });
+}
 
 // ═══════════════════════════════════════════
 // GENERIC ACCORDION (all pages except works/proc)
