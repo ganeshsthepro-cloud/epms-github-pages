@@ -79,8 +79,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fon
 .tbl td:first-child{color:var(--t1);font-weight:500;}
 .tbl-row-clickable{cursor:pointer;transition:background .1s;}
 .tbl-row-clickable:hover td{background:rgba(58,143,214,0.05);}
-.tbl-row-clickable td:first-child::before{content:'▸ ';font-size:9px;color:var(--blue);margin-right:2px;}
-.tbl-row-clickable.open td:first-child::before{content:'▾ ';}
+.tbl-row-clickable td:first-child::before{content:'+ ';font-size:9px;color:var(--blue);margin-right:2px;}
+.tbl-row-clickable.open td:first-child::before{content:'- ';}
 .acc-row{display:none;}
 .acc-row.open{display:table-row;}
 .acc-cell{padding:0 !important;border-bottom:1px solid rgba(58,143,214,0.12) !important;}
@@ -155,7 +155,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--fon
 .dp-stat-v{font-size:15px;font-weight:600;font-family:var(--mono);color:var(--t1);}
 .click-row{cursor:pointer;transition:background .1s;}
 .click-row:hover td{background:rgba(139,114,212,0.06)!important;}
-.click-row td:first-child::before{content:'▸ ';font-size:9px;color:var(--purple);margin-right:2px;}
+.click-row td:first-child::before{content:'+ ';font-size:9px;color:var(--purple);margin-right:2px;}
 .audit-row{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:11px;}
 .audit-row:last-child{border-bottom:none;}
 .audit-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px;}
@@ -588,31 +588,31 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
   </div>
   <nav>
     <div class="sb-lbl">Overview</div>
-    <div class="ni on" data-p="overview">&#9632; Project dashboard</div>
+    <div class="ni on" data-p="overview">Project dashboard</div>
     <div class="sb-lbl">Construction</div>
-    <div class="ni" data-p="works">&#128296; Works progress</div>
+    <div class="ni" data-p="works">Works progress</div>
     <div class="sb-lbl">Safeguards</div>
-    <div class="ni" data-p="env">&#127807; Environment <span class="nb nb-r">2</span></div>
-    <div class="ni" data-p="social">&#128101; Social &amp; GRM <span class="nb nb-r">7</span></div>
+    <div class="ni" data-p="env">Environment <span class="nb nb-r">2</span></div>
+    <div class="ni" data-p="social">Social &amp; GRM <span class="nb nb-r">7</span></div>
     <div class="sb-lbl">Governance</div>
-    <div class="ni" data-p="proc">&#128203; Procurement <span class="nb nb-r">4</span></div>
-    <div class="ni" data-p="finance">&#128176; Financial mgmt</div>
-    <div class="ni" data-p="disaster">&#9888; Disaster response <span class="nb nb-r">1</span></div>
+    <div class="ni" data-p="proc">Procurement <span class="nb nb-r">4</span></div>
+    <div class="ni" data-p="finance">Financial mgmt</div>
+    <div class="ni" data-p="disaster">Disaster response <span class="nb nb-r">1</span></div>
     <div class="sb-lbl">Reporting</div>
-    <div class="ni" data-p="isr">&#128202; ISR reports</div>
-    <div class="ni" data-p="admin">&#9881; Administration</div>
+    <div class="ni" data-p="isr">ISR reports</div>
+    <div class="ni" data-p="admin">Administration</div>
   </nav>
 </aside>
 <div class="main">
   <div class="topbar">
     <div><div class="tb-title" id="tbt">Project Overview</div><div class="tb-sub">Last updated: 28 May 2026 · 09:14 IST</div></div>
     <div class="tb-r">
-      <div class="chip chr">&#9888; 1 Disaster Alert</div>
-      <div class="chip cha">&#8987; ISR Due 18 days</div>
-      <div class="chip chb">&#9873; 9 Red Flags</div>
+      <div class="chip chr">1 Disaster Alert</div>
+      <div class="chip cha">ISR Due 18 days</div>
+      <div class="chip chb">9 Red Flags</div>
       <div class="ava">PD</div>
-      <span class="tb-icon" title="Theme">&#9681;</span>
-      <span class="tb-icon" title="Close">&#10005;</span>
+      <span class="tb-icon" title="Theme">T</span>
+      <span class="tb-icon" title="Close">X</span>
     </div>
   </div>
 
@@ -709,7 +709,7 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
         <div class="pt">Works progress</div>
         <div class="ps">24 packages · 765 km · Click any package to open full 6-level drill-down</div>
       </div>
-      <div class="pm">Tender › Contract › Sub-package › Work item › Payment › Invoice</div>
+      <div class="pm">Tender / Contract / Sub-package / Work item / Payment / Invoice</div>
     </div>
     <div class="kg4">
       <div class="kc kb"><div class="kc-l">Total packages</div><div class="kc-v">24</div><div class="kc-s">All 3 districts</div></div>
@@ -743,35 +743,35 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
 
   <!-- W-L2: Contract detail + lifecycle timeline -->
   <div id="w-l2" style="display:none;">
-    <div class="back-btn" id="w-back2">&#8592; Back to package list</div>
+    <div class="back-btn" id="w-back2">Back to package list</div>
     <div class="bc" id="w-bc2"></div>
     <div id="w-l2-content"></div>
   </div>
 
   <!-- W-L3: Sub-package list -->
   <div id="w-l3" style="display:none;">
-    <div class="back-btn" id="w-back3">&#8592; Back to contract detail</div>
+    <div class="back-btn" id="w-back3">Back to contract detail</div>
     <div class="bc" id="w-bc3"></div>
     <div id="w-l3-content"></div>
   </div>
 
   <!-- W-L4: Work item detail -->
   <div id="w-l4" style="display:none;">
-    <div class="back-btn" id="w-back4">&#8592; Back to sub-package</div>
+    <div class="back-btn" id="w-back4">Back to sub-package</div>
     <div class="bc" id="w-bc4"></div>
     <div id="w-l4-content"></div>
   </div>
 
   <!-- W-L5: Payment register -->
   <div id="w-l5" style="display:none;">
-    <div class="back-btn" id="w-back5">&#8592; Back to work item</div>
+    <div class="back-btn" id="w-back5">Back to work item</div>
     <div class="bc" id="w-bc5"></div>
     <div id="w-l5-content"></div>
   </div>
 
   <!-- W-L6: Invoice + QC + Drone + ESF -->
   <div id="w-l6" style="display:none;">
-    <div class="back-btn" id="w-back6">&#8592; Back to payment register</div>
+    <div class="back-btn" id="w-back6">Back to payment register</div>
     <div class="bc" id="w-bc6"></div>
     <div id="w-l6-content"></div>
   </div>
@@ -781,7 +781,7 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
 <!-- ENV -->
 <div class="page" id="p-env">
   <div class="ph"><div><div class="pt">Environmental safeguards</div><div class="ps">ESS1 · ESS4 · ESS6 · High risk classification</div></div></div>
-  <div class="ab ab-r"><span style="font-size:15px;flex-shrink:0;color:var(--red);">&#128680;</span><div class="ab-txt"><strong>2 unresolved ESS violations — corrective action overdue.</strong> DH-P01: ESS6 breach (12 days). KA-P04: Tree felling without clearance (7 days).</div></div>
+  <div class="ab ab-r"><div class="ab-txt"><strong>2 unresolved ESS violations — corrective action overdue.</strong> DH-P01: ESS6 breach (12 days). KA-P04: Tree felling without clearance (7 days).</div></div>
   <div class="kg4">
     <div class="kc kr"><div class="kc-l">Open violations</div><div class="kc-v" style="color:var(--red);">2</div><div class="kc-s">Overdue</div></div>
     <div class="kc ka"><div class="kc-l">EMP overdue</div><div class="kc-v" style="color:var(--amber);">6</div><div class="kc-s">Of 24 sections</div></div>
@@ -880,10 +880,10 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
 
   <!-- L2: Contract detail -->
   <div id="proc-l2" style="display:none;">
-    <div class="back-btn" id="proc-back2">&#8592; Back to package list</div>
+    <div class="back-btn" id="proc-back2">Back to package list</div>
     <div class="bc">
       <span class="bca" id="bc-l1a">Procurement</span>
-      <span style="color:var(--t3);">›</span>
+      <span style="color:var(--t3);">/</span>
       <span id="bc-l2-label" style="color:var(--t1);">Package</span>
     </div>
     <div id="proc-l2-content"></div>
@@ -891,12 +891,12 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
 
   <!-- L3: Vendor profile -->
   <div id="proc-l3" style="display:none;">
-    <div class="back-btn" id="proc-back3">&#8592; Back to contract detail</div>
+    <div class="back-btn" id="proc-back3">Back to contract detail</div>
     <div class="bc">
       <span class="bca" id="bc-l1b">Procurement</span>
-      <span style="color:var(--t3);">›</span>
+      <span style="color:var(--t3);">/</span>
       <span class="bca" id="bc-l2b">Contract</span>
-      <span style="color:var(--t3);">›</span>
+      <span style="color:var(--t3);">/</span>
       <span id="bc-l3-label" style="color:var(--t1);">Vendor profile</span>
     </div>
     <div id="proc-l3-content"></div>
@@ -904,14 +904,14 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
 
   <!-- L4: Transaction / audit detail -->
   <div id="proc-l4" style="display:none;">
-    <div class="back-btn" id="proc-back4">&#8592; Back to vendor profile</div>
+    <div class="back-btn" id="proc-back4">Back to vendor profile</div>
     <div class="bc">
       <span class="bca" id="bc-l1c">Procurement</span>
-      <span style="color:var(--t3);">›</span>
+      <span style="color:var(--t3);">/</span>
       <span class="bca" id="bc-l2c">Contract</span>
-      <span style="color:var(--t3);">›</span>
+      <span style="color:var(--t3);">/</span>
       <span class="bca" id="bc-l3c">Vendor</span>
-      <span style="color:var(--t3);">›</span>
+      <span style="color:var(--t3);">/</span>
       <span id="bc-l4-label" style="color:var(--t1);">Transaction</span>
     </div>
     <div id="proc-l4-content"></div>
@@ -961,7 +961,7 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
 <!-- DISASTER -->
 <div class="page" id="p-disaster">
   <div class="ph"><div><div class="pt">Disaster response and early warning</div><div class="ps">Component 3 — Transport Emergency Management Plan</div></div></div>
-  <div class="ab ab-r"><span style="font-size:16px;flex-shrink:0;color:var(--red);">&#127783;</span><div class="ab-txt"><strong>Active alert — Dima Hasao (Level 3):</strong> DH-04 to DH-07 closed. Response team deployed 27 May 22:40 IST. Estimated clearance 32 hours.</div></div>
+  <div class="ab ab-r"><div class="ab-txt"><strong>Active alert — Dima Hasao (Level 3):</strong> DH-04 to DH-07 closed. Response team deployed 27 May 22:40 IST. Estimated clearance 32 hours.</div></div>
   <div class="kg4">
     <div class="kc kr"><div class="kc-l">Active alerts</div><div class="kc-v" style="color:var(--red);">1</div><div class="kc-s">Dima Hasao — Level 3</div></div>
     <div class="kc ka"><div class="kc-l">Sections closed</div><div class="kc-v" style="color:var(--amber);">4</div><div class="kc-s">DH-04 to DH-07</div></div>
@@ -1000,7 +1000,7 @@ body.overview-mode .sb .sb-logo{background:var(--sb-primary)!important;color:#FF
 <!-- ISR -->
 <div class="page" id="p-isr">
   <div class="ph"><div><div class="pt">ISR reporting</div><div class="ps">ISR #4 · Due 15 June 2026 · World Bank OPCS</div></div></div>
-  <div class="ab ab-a"><span style="font-size:15px;flex-shrink:0;color:var(--amber);">&#128197;</span><div class="ab-txt"><strong>ISR #4 preparation underway — due in 18 days.</strong> 6 action plan items overdue. ESF and procurement ratings at risk of downgrade.</div></div>
+  <div class="ab ab-a"><div class="ab-txt"><strong>ISR #4 preparation underway — due in 18 days.</strong> 6 action plan items overdue. ESF and procurement ratings at risk of downgrade.</div></div>
   <div class="g2">
     <div class="card">
       <div class="ch">ISR #4 — ratings snapshot</div>
@@ -1623,7 +1623,7 @@ function setWorksDrillNav(targetId, activeStep, crumbs) {
     var item = c.click
       ? '<span class="bca" onclick="' + c.click + '">' + c.label + '</span>'
       : '<span class="drill-crumb-current">' + c.label + '</span>';
-    var sep = i < crumbs.length - 1 ? '<span class="drill-crumb-sep">›</span>' : '';
+    var sep = i < crumbs.length - 1 ? '<span class="drill-crumb-sep">/</span>' : '';
     return item + sep;
   }).join(' ');
 }
@@ -1652,11 +1652,11 @@ function showWL2(pkg) {
   // Lifecycle timeline HTML
   var lcRows = d.lifecycle.map(function(lc) {
     var dot = lc.st === 'done' ? 'var(--green)' : lc.st === 'issue' ? 'var(--red)' : lc.st === 'active' ? 'var(--blue)' : 'var(--t3)';
-    var stLbl = lc.st === 'done' ? '&#10003;' : lc.st === 'issue' ? '!' : lc.st === 'active' ? '&#9654;' : '&#9675;';
+    var stLbl = lc.st === 'done' ? 'OK' : lc.st === 'issue' ? '!' : lc.st === 'active' ? 'GO' : '...';
     var linkBtn = '';
-    if (lc.link === 'proc') linkBtn = '<span class="drill-link" style="margin-left:8px;" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; Procurement</span>';
-    if (lc.link === 'finance') linkBtn = '<span class="drill-link success" style="margin-left:8px;" onclick="jumpToFinance()">&#8594; Finance</span>';
-    if (lc.link === 'env') linkBtn = '<span class="drill-link warn" style="margin-left:8px;" onclick="jumpToEnv()">&#8594; Environment</span>';
+    if (lc.link === 'proc') linkBtn = '<span class="drill-link" style="margin-left:8px;" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">Open Procurement</span>';
+    if (lc.link === 'finance') linkBtn = '<span class="drill-link success" style="margin-left:8px;" onclick="jumpToFinance()">Open Finance</span>';
+    if (lc.link === 'env') linkBtn = '<span class="drill-link warn" style="margin-left:8px;" onclick="jumpToEnv()">Open Environment</span>';
     return '<div class="drill-timeline-row">' +
       '<div class="drill-timeline-dot" style="background:' + dot + ';">' + stLbl + '</div>' +
       '<div class="drill-timeline-step">' + lc.step + linkBtn + '</div>' +
@@ -1689,7 +1689,7 @@ function showWL2(pkg) {
     '<div class="dp-title">' + d.pkg + ' — ' + d.desc + '</div>' +
     '<div class="dp-sub">Contractor: ' + d.contractor + ' · ' + d.length + ' · Method: ' + d.method +
     ' · <span class="b ' + statusCls + '">' + d.status + '</span>' +
-    ' &nbsp;<span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; Open in Procurement</span>' +
+    ' &nbsp;<span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">Open in Procurement</span>' +
     '</div></div>' +
 
     '<div class="dp-g4" style="margin-bottom:14px;">' +
@@ -1708,8 +1708,8 @@ function showWL2(pkg) {
     '<div class="row"><span class="rl">Delay / float</span><span class="rv" style="color:' + (d.delay === 0 ? 'var(--green)' : 'var(--amber)') + ';">' + (d.delay === 0 ? 'No delay' : d.delay + ' days behind') + '</span></div>' +
     '<div class="sep"></div>' +
     '<div class="drill-mini-title">Jump to linked modules</div>' +
-    '<div class="row"><span class="rl">Procurement record</span><span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; ' + d.procPkg + ' in Procurement</span></div>' +
-    '<div class="row"><span class="rl">Payment records</span><span class="drill-link success" onclick="jumpToFinance()">&#8594; Open Financial mgmt</span></div>' +
+    '<div class="row"><span class="rl">Procurement record</span><span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">Open ' + d.procPkg + ' in Procurement</span></div>' +
+    '<div class="row"><span class="rl">Payment records</span><span class="drill-link success" onclick="jumpToFinance()">Open Financial mgmt</span></div>' +
     '</div>' +
     '<div class="card"><div class="ch">Tender to payment lifecycle</div>' + lcRows + '</div>' +
     '</div>' +
@@ -1908,8 +1908,8 @@ function showWL5(pIdx) {
     '<div class="card" style="margin-top:12px;"><div class="ch">View full invoice and financial record</div>' +
     '<div class="drill-actions">' +
     '<div style="font-size:12px;color:var(--t2);">This IPC flows into Financial Management for withdrawal application processing.</div>' +
-    '<span class="drill-pill-btn success" onclick="showWL6(' + pIdx + ')">&#8594; Open full invoice detail</span>' +
-    '<span class="drill-pill-btn" onclick="jumpToFinance()">&#8594; Jump to Financial mgmt</span>' +
+    '<span class="drill-pill-btn success" onclick="showWL6(' + pIdx + ')">Open full invoice detail</span>' +
+    '<span class="drill-pill-btn" onclick="jumpToFinance()">Jump to Financial mgmt</span>' +
     '</div></div>';
 
   document.getElementById('w-l5-content').innerHTML = html;
@@ -1965,14 +1965,14 @@ function showWL6(pIdx) {
     '<div class="row"><span class="rl">Payment mode</span><span class="rv">Bank transfer — RTGS</span></div>' +
     '<div class="row"><span class="rl">Bank reference</span><span class="rv" style="font-family:var(--mono);">' + pay.ipc + '-RTGS-001</span></div>' +
     '<div class="sep"></div>' +
-    '<div class="row"><span class="rl">Jump to Finance</span><span class="drill-link success" onclick="jumpToFinance()">&#8594; Financial management module</span></div>' +
+    '<div class="row"><span class="rl">Jump to Finance</span><span class="drill-link success" onclick="jumpToFinance()">Financial management module</span></div>' +
     '</div>' +
     '<div class="card"><div class="ch">Supporting documents</div>' +
     '<div class="row"><span class="rl">Measurement book ref</span><span class="rv" style="font-family:var(--mono);">MB-' + wState.pkg + '-' + pay.ipc + '</span></div>' +
     '<div class="row"><span class="rl">QC test report</span><span class="rv" style="font-family:var(--mono);">' + pay.qcRef + '</span></div>' +
     '<div class="row"><span class="rl">Drone verification</span><span class="rv" style="font-family:var(--mono);">' + pay.droneRef + '</span></div>' +
     '<div class="row"><span class="rl">Hindrances / remarks</span><span class="rv">' + (pay.esfFlag ? 'ESF flag raised — withheld' : 'Nil') + '</span></div>' +
-    '<div class="row"><span class="rl">Procurement link</span><span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">&#8594; ' + d.procPkg + ' in Procurement</span></div>' +
+    '<div class="row"><span class="rl">Procurement link</span><span class="drill-link" onclick="jumpToProcPkg(\'' + d.procPkg + '\')">Open ' + d.procPkg + ' in Procurement</span></div>' +
     '</div></div>' +
 
     '<div class="card" style="margin-top:12px;"><div class="ch">Full audit trail — ' + pay.ipc + '</div>' + auditRows + '</div>';
@@ -2246,7 +2246,7 @@ function showProcL2(pkg) {
     '</div>' +
     '<div class="tab-content on" id="tc-ms"><div class="card"><div class="ch">Milestone tracker</div>' +
     '<table class="tbl"><thead><tr><th style="width:38%;">Milestone</th><th style="width:18%;">Planned</th><th style="width:18%;">Actual</th><th>Status</th></tr></thead><tbody>' + mRows + '</tbody></table></div></div>' +
-    '<div class="tab-content" id="tc-vd"><div class="card"><div class="ch">Vendor summary — <span style="color:var(--blue);cursor:pointer;" id="open-l3">View full vendor and transactions &#8594;</span></div>' +
+    '<div class="tab-content" id="tc-vd"><div class="card"><div class="ch">Vendor summary — <span style="color:var(--blue);cursor:pointer;" id="open-l3">View full vendor and transactions</span></div>' +
     '<div class="g2"><div>' +
     '<div class="row"><span class="rl">Contractor</span><span class="rv">' + d.contractor + '</span></div>' +
     '<div class="row"><span class="rl">City</span><span class="rv">' + d.city + '</span></div>' +
