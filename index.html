@@ -1403,10 +1403,20 @@ function openGIS2Popup(districtKey) {
   var splitAt = Math.ceil(works.length / 2);
   var leftWorks = works.slice(0, splitAt);
   var rightWorks = works.slice(splitAt);
+  var primaryPkg = '';
+  for (var wi = 0; wi < works.length; wi++) {
+    var parsedPkg = getGIS2PkgFromWork(works[wi].name);
+    if (parsedPkg) {
+      primaryPkg = parsedPkg;
+      break;
+    }
+  }
   var worksList = document.getElementById('gis2-works-list');
   worksList.innerHTML =
     '<div class="gis2-works-col">' + leftWorks.map(renderGIS2WorkItem).join('') + '</div>' +
     '<div class="gis2-works-col">' + rightWorks.map(renderGIS2WorkItem).join('') + '</div>';
+  var popupBody = document.getElementById('gis2-popup-body');
+  if (popupBody) popupBody.setAttribute('data-primary-pkg', primaryPkg);
   
   var milestoneList = document.getElementById('gis2-milestone-list');
   milestoneList.innerHTML = data.milestones.map(function(m) {
@@ -1427,6 +1437,19 @@ function openGIS2Popup(districtKey) {
   if (mainLive) mainLive.href = GIS2_LIVE_URL;
   
   document.getElementById('gis2-popup-mask').style.display = 'flex';
+}
+
+function openGIS2PrimaryDrill(ev) {
+  if (ev && ev.target) {
+    if (ev.target.closest('#gis2-popup-close')) return;
+    if (ev.target.closest('#gis2-view-details')) return;
+    if (ev.target.closest('.gis2-work-item.clickable')) return;
+    if (ev.target.closest('.gis2-work-link')) return;
+    if (ev.target.closest('a,button')) return;
+  }
+  var popupBody = document.getElementById('gis2-popup-body');
+  var pkg = popupBody ? popupBody.getAttribute('data-primary-pkg') : '';
+  if (pkg) openGIS2SubPopup(pkg);
 }
 
 function setGIS2SubBreadcrumb() {
@@ -2913,7 +2936,7 @@ document.getElementById('bc-l3c').addEventListener('click', function() { showPro
       <div class="gis2-popup-title" id="gis2-popup-title">District Details</div>
       <div class="gis2-popup-close" id="gis2-popup-close" onclick="document.getElementById('gis2-popup-mask').style.display='none'">&times;</div>
     </div>
-    <div class="gis2-popup-body" id="gis2-popup-body">
+    <div class="gis2-popup-body" id="gis2-popup-body" onclick="openGIS2PrimaryDrill(event)">
       <div class="gis2-section">
         <div class="gis2-section-head">Road Construction Works</div>
         <div id="gis2-works-list"></div>
