@@ -639,12 +639,14 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 .gis2-work-link{font-size:11px;color:#185FA5;text-decoration:none;align-self:center;}
 .gis2-work-link:hover{text-decoration:underline;}
 .gis2-work-link.disabled{color:#94A3B8;cursor:not-allowed;text-decoration:none;}
+#gis2-works-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;}
+.gis2-works-col{display:grid;gap:0;}
 .gis2-subpkg-list{display:grid;gap:8px;}
 .gis2-subpkg-item{border:1px solid #E3EAF3;border-radius:8px;padding:8px 10px;background:#FFFFFF;}
 .gis2-subpkg-id{font-size:11px;color:#185FA5;font-weight:700;}
 .gis2-subpkg-name{font-size:12px;color:#1E2733;font-weight:600;margin-top:2px;}
 .gis2-subpkg-meta{font-size:11px;color:#64748B;margin-top:3px;}
-#gis2-subpkg-mask .gis2-popup{max-width:860px;}
+#gis2-subpkg-mask .gis2-popup{width:min(1120px,96vw);max-width:1120px;max-height:92vh;}
 .gis2-action{display:flex;justify-content:flex-end;}
 .gis2-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:8px;border:1px solid #185FA5;background:#185FA5;color:#FFFFFF;text-decoration:none;font-size:12px;font-weight:500;}
 .gis2-btn-highlight{border-color:#0F4C81;background:linear-gradient(135deg,#1D74C7,#0E5BA8);color:#FFFFFF;box-shadow:0 8px 18px rgba(14,91,168,0.30);font-weight:600;padding:9px 18px;border-radius:10px;letter-spacing:.01em;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;}
@@ -658,6 +660,7 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 @media (max-width:760px){
   .gis2-meta-grid{grid-template-columns:1fr;}
   .gis2-image-grid{grid-template-columns:1fr;}
+  #gis2-works-list{grid-template-columns:1fr;}
   .gis2-map-shell{min-height:340px;}
   .gis2-leaflet-map{height:340px;}
 }
@@ -716,7 +719,7 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 .gis2-btn:hover{background:rgba(24,95,165,0.16);}
 .gis2-btn-highlight{border-color:#0F4C81;background:linear-gradient(135deg,#1D74C7,#0E5BA8);color:#FFFFFF;box-shadow:0 8px 18px rgba(14,91,168,0.30);}
 .gis2-popup-mask{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;z-index:10010;}
-.gis2-popup{background:var(--card);border:1px solid var(--bdr);border-radius:10px;width:90%;max-width:600px;max-height:80vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,0.3);}
+.gis2-popup{background:var(--card);border:1px solid var(--bdr);border-radius:10px;width:min(1100px,96vw);max-width:1100px;max-height:92vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,0.3);}
 .gis2-popup-head{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--bdr);}
 .gis2-popup-title{font-size:14px;font-weight:600;color:var(--t1);}
 .gis2-popup-close{font-size:24px;color:var(--t3);cursor:pointer;transition:color .12s;}
@@ -1361,6 +1364,14 @@ function initGIS2Map() {
 }
 
 // POPUP
+function renderGIS2WorkItem(w) {
+  var pkg = getGIS2PkgFromWork(w.name);
+  var link = pkg
+    ? '<a class="gis2-work-link" href="#" onclick="openGIS2SubPopup(\'' + pkg + '\');return false;">Drill Down</a>'
+    : '<span class="gis2-work-link disabled">No tracker</span>';
+  return '<div class="gis2-work-item"><div><div class="gis2-work-main"><strong>' + w.name + '</strong></div><div class="gis2-work-sub">' + w.status + ' (' + w.progress + ')</div></div>' + link + '</div>';
+}
+
 function openGIS2Popup(districtKey) {
   var data = GIS2_DATA[districtKey];
   if (!data) return;
@@ -1373,14 +1384,15 @@ function openGIS2Popup(districtKey) {
   document.getElementById('gis2-risk').textContent = data.riskFlag;
   document.getElementById('gis2-milestone').textContent = data.milestone;
   
+  var works = data.works || [];
+  var splitAt = Math.ceil(works.length / 2);
+  var leftWorks = works.slice(0, splitAt);
+  var rightWorks = works.slice(splitAt);
+
   var worksList = document.getElementById('gis2-works-list');
-  worksList.innerHTML = data.works.map(function(w) {
-    var pkg = getGIS2PkgFromWork(w.name);
-    var link = pkg
-      ? '<a class="gis2-work-link" href="#" onclick="openGIS2SubPopup(\'' + pkg + '\');return false;">Drill Down</a>'
-      : '<span class="gis2-work-link disabled">No tracker</span>';
-    return '<div class="gis2-work-item"><div><div class="gis2-work-main"><strong>' + w.name + '</strong></div><div class="gis2-work-sub">' + w.status + ' (' + w.progress + ')</div></div>' + link + '</div>';
-  }).join('');
+  worksList.innerHTML =
+    '<div class="gis2-works-col">' + leftWorks.map(renderGIS2WorkItem).join('') + '</div>' +
+    '<div class="gis2-works-col">' + rightWorks.map(renderGIS2WorkItem).join('') + '</div>';
   
   var milestoneList = document.getElementById('gis2-milestone-list');
   milestoneList.innerHTML = data.milestones.map(function(m) {
