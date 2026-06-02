@@ -642,10 +642,16 @@ html,body{background:var(--ui-page)!important;color:var(--ui-text)!important;}
 #gis2-works-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;}
 .gis2-works-col{display:grid;gap:0;}
 .gis2-subpkg-list{display:grid;gap:8px;}
-.gis2-subpkg-item{border:1px solid #E3EAF3;border-radius:8px;padding:8px 10px;background:#FFFFFF;}
+.gis2-subpkg-item{border:1px solid #E3EAF3;border-radius:8px;padding:8px 10px;background:#FFFFFF;cursor:pointer;transition:background .12s,border-color .12s;}
+.gis2-subpkg-item:hover{background:#F8FBFF;border-color:#C7D6E9;}
 .gis2-subpkg-id{font-size:11px;color:#185FA5;font-weight:700;}
 .gis2-subpkg-name{font-size:12px;color:#1E2733;font-weight:600;margin-top:2px;}
 .gis2-subpkg-meta{font-size:11px;color:#64748B;margin-top:3px;}
+.gis2-subpkg-open{font-size:11px;color:#185FA5;font-weight:600;margin-top:6px;}
+.gis2-subpkg-detail-wrap{display:none;}
+.gis2-subpkg-back{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#185FA5;cursor:pointer;font-weight:600;margin-bottom:8px;}
+.gis2-subpkg-back:hover{text-decoration:underline;}
+.gis2-subpkg-detail-title{font-size:13px;font-weight:700;color:#1E2733;margin-bottom:8px;}
 #gis2-subpkg-mask .gis2-popup{width:min(1120px,96vw);max-width:1120px;max-height:92vh;}
 .gis2-action{display:flex;justify-content:flex-end;}
 .gis2-btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:8px;border:1px solid #185FA5;background:#185FA5;color:#FFFFFF;text-decoration:none;font-size:12px;font-weight:500;}
@@ -1442,6 +1448,8 @@ function openGIS2SubPopup(pkg) {
   var titleEl = document.getElementById('gis2-subpkg-title');
   var metaEl = document.getElementById('gis2-subpkg-meta');
   var listEl = document.getElementById('gis2-subpkg-list');
+  var listWrapEl = document.getElementById('gis2-subpkg-list-wrap');
+  var detailWrapEl = document.getElementById('gis2-subpkg-detail-wrap');
   var imgEl = document.getElementById('gis2-subpkg-images');
   var liveEl = document.getElementById('gis2-subpkg-live');
 
@@ -1457,14 +1465,18 @@ function openGIS2SubPopup(pkg) {
   }
 
   if (listEl) {
-    listEl.innerHTML = (d.subPackages || []).map(function(sp) {
-      return '<div class="gis2-subpkg-item">' +
+    listEl.innerHTML = (d.subPackages || []).map(function(sp, idx) {
+      return '<div class="gis2-subpkg-item" onclick="openGIS2SubPkgDetail(\'' + d.pkg + '\',' + idx + ')">' +
         '<div class="gis2-subpkg-id">' + sp.id + '</div>' +
         '<div class="gis2-subpkg-name">' + sp.name + '</div>' +
         '<div class="gis2-subpkg-meta">' + sp.km + ' · ' + sp.value + ' · ' + sp.status + ' · Items: ' + (sp.items ? sp.items.length : 0) + '</div>' +
+        '<div class="gis2-subpkg-open">Open Drill Down</div>' +
       '</div>';
     }).join('');
   }
+
+  if (listWrapEl) listWrapEl.style.display = 'block';
+  if (detailWrapEl) detailWrapEl.style.display = 'none';
 
   if (imgEl) {
     imgEl.innerHTML = imgs.map(function(img) {
@@ -1474,6 +1486,55 @@ function openGIS2SubPopup(pkg) {
 
   if (liveEl) liveEl.href = GIS2_LIVE_URL;
   document.getElementById('gis2-subpkg-mask').style.display = 'flex';
+}
+
+function openGIS2SubPkgDetail(pkg, spIdx) {
+  if (!pkg || typeof WD === 'undefined' || !WD[pkg]) return;
+  var d = WD[pkg];
+  var sp = (d.subPackages || [])[spIdx];
+  if (!sp) return;
+
+  var detailTitle = document.getElementById('gis2-subpkg-detail-title');
+  var detailBody = document.getElementById('gis2-subpkg-detail-body');
+  var listWrap = document.getElementById('gis2-subpkg-list-wrap');
+  var detailWrap = document.getElementById('gis2-subpkg-detail-wrap');
+
+  if (detailTitle) detailTitle.textContent = sp.id + ' - ' + sp.name;
+
+  if (detailBody) {
+    var rows = (sp.items || []).map(function(it) {
+      return '<tr>' +
+        '<td>' + it.id + '</td>' +
+        '<td>' + it.desc + '</td>' +
+        '<td>' + (it.unit || '-') + '</td>' +
+        '<td>' + (it.qty || '-') + '</td>' +
+        '<td>' + (it.planPct || 0) + '%</td>' +
+        '<td>' + (it.actualPct || 0) + '%</td>' +
+        '<td>' + (it.st || '-') + '</td>' +
+      '</tr>';
+    }).join('');
+
+    detailBody.innerHTML =
+      '<div class="gis2-meta-grid" style="margin-bottom:10px;">' +
+        '<div class="gis2-meta"><div class="gis2-meta-l">Package</div><div class="gis2-meta-v">' + d.pkg + '</div></div>' +
+        '<div class="gis2-meta"><div class="gis2-meta-l">Sub-package KM</div><div class="gis2-meta-v">' + sp.km + '</div></div>' +
+        '<div class="gis2-meta"><div class="gis2-meta-l">Sub-package Value</div><div class="gis2-meta-v">' + sp.value + '</div></div>' +
+        '<div class="gis2-meta"><div class="gis2-meta-l">Status</div><div class="gis2-meta-v">' + sp.status + '</div></div>' +
+      '</div>' +
+      '<div class="card" style="margin:0;"><div class="ch">Work Items</div>' +
+      '<table class="tbl"><thead><tr><th style="width:12%;">Item</th><th style="width:34%;">Description</th><th style="width:9%;">Unit</th><th style="width:11%;">Qty</th><th style="width:10%;">Plan</th><th style="width:10%;">Actual</th><th>Status</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table></div>';
+  }
+
+  if (listWrap) listWrap.style.display = 'none';
+  if (detailWrap) detailWrap.style.display = 'block';
+}
+
+function closeGIS2SubPkgDetail() {
+  var listWrap = document.getElementById('gis2-subpkg-list-wrap');
+  var detailWrap = document.getElementById('gis2-subpkg-detail-wrap');
+  if (listWrap) listWrap.style.display = 'block';
+  if (detailWrap) detailWrap.style.display = 'none';
 }
 
 // CLOSE POPUP
@@ -1487,7 +1548,10 @@ if (mask) {
 var subMask = document.getElementById('gis2-subpkg-mask');
 if (subMask) {
   subMask.addEventListener('click', function(e) {
-    if (e.target === subMask) subMask.style.display = 'none';
+    if (e.target === subMask) {
+      closeGIS2SubPkgDetail();
+      subMask.style.display = 'none';
+    }
   });
 }
 
@@ -2863,13 +2927,18 @@ document.getElementById('bc-l3c').addEventListener('click', function() { showPro
   <div class="gis2-popup" role="dialog" aria-modal="true" aria-labelledby="gis2-subpkg-title">
     <div class="gis2-popup-head">
       <div class="gis2-popup-title" id="gis2-subpkg-title">Package Drill Down</div>
-      <div class="gis2-popup-close" onclick="document.getElementById('gis2-subpkg-mask').style.display='none'">&times;</div>
+      <div class="gis2-popup-close" onclick="closeGIS2SubPkgDetail();document.getElementById('gis2-subpkg-mask').style.display='none'">&times;</div>
     </div>
     <div class="gis2-popup-body">
       <div class="gis2-meta-grid" id="gis2-subpkg-meta"></div>
-      <div class="gis2-section">
+      <div class="gis2-section" id="gis2-subpkg-list-wrap">
         <div class="gis2-section-head">Sub-packages (from Works Package Tracker)</div>
         <div class="gis2-subpkg-list" id="gis2-subpkg-list"></div>
+      </div>
+      <div class="gis2-section gis2-subpkg-detail-wrap" id="gis2-subpkg-detail-wrap">
+        <div class="gis2-subpkg-back" onclick="closeGIS2SubPkgDetail()">Back to Sub-packages</div>
+        <div class="gis2-subpkg-detail-title" id="gis2-subpkg-detail-title"></div>
+        <div id="gis2-subpkg-detail-body"></div>
       </div>
       <div class="gis2-section">
         <div class="gis2-section-head">Road Images</div>
