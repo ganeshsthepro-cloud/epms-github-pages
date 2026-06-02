@@ -1374,7 +1374,7 @@ function initGIS2Map() {
 function renderGIS2WorkItem(w) {
   var pkg = getGIS2PkgFromWork(w.name);
   var link = pkg
-    ? '<a class="gis2-work-link" href="#" onclick="openGIS2SubPopup(\'' + pkg + '\');return false;">Drill Down</a>'
+    ? '<a class="gis2-work-link" href="#" onclick="openGIS2SubPopup(\'' + pkg + '\');return false;">Open</a>'
     : '<span class="gis2-work-link disabled">No tracker</span>';
   return '<div class="gis2-work-item"><div><div class="gis2-work-main"><strong>' + w.name + '</strong></div><div class="gis2-work-sub">' + w.status + ' (' + w.progress + ')</div></div>' + link + '</div>';
 }
@@ -1472,7 +1472,7 @@ function openGIS2SubPopup(pkg) {
   var imgEl = document.getElementById('gis2-subpkg-images');
   var liveEl = document.getElementById('gis2-subpkg-live');
 
-  if (titleEl) titleEl.textContent = 'Package Drill Down — ' + d.pkg;
+  if (titleEl) titleEl.textContent = 'Package Details — ' + d.pkg;
   if (metaEl) {
     metaEl.innerHTML =
       '<div class="gis2-meta"><div class="gis2-meta-l">District</div><div class="gis2-meta-v">' + d.district + '</div></div>' +
@@ -1489,7 +1489,7 @@ function openGIS2SubPopup(pkg) {
         '<div class="gis2-subpkg-id">' + sp.id + '</div>' +
         '<div class="gis2-subpkg-name">' + sp.name + '</div>' +
         '<div class="gis2-subpkg-meta">' + sp.km + ' · ' + sp.value + ' · ' + sp.status + ' · Items: ' + (sp.items ? sp.items.length : 0) + '</div>' +
-        '<div class="gis2-subpkg-open">Open Drill Down</div>' +
+        '<div class="gis2-subpkg-open">View Details</div>' +
       '</div>';
     }).join('');
   }
@@ -2945,7 +2945,7 @@ document.getElementById('bc-l3c').addEventListener('click', function() { showPro
 <div class="gis2-popup-mask" id="gis2-subpkg-mask">
   <div class="gis2-popup" role="dialog" aria-modal="true" aria-labelledby="gis2-subpkg-title">
     <div class="gis2-popup-head">
-      <div class="gis2-popup-title" id="gis2-subpkg-title">Package Drill Down</div>
+      <div class="gis2-popup-title" id="gis2-subpkg-title">Package Details</div>
       <div class="gis2-popup-close" onclick="closeGIS2SubPkgDetail();document.getElementById('gis2-subpkg-mask').style.display='none'">&times;</div>
     </div>
     <div class="gis2-popup-body">
@@ -2955,7 +2955,7 @@ document.getElementById('bc-l3c').addEventListener('click', function() { showPro
         <div class="gis2-subpkg-list" id="gis2-subpkg-list"></div>
       </div>
       <div class="gis2-section gis2-subpkg-detail-wrap" id="gis2-subpkg-detail-wrap">
-        <div class="gis2-subpkg-back" onclick="closeGIS2SubPkgDetail()">Back to Sub-packages</div>
+        <div class="gis2-subpkg-back" onclick="closeGIS2SubPkgDetail()">← Back to Sub-packages</div>
         <div class="gis2-subpkg-detail-title" id="gis2-subpkg-detail-title"></div>
         <div id="gis2-subpkg-detail-body"></div>
       </div>
